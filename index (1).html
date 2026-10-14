@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Concrete Calculator UK – m³, Bags &amp; Cost for Slabs, Bases &amp; Footings</title>
+<meta name="description" content="Free UK concrete calculator. Work out cubic metres, 25kg bags, weight and cost for slabs, shed bases, footings, post holes and steps. Includes waste allowance and ready-mix advice.">
+<link rel="canonical" href="https://www.YOURDOMAIN.co.uk/concrete-calculator">
+<meta property="og:title" content="Concrete Calculator UK – m³, Bags &amp; Cost">
+<meta property="og:description" content="How much concrete do you need? Calculate m³, bags and cost for slabs, footings, columns and steps.">
+<meta property="og:type" content="website">
+<meta name="robots" content="index, follow, max-snippet:-1">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧱</text></svg>">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"WebApplication","name":"Concrete Calculator UK","applicationCategory":"UtilityApplication","operatingSystem":"Any","url":"https://www.YOURDOMAIN.co.uk/concrete-calculator","description":"Calculate concrete volume in cubic metres, number of 25kg bags and estimated cost for UK slabs, bases, footings, columns and steps.","offers":{"@type":"Offer","price":"0","priceCurrency":"GBP"},"inLanguage":"en-GB"},
+{"@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"How do I calculate cubic metres of concrete?","acceptedAnswer":{"@type":"Answer","text":"Multiply length × width × thickness, with all three in metres. A 3m × 3m slab that is 100mm (0.1m) thick needs 3 × 3 × 0.1 = 0.9 m³. Add 5–10% for waste."}},
+{"@type":"Question","name":"How many bags of concrete make one cubic metre?","acceptedAnswer":{"@type":"Answer","text":"A 25kg bag of dry mix makes roughly 0.012 m³, so one cubic metre needs about 83 bags. A 20kg bag makes about 0.0095 m³ (around 105 bags)."}},
+{"@type":"Question","name":"How much concrete do I need for a shed base?","acceptedAnswer":{"@type":"Answer","text":"A 2.4m × 1.8m base at 100mm thick is 0.43 m³ before waste, or about 0.47 m³ with 10% waste. That is around 40 bags of 25kg mix."}},
+{"@type":"Question","name":"Is it cheaper to buy bags or ready-mix?","acceptedAnswer":{"@type":"Answer","text":"For jobs under about 0.5 m³, bags are usually simpler and cheaper. Between 0.5 and 1 m³ the costs are close. Above 1 m³, ready-mix delivery is normally cheaper and faster, though small loads can attract a short-load charge."}},
+{"@type":"Question","name":"How thick should a concrete slab be?","acceptedAnswer":{"@type":"Answer","text":"Paths and patios: 75–100mm. Shed and garage bases: 100mm. Car driveways: 100–150mm. Always follow Building Regulations and an engineer's advice for structural work."}},
+{"@type":"Question","name":"Why add waste to a concrete calculation?","acceptedAnswer":{"@type":"Answer","text":"Uneven ground, formwork movement and spillage mean you use more than the theoretical volume. Adding 5–10% helps you avoid running short mid-pour."}}
+]}]}
+</script>
+<link rel="stylesheet" href="/style.css">
+<!-- AFTER ADSENSE APPROVAL: paste your AdSense script here
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script> -->
+</head>
+<body>
+<header class="top"><div class="wrap"><a class="brand" href="/">ConcreteCalc<span style="color:var(--accent)">.</span>UK</a>
+<nav aria-label="Main"><a href="/">Calculator</a><a href="/blog/">Blog</a><a href="/about.html">About</a><a href="/contact.html">Contact</a></nav></div></header>
+
+<main class="wrap">
+<div class="hero">
+<h1>Concrete calculator UK</h1>
+<p class="lead">Enter your measurements in metres and millimetres to get cubic metres, 25kg bags, weight and an estimated cost for slabs, shed bases, footings, post holes and steps.</p>
+</div>
+
+<div class="tool" id="calculator">
+<section class="panel" aria-label="Concrete calculator inputs">
+<div class="tabs" role="tablist" aria-label="Shape">
+<button role="tab" aria-selected="true" data-s="slab">Slab / base</button>
+<button role="tab" aria-selected="false" data-s="footing">Footing</button>
+<button role="tab" aria-selected="false" data-s="column">Post hole / column</button>
+<button role="tab" aria-selected="false" data-s="circle">Round slab</button>
+<button role="tab" aria-selected="false" data-s="steps">Steps</button>
+</div>
+
+<div id="g-rect">
+<div class="row">
+<div class="f"><label for="len">Length (m)</label><input id="len" type="number" inputmode="decimal" min="0" step="0.01" value="3"></div>
+<div class="f"><label for="wid">Width (m)</label><input id="wid" type="number" inputmode="decimal" min="0" step="0.01" value="3"></div>
+</div>
+</div>
+<div id="g-dia" hidden>
+<div class="f"><label for="dia">Diameter (m)</label><input id="dia" type="number" inputmode="decimal" min="0" step="0.01" value="0.3"></div>
+</div>
+<div id="g-steps" hidden>
+<div class="row">
+<div class="f"><label for="sn">Number of steps</label><input id="sn" type="number" min="1" step="1" value="3"></div>
+<div class="f"><label for="sw">Step width (m)</label><input id="sw" type="number" inputmode="decimal" min="0" step="0.01" value="1"></div>
+<div class="f"><label for="sr">Rise (mm)</label><input id="sr" type="number" min="0" value="175"></div>
+<div class="f"><label for="sg">Going (mm)</label><input id="sg" type="number" min="0" value="250"></div>
+</div>
+<div class="hint">Calculated as a solid pour, with each step filled to the ground.</div>
+</div>
+<div id="g-depth">
+<div class="f"><label for="dep" id="deplab">Thickness (mm)</label><input id="dep" type="number" inputmode="decimal" min="0" value="100">
+<div class="presets" id="presets"></div></div>
+</div>
+
+<div class="row">
+<div class="f"><label for="waste">Waste allowance</label>
+<select id="waste"><option value="0">0% (exact)</option><option value="5">5%</option><option value="10" selected>10% (recommended)</option><option value="15">15% (uneven ground)</option></select></div>
+<div class="f"><label for="mix">Mix</label>
+<select id="mix"><option value="2.4">C20 – paths, bases</option><option value="2.4">C25 – footings</option><option value="2.4">C30 – driveways</option></select></div>
+</div>
+<button class="cta" id="go" type="button">Calculate concrete</button>
+</section>
+
+<section class="panel" aria-live="polite" aria-label="Results">
+<div id="out"><p class="empty">Enter your measurements and press calculate.</p></div>
+</section>
+</div>
+
+<div class="ad"><!-- AFTER APPROVAL: paste ad unit (ins.adsbygoogle) here --></div><article>
+<section class="c" id="guide">
+<h2>How much concrete do I need?</h2>
+<p>Concrete is ordered by volume in cubic metres (m³). For a flat slab, shed base or path the sum is simple: <strong>length × width × thickness</strong>, with every measurement in metres. A 3m × 3m base poured 100mm (0.1m) deep needs 0.9 m³. Add a waste allowance of 5–10% because ground is never perfectly level and formwork flexes.</p>
+<h3>How to calculate cubic metres of concrete</h3>
+<ol>
+<li>Measure length and width in metres.</li>
+<li>Convert thickness from millimetres to metres (100mm = 0.1m).</li>
+<li>Multiply the three numbers to get the volume.</li>
+<li>Multiply by 1.05–1.10 to allow for waste.</li>
+</ol>
+<h3>For a post hole or column</h3>
+<p>Use π × (diameter ÷ 2)² × depth. A 0.3m wide, 0.6m deep fence post hole needs about 0.042 m³, roughly four bags of 25kg mix, less the space the post takes up.</p>
+
+<h2>Bags or ready-mix: which is cheaper?</h2>
+<div class="scroll"><table>
+<thead><tr><th>Job size</th><th>Best option</th><th>Typical use</th></tr></thead>
+<tbody>
+<tr><td>Under 0.5 m³</td><td>Bagged mix</td><td>Fence posts, small repairs, path sections</td></tr>
+<tr><td>0.5 – 1 m³</td><td>Either; compare quotes</td><td>Shed bases, small patios</td></tr>
+<tr><td>1 – 4 m³</td><td>Mini-mix or ready-mix</td><td>Garage bases, driveways</td></tr>
+<tr><td>Over 4 m³</td><td>Ready-mix lorry or pump</td><td>Large slabs, extensions</td></tr>
+</tbody></table></div>
+<p>Hand-mixing one cubic metre means about 83 bags and a full day's work. Many suppliers charge extra for small ready-mix loads, so ask about mini-mix delivery for 1–4 m³ jobs.</p>
+
+<h2>Recommended slab thickness and mix</h2>
+<div class="scroll"><table>
+<thead><tr><th>Application</th><th>Thickness</th><th>Mix</th></tr></thead>
+<tbody>
+<tr><td>Paths and patios</td><td>75–100mm</td><td>C20</td></tr>
+<tr><td>Shed and garage bases</td><td>100mm</td><td>C20</td></tr>
+<tr><td>Strip footings</td><td>300–500mm</td><td>C25</td></tr>
+<tr><td>Car driveways</td><td>100–150mm</td><td>C25–C30</td></tr>
+</tbody></table></div>
+<p>These are typical domestic figures. For anything load-bearing or covered by Building Regulations, follow your engineer's or building control's specification.</p>
+</section>
+
+<section class="c" id="faq">
+<h2>Concrete calculator FAQs</h2>
+<details><summary>How do I calculate cubic metres of concrete?</summary><p>Multiply length × width × thickness, all in metres. A 3m × 3m slab at 100mm thick is 3 × 3 × 0.1 = 0.9 m³. Add 5–10% for waste.</p></details>
+<details><summary>How many bags of concrete make one cubic metre?</summary><p>A 25kg bag makes about 0.012 m³, so one cubic metre needs around 83 bags. A 20kg bag makes about 0.0095 m³ (around 105 bags).</p></details>
+<details><summary>How much concrete do I need for a shed base?</summary><p>A 2.4m × 1.8m base at 100mm thick is 0.43 m³, or about 0.47 m³ with 10% waste. That is roughly 40 bags of 25kg mix.</p></details>
+<details><summary>Is it cheaper to buy bags or ready-mix?</summary><p>Below about 0.5 m³ bags are usually simpler and cheaper. Above 1 m³ ready-mix is normally cheaper and far less work, though small loads can attract a short-load charge.</p></details>
+<details><summary>How thick should a concrete slab be?</summary><p>Paths and patios 75–100mm, shed bases 100mm, car driveways 100–150mm. Check Building Regulations for structural work.</p></details>
+<details><summary>Why add waste to my calculation?</summary><p>Uneven ground, formwork movement and spillage mean you use more than the theoretical volume. A 10% allowance avoids running short mid-pour.</p></details>
+</section>
+<section class="c"><h2>Latest concrete guides</h2><div class="cards"><a class="card" href="/blog/how-many-bags-of-concrete-per-cubic-metre.html"><h3>How Many Bags of Concrete Make 1 Cubic Metre?</h3><p>Quick answer and worked examples for 25kg and 20kg bags, with waste allowance.</p></a><a class="card" href="/blog/concrete-shed-base-how-much-do-i-need.html"><h3>Concrete Shed Base: How Much Concrete Do You Need?</h3><p>Worked example for a 2.4m x 1.8m shed base, plus thickness and sub-base advice.</p></a><a class="card" href="/blog/ready-mix-vs-bagged-concrete.html"><h3>Ready-Mix vs Bagged Concrete: Which Should You Choose?</h3><p>Compare cost, effort and quality for ready-mix and bagged concrete in UK projects.</p></a></div></section></article>
+</main>
+
+<footer><div class="wrap"><a href="/privacy-policy.html">Privacy Policy</a> &middot; <a href="/terms.html">Terms</a> &middot; <a href="/contact.html">Contact</a><br>Estimates only. Always check with a professional for structural work. &copy; ConcreteCalc.UK</div></footer>
+
+<script>
+(function(){
+var $=function(i){return document.getElementById(i)};
+var shape="slab";
+var cfg={
+slab:{rect:1,dia:0,steps:0,depth:1,lab:"Thickness (mm)",val:100,pre:[["Path 75",75],["Shed base 100",100],["Driveway 150",150]]},
+footing:{rect:1,dia:0,steps:0,depth:1,lab:"Depth (mm)",val:300,pre:[["Strip 300",300],["Trench 450",450]]},
+column:{rect:0,dia:1,steps:0,depth:1,lab:"Depth (mm)",val:600,pre:[["Fence post 450",450],["Gate post 600",600]]},
+circle:{rect:0,dia:1,steps:0,depth:1,lab:"Thickness (mm)",val:100,pre:[["Base 100",100],["Heavy 150",150]]},
+steps:{rect:0,dia:0,steps:1,depth:0}
+};
+function show(){
+var c=cfg[shape];
+$("g-rect").hidden=!c.rect;$("g-dia").hidden=!c.dia;$("g-steps").hidden=!c.steps;$("g-depth").hidden=!c.depth;
+if(c.depth){$("deplab").textContent=c.lab;$("dep").value=c.val;
+var p=$("presets");p.innerHTML="";
+c.pre.forEach(function(x){var b=document.createElement("button");b.type="button";b.textContent=x[0]+"mm";b.onclick=function(){$("dep").value=x[1];calc()};p.appendChild(b)})}
+if(shape==="column"){$("dia").value=0.3}else if(shape==="circle"){$("dia").value=2}
+calc();
+}
+var tabs=document.querySelectorAll(".tabs button");
+tabs.forEach(function(b){b.addEventListener("click",function(){
+tabs.forEach(function(t){t.setAttribute("aria-selected","false")});
+b.setAttribute("aria-selected","true");shape=b.dataset.s;show()})});
+
+function n(id){var v=parseFloat($(id).value);return isFinite(v)&&v>0?v:0}
+function fmt(x,d){return x.toLocaleString("en-GB",{minimumFractionDigits:d,maximumFractionDigits:d})}
+function gbp(x){return "£"+Math.round(x).toLocaleString("en-GB")}
+
+function calc(){
+var v=0;
+if(shape==="slab"||shape==="footing"){v=n("len")*n("wid")*n("dep")/1000}
+else if(shape==="column"||shape==="circle"){var r=n("dia")/2;v=Math.PI*r*r*n("dep")/1000}
+else{var N=Math.round(n("sn")),w=n("sw"),ri=n("sr")/1000,g=n("sg")/1000;v=w*ri*g*N*(N+1)/2}
+var out=$("out");
+if(!(v>0)){out.innerHTML='<p class="empty">Enter valid measurements greater than zero.</p>';return}
+var wp=parseFloat($("waste").value)/100;
+var tot=v*(1+wp);
+var bags=Math.ceil(tot/0.012);
+var bags20=Math.ceil(tot/0.0095);
+var order=Math.ceil(tot*4)/4;
+var tonnes=tot*2.4;
+var rmLow=order*110,rmHigh=order*185;
+var bgLow=bags*5.5,bgHigh=bags*9;
+var rec=tot<0.5?"bags":(tot<1?"either":"ready");
+var tagB=rec==="bags"?'<span class="tag">Best value</span>':"";
+var tagR=rec==="ready"?'<span class="tag">Best value</span>':"";
+var note=rec==="bags"?"For this volume, bagged mix is usually the simplest option.":
+rec==="either"?"Bags and ready-mix are close in cost here. Compare a mini-mix quote with your bag total.":
+"At this volume ready-mix is normally cheaper and far less work than mixing bags by hand.";
+out.innerHTML=
+'<div class="big">'+fmt(tot,2)+' <small>m³ of concrete</small></div>'+
+'<p class="sub">'+fmt(v,3)+' m³ net + '+Math.round(wp*100)+'% waste &middot; about '+fmt(tonnes,1)+' tonnes wet weight</p>'+
+'<table><tbody>'+
+'<tr><th scope="row">25kg bags'+tagB+'</th><td>'+bags.toLocaleString("en-GB")+' bags<br><span class="hint">'+gbp(bgLow)+' – '+gbp(bgHigh)+'</span></td></tr>'+
+'<tr><th scope="row">20kg bags</th><td>'+bags20.toLocaleString("en-GB")+' bags</td></tr>'+
+'<tr><th scope="row">Ready-mix order'+tagR+'</th><td>'+fmt(order,2)+' m³<br><span class="hint">'+gbp(rmLow)+' – '+gbp(rmHigh)+' + delivery</span></td></tr>'+
+'</tbody></table>'+
+'<div class="note">'+note+' Small ready-mix loads may carry a short-load charge.</div>';
+}
+$("go").addEventListener("click",calc);
+document.querySelectorAll("input,select").forEach(function(e){e.addEventListener("input",calc)});
+show();
+})();
+</script>
+</body>
+</html>
