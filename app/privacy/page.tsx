@@ -1,11 +1,13 @@
 import React from 'react';
-import { PageRoute } from '../types';
+import Link from 'next/link';
+import type { Metadata } from 'next';
 
-interface PrivacyPageProps {
-  onNavigate: (page: PageRoute) => void;
-}
+export const metadata: Metadata = {
+  title: 'Privacy Policy – ConcreteCalc.UK',
+  description: 'Privacy policy for ConcreteCalc.UK. Transparent data practices and cookie policy.',
+};
 
-export const PrivacyPage: React.FC<PrivacyPageProps> = ({ onNavigate }) => {
+export default function PrivacyPage() {
   return (
     <div className="wrap">
       <div className="post">
@@ -38,16 +40,15 @@ export const PrivacyPage: React.FC<PrivacyPageProps> = ({ onNavigate }) => {
         </p>
 
         <div style={{ marginTop: '32px' }}>
-          <button
-            type="button"
+          <Link
+            href="/"
             className="btn-action"
             style={{ display: 'inline-flex', width: 'auto', padding: '8px 16px' }}
-            onClick={() => onNavigate('calculator')}
           >
             ← Back to Calculator
-          </button>
+          </Link>
         </div>
       </div>
     </div>
   );
-};
+}

@@ -1,6 +1,6 @@
 # Concrete Calculator UK
 
-A React and TypeScript web application for UK DIYers, builders, and tradespeople to calculate concrete volumes, 25kg / 20kg bag requirements, wet weight, and ready-mix costs across standard shapes (slabs, strip footings, post holes, circular bases, and solid steps).
+A Next.js and TypeScript web application for UK DIYers, builders, and tradespeople to calculate concrete volumes, 25kg / 20kg bag requirements, wet weight, and ready-mix costs across standard shapes (slabs, strip footings, post holes, circular bases, and solid steps).
 
 ## Features
 
@@ -22,12 +22,13 @@ A React and TypeScript web application for UK DIYers, builders, and tradespeople
   - Interactive FAQs and domestic depth/mix tables
   - Worked guide articles for bag yields, shed bases, and ready-mix comparisons
 - **Responsive & Accessible UI**:
+  - Server and Client components with Next.js App Router
   - Light and Dark mode toggle
   - Cookie consent banner with persistence
-  - About, Contact, Privacy Policy, and Terms of Use views
+  - Dedicated routes for About, Contact, Privacy Policy, Terms of Use, and Guides
 
 ## Tech Stack
 
+- Next.js 15 (App Router, Standalone build)
 - React 19
 - TypeScript
-- Vite

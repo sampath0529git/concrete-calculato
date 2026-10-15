@@ -1,11 +1,9 @@
+'use client';
+
 import React, { useState } from 'react';
-import { PageRoute } from '../types';
+import Link from 'next/link';
 
-interface ContactPageProps {
-  onNavigate: (page: PageRoute) => void;
-}
-
-export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
+export default function ContactPage() {
   const [submitted, setSubmitted] = useState<boolean>(false);
   const [name, setName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
@@ -74,16 +72,15 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
         )}
 
         <div style={{ marginTop: '32px' }}>
-          <button
-            type="button"
+          <Link
+            href="/"
             className="btn-action"
             style={{ display: 'inline-flex', width: 'auto', padding: '8px 16px' }}
-            onClick={() => onNavigate('calculator')}
           >
             ← Back to Calculator
-          </button>
+          </Link>
         </div>
       </div>
     </div>
   );
-};
+}

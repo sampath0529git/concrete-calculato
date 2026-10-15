@@ -15,12 +15,23 @@ export interface ShapeConfig {
   presets: Preset[];
 }
 
+export type UnitSystem = 'metric' | 'imperial';
+
+export type MixRatioKey = '1:2:4' | '1:1.5:3' | '1:3:6' | '1:2:3' | '1:5';
+
 export interface CalculationResult {
   netVolume: number;
   wastePercent: number;
   totalVolume: number;
+  cubicYards?: number;
+  mixRatio: MixRatioKey;
+  mixRatioLabel: string;
   bags25kg: number;
   bags20kg: number;
+  // Site-mixed aggregate requirements
+  cement25kgBags: number;
+  sandTonnes: number;
+  gravelTonnes: number;
   readyMixOrder: number;
   wetWeightTonnes: number;
   bgCostLow: number;
@@ -30,14 +41,3 @@ export interface CalculationResult {
   recommendation: 'bags' | 'either' | 'ready';
   recommendationNote: string;
 }
-
-export type PageRoute =
-  | 'calculator'
-  | 'blog'
-  | 'how-many-bags-of-concrete-per-cubic-metre'
-  | 'concrete-shed-base-how-much-do-i-need'
-  | 'ready-mix-vs-bagged-concrete'
-  | 'about'
-  | 'contact'
-  | 'privacy'
-  | 'terms';

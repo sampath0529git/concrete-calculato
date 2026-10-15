@@ -1,11 +1,13 @@
 import React from 'react';
-import { PageRoute } from '../types';
+import Link from 'next/link';
+import type { Metadata } from 'next';
 
-interface AboutPageProps {
-  onNavigate: (page: PageRoute) => void;
-}
+export const metadata: Metadata = {
+  title: 'About Us – ConcreteCalc.UK',
+  description: 'About ConcreteCalc.UK, free concrete volume and cost calculators for UK homeowners and tradespeople.',
+};
 
-export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
+export default function AboutPage() {
   return (
     <div className="wrap">
       <div className="post">
@@ -23,16 +25,15 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
         </p>
 
         <div style={{ marginTop: '32px' }}>
-          <button
-            type="button"
+          <Link
+            href="/"
             className="btn-action"
             style={{ display: 'inline-flex', width: 'auto', padding: '8px 16px' }}
-            onClick={() => onNavigate('calculator')}
           >
             ← Back to Calculator
-          </button>
+          </Link>
         </div>
       </div>
     </div>
   );
-};
+}

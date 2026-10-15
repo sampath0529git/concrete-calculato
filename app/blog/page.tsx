@@ -1,12 +1,14 @@
 import React from 'react';
-import { PageRoute } from '../types';
-import { BlogCards } from './BlogCards';
+import Link from 'next/link';
+import type { Metadata } from 'next';
+import { BlogCards } from '../components/BlogCards';
 
-interface BlogIndexProps {
-  onNavigate: (page: PageRoute) => void;
-}
+export const metadata: Metadata = {
+  title: 'Concrete Guides & How-Tos – Concrete Calculator UK',
+  description: 'Practical, plain-English concrete guides and worked examples for UK DIYers and builders.',
+};
 
-export const BlogIndex: React.FC<BlogIndexProps> = ({ onNavigate }) => {
+export default function BlogPage() {
   return (
     <div className="wrap">
       <div className="hero">
@@ -16,18 +18,17 @@ export const BlogIndex: React.FC<BlogIndexProps> = ({ onNavigate }) => {
         </p>
       </div>
 
-      <BlogCards onNavigate={onNavigate} />
+      <BlogCards />
 
       <div style={{ marginTop: '30px', padding: '20px 0' }}>
-        <button
-          type="button"
+        <Link
+          href="/"
           className="btn-action"
           style={{ display: 'inline-flex', width: 'auto', padding: '10px 18px' }}
-          onClick={() => onNavigate('calculator')}
         >
           ← Back to Concrete Calculator
-        </button>
+        </Link>
       </div>
     </div>
   );
-};
+}
