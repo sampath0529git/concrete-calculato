@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import type { Metadata } from 'next';
+import { Breadcrumbs } from '../components/Breadcrumbs';
 
 export const metadata: Metadata = {
   title: 'Terms of Use – ConcreteCalc.UK',
@@ -10,6 +11,12 @@ export const metadata: Metadata = {
 export default function TermsPage() {
   return (
     <div className="wrap">
+      <Breadcrumbs
+        items={[
+          { label: 'home', href: '/' },
+          { label: 'terms of use' },
+        ]}
+      />
       <div className="post">
         <h1>Terms of use</h1>
         <p>

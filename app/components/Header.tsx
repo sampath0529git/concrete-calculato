@@ -3,12 +3,16 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { Sun, Moon, Calculator, Menu, X } from 'lucide-react';
 
 export const Header: React.FC = () => {
   const pathname = usePathname();
   const [theme, setTheme] = useState<'light' | 'dark'>('light');
+  const [mounted, setMounted] = useState<boolean>(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
 
   useEffect(() => {
+    setMounted(true);
     const savedTheme = localStorage.getItem('concretecalc_theme') as 'light' | 'dark' | null;
     if (savedTheme) {
       setTheme(savedTheme);
@@ -19,6 +23,20 @@ export const Header: React.FC = () => {
     }
   }, []);
 
+  useEffect(() => {
+    setMobileMenuOpen(false);
+  }, [pathname]);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setMobileMenuOpen(false);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
+
   const toggleTheme = () => {
     const nextTheme = theme === 'light' ? 'dark' : 'light';
     setTheme(nextTheme);
@@ -26,7 +44,8 @@ export const Header: React.FC = () => {
     localStorage.setItem('concretecalc_theme', nextTheme);
   };
 
-  const isBlogActive = pathname.startsWith('/blog') ||
+  const isBlogActive =
+    pathname.startsWith('/blog') ||
     pathname === '/how-many-bags-of-concrete-per-cubic-metre' ||
     pathname === '/concrete-shed-base-how-much-do-i-need' ||
     pathname === '/ready-mix-vs-bagged-concrete';
@@ -34,53 +53,160 @@ export const Header: React.FC = () => {
   return (
     <header className="top">
       <div className="wrap">
-        <Link className="brand" href="/">
-          <span>
-            ConcreteCalc<span style={{ color: 'var(--accent)' }}>.</span>UK
-          </span>
+        {/* Zone 1: Single text element wordmark */}
+        <Link className="brand" href="/" onClick={() => setMobileMenuOpen(false)}>
+          <span>ConcreteCalc<span className="brand-dot">.</span>UK</span>
         </Link>
-        <nav aria-label="Main">
+
+        {/* Zone 2: Concise navigation links (Desktop) */}
+        <nav className="nav-zone" aria-label="Main navigation">
           <Link
             href="/"
-            className={`nav-link ${pathname === '/' ? 'active' : ''}`}
+            className={pathname === '/' ? 'active' : ''}
           >
             Calculator
           </Link>
           <Link
-            href="/#unit-converter"
-            className="nav-link"
+            href="/concrete-block-calculator"
+            className={pathname === '/concrete-block-calculator' ? 'active' : ''}
           >
-            Converter
+            Block Calc
+          </Link>
+          <Link
+            href="/postcrete-calculator"
+            className={pathname === '/postcrete-calculator' ? 'active' : ''}
+          >
+            Postcrete
           </Link>
           <Link
             href="/blog"
-            className={`nav-link ${isBlogActive ? 'active' : ''}`}
+            className={isBlogActive ? 'active' : ''}
           >
-            Blog
+            Guides
           </Link>
           <Link
-            href="/about"
-            className={`nav-link ${pathname === '/about' ? 'active' : ''}`}
+            href="/seo-dashboard"
+            className={pathname === '/seo-dashboard' ? 'active' : ''}
+            style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}
           >
-            About
+            <span>SEO Hub</span>
+            <span style={{ fontSize: '10px', background: 'var(--accent)', color: '#fff', padding: '1px 5px', borderRadius: '4px', fontWeight: 700 }}>
+              UK
+            </span>
           </Link>
-          <Link
-            href="/contact"
-            className={`nav-link ${pathname === '/contact' ? 'active' : ''}`}
-          >
-            Contact
-          </Link>
+        </nav>
+
+        {/* Zone 3: 1 primary action & theme toggle + mobile menu toggle */}
+        <div className="action-zone">
           <button
             type="button"
             className="theme-toggle-btn"
             onClick={toggleTheme}
-            title={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
+            title={mounted ? `Switch to ${theme === 'light' ? 'dark' : 'light'} mode` : 'Toggle theme'}
             aria-label="Toggle theme"
+            suppressHydrationWarning
           >
-            {theme === 'light' ? '🌙 Dark' : '☀️ Light'}
+            {mounted && theme === 'dark' ? (
+              <>
+                <Sun size={14} aria-hidden="true" />
+                <span>Light</span>
+              </>
+            ) : (
+              <>
+                <Moon size={14} aria-hidden="true" />
+                <span>Dark</span>
+              </>
+            )}
           </button>
-        </nav>
+
+          <Link href="/#calculator" className="header-cta-btn">
+            <Calculator size={14} aria-hidden="true" />
+            <span>Calculate</span>
+          </Link>
+
+          <button
+            type="button"
+            className="mobile-menu-toggle-btn"
+            onClick={() => setMobileMenuOpen((prev) => !prev)}
+            aria-label={mobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+            aria-expanded={mobileMenuOpen}
+            aria-controls="mobile-navigation-drawer"
+          >
+            {mobileMenuOpen ? (
+              <X size={20} aria-hidden="true" />
+            ) : (
+              <Menu size={20} aria-hidden="true" />
+            )}
+          </button>
+        </div>
       </div>
+
+      {/* Mobile Navigation Drawer */}
+      {mobileMenuOpen && (
+        <nav
+          id="mobile-navigation-drawer"
+          className="mobile-nav-drawer"
+          aria-label="Mobile navigation"
+        >
+          <div className="wrap mobile-nav-wrap">
+            <Link
+              href="/"
+              className={pathname === '/' ? 'active' : ''}
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Concrete Calculator (Home)
+            </Link>
+            <Link
+              href="/concrete-block-calculator"
+              className={pathname === '/concrete-block-calculator' ? 'active' : ''}
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Concrete Block Calculator
+            </Link>
+            <Link
+              href="/postcrete-calculator"
+              className={pathname === '/postcrete-calculator' ? 'active' : ''}
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Postcrete &amp; Post Calculator
+            </Link>
+            <Link
+              href="/#unit-converter"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Unit &amp; Volume Converter
+            </Link>
+            <Link
+              href="/blog"
+              className={isBlogActive ? 'active' : ''}
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Guides &amp; Worked Examples
+            </Link>
+            <Link
+              href="/seo-dashboard"
+              className={pathname === '/seo-dashboard' ? 'active' : ''}
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              SEO &amp; Growth Dashboard
+            </Link>
+            <Link
+              href="/about"
+              className={pathname === '/about' ? 'active' : ''}
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              About
+            </Link>
+            <Link
+              href="/contact"
+              className={pathname === '/contact' ? 'active' : ''}
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Contact
+            </Link>
+          </div>
+        </nav>
+      )}
     </header>
   );
 };

@@ -78,6 +78,8 @@ export function exportEstimatePdf({ shape, result, unitSystem = 'metric', dimens
     footing: 'Strip / Trench Footing',
     column: 'Post Hole / Column',
     circle: 'Round Slab',
+    tube: 'Circular Slab or Tube',
+    curb: 'Curb and Gutter Barrier',
     steps: 'Solid Poured Steps',
   };
 

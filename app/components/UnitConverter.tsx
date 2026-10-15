@@ -1,9 +1,9 @@
 'use client';
 
 import React, { useState } from 'react';
+import { Box, Scale, RefreshCw, Copy, Check, Info } from 'lucide-react';
 
 type ConverterTab = 'volume' | 'weight' | 'density';
-
 type VolumeUnit = 'm3' | 'yd3' | 'ft3' | 'litres' | 'bags25' | 'wheelbarrows';
 type WeightUnit = 'tonnes' | 'kg' | 'lbs' | 'bulk_bags' | 'bags25';
 
@@ -21,7 +21,7 @@ export const UnitConverter: React.FC = () => {
   // Density / Volume ⇄ Weight state
   const [densityMode, setDensityMode] = useState<'vol_to_wt' | 'wt_to_vol'>('vol_to_wt');
   const [densityInputVal, setDensityInputVal] = useState<string>('1');
-  const [densityGrade, setDensityGrade] = useState<number>(2.4); // 2.40 t/m3 standard C20
+  const [densityGrade, setDensityGrade] = useState<number>(2.4);
   const [copiedKey, setCopiedKey] = useState<string | null>(null);
 
   const handleCopy = (text: string, key: string) => {
@@ -32,12 +32,12 @@ export const UnitConverter: React.FC = () => {
     }
   };
 
-  // Volume calculations in m3 base
   const parseNum = (val: string): number => {
     const n = parseFloat(val);
     return Number.isFinite(n) && n >= 0 ? n : 0;
   };
 
+  // Volume calculations in m3 base
   const getBaseM3 = (): number => {
     const val = parseNum(volumeValue);
     switch (volumeUnit) {
@@ -50,9 +50,9 @@ export const UnitConverter: React.FC = () => {
       case 'litres':
         return val / 1000;
       case 'bags25':
-        return val * 0.012; // 0.012 m3 per 25kg bag
+        return val * 0.012;
       case 'wheelbarrows':
-        return val * 0.07; // ~70 litres per barrow
+        return val * 0.07;
       default:
         return val;
     }
@@ -79,7 +79,7 @@ export const UnitConverter: React.FC = () => {
       case 'lbs':
         return val / 2.20462;
       case 'bulk_bags':
-        return val * 850; // UK trade standard bulk bag is 850kg
+        return val * 850;
       case 'bags25':
         return val * 25;
       default:
@@ -117,19 +117,21 @@ export const UnitConverter: React.FC = () => {
 
   return (
     <section className="converter-section" id="unit-converter">
-      <div className="panel" style={{ padding: '28px' }}>
+      <div className="panel">
         <div style={{ marginBottom: '20px' }}>
-          <div className="badge-calc" style={{ marginBottom: '8px' }}>
-            <span>⇄</span> Trade Converter
+          <div style={{ fontSize: '12px', fontWeight: 700, color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '0.04em', marginBottom: '6px' }}>
+            Trade Conversion Tool
           </div>
-          <h2 style={{ margin: '0 0 8px', fontSize: '1.6rem' }}>Concrete Unit Converter</h2>
-          <p style={{ margin: 0, color: 'var(--muted)', fontSize: '15px' }}>
-            Quickly convert volume and weight between UK ready-mix lorries, merchant bulk bags, DIY bags, and imperial specifications.
+          <h2 style={{ margin: '0 0 6px', fontSize: '1.5rem', fontWeight: 700 }}>
+            Concrete Unit &amp; Weight Converter
+          </h2>
+          <p style={{ margin: 0, color: 'var(--muted)', fontSize: '14.5px' }}>
+            Instantly convert between UK cubic metres, American cubic yards, 850kg merchant bulk bags, DIY bags, and wet weight.
           </p>
         </div>
 
         {/* Tab selection */}
-        <div className="converter-tabs" role="tablist" aria-label="Converter category">
+        <div className="converter-tabs" role="tablist" aria-label="Converter categories">
           <button
             type="button"
             className={`converter-tab-btn ${activeTab === 'volume' ? 'active' : ''}`}
@@ -137,7 +139,8 @@ export const UnitConverter: React.FC = () => {
             role="tab"
             aria-selected={activeTab === 'volume'}
           >
-            📦 Volume (m³, yd³, ft³, Litres)
+            <Box size={14} aria-hidden="true" />
+            <span>Volume (m³, yd³, ft³, Litres)</span>
           </button>
           <button
             type="button"
@@ -146,7 +149,8 @@ export const UnitConverter: React.FC = () => {
             role="tab"
             aria-selected={activeTab === 'weight'}
           >
-            ⚖️ Weight (Tonnes, kg, Bulk bags, lbs)
+            <Scale size={14} aria-hidden="true" />
+            <span>Weight (Tonnes, kg, Bulk Bags)</span>
           </button>
           <button
             type="button"
@@ -155,7 +159,8 @@ export const UnitConverter: React.FC = () => {
             role="tab"
             aria-selected={activeTab === 'density'}
           >
-            🔄 Volume ⇄ Wet Weight
+            <RefreshCw size={14} aria-hidden="true" />
+            <span>Volume ⇄ Wet Weight</span>
           </button>
         </div>
 
@@ -164,7 +169,7 @@ export const UnitConverter: React.FC = () => {
           <div>
             <div className="converter-input-box">
               <div className="f" style={{ margin: 0 }}>
-                <label htmlFor="vol-val">Enter Volume Value</label>
+                <label htmlFor="vol-val">Volume Value</label>
                 <input
                   id="vol-val"
                   type="number"
@@ -173,11 +178,11 @@ export const UnitConverter: React.FC = () => {
                   step="0.01"
                   value={volumeValue}
                   onChange={(e) => setVolumeValue(e.target.value)}
-                  placeholder="e.g. 1"
+                  placeholder="1.0"
                 />
               </div>
               <div className="f" style={{ margin: 0 }}>
-                <label htmlFor="vol-unit">Unit to Convert From</label>
+                <label htmlFor="vol-unit">Convert From</label>
                 <select
                   id="vol-unit"
                   value={volumeUnit}
@@ -193,10 +198,6 @@ export const UnitConverter: React.FC = () => {
               </div>
             </div>
 
-            <div style={{ fontSize: '13px', fontWeight: 600, color: 'var(--muted)', marginTop: '16px' }}>
-              EQUIVALENT VOLUMES:
-            </div>
-
             <div className="converter-grid">
               <div className={`converter-card ${volumeUnit === 'm3' ? 'highlight' : ''}`}>
                 <div className="converter-card-label">
@@ -207,10 +208,10 @@ export const UnitConverter: React.FC = () => {
                     onClick={() => handleCopy(`${volumeResults.m3.toFixed(3)} m³`, 'm3')}
                     title="Copy value"
                   >
-                    {copiedKey === 'm3' ? '✓ Copied' : '📋 Copy'}
+                    {copiedKey === 'm3' ? <Check size={12} color="var(--ok)" /> : <Copy size={12} />}
                   </button>
                 </div>
-                <div className="converter-card-val">{volumeResults.m3.toFixed(3)}</div>
+                <div className="converter-card-val tabular-nums">{volumeResults.m3.toFixed(3)}</div>
                 <div className="converter-card-sub">UK standard ready-mix order unit</div>
               </div>
 
@@ -223,11 +224,11 @@ export const UnitConverter: React.FC = () => {
                     onClick={() => handleCopy(`${volumeResults.yd3.toFixed(3)} yd³`, 'yd3')}
                     title="Copy value"
                   >
-                    {copiedKey === 'yd3' ? '✓ Copied' : '📋 Copy'}
+                    {copiedKey === 'yd3' ? <Check size={12} color="var(--ok)" /> : <Copy size={12} />}
                   </button>
                 </div>
-                <div className="converter-card-val">{volumeResults.yd3.toFixed(3)}</div>
-                <div className="converter-card-sub">Common US &amp; imperial plans</div>
+                <div className="converter-card-val tabular-nums">{volumeResults.yd3.toFixed(3)}</div>
+                <div className="converter-card-sub">Common imperial drawings (US plans)</div>
               </div>
 
               <div className={`converter-card ${volumeUnit === 'ft3' ? 'highlight' : ''}`}>
@@ -239,10 +240,10 @@ export const UnitConverter: React.FC = () => {
                     onClick={() => handleCopy(`${volumeResults.ft3.toFixed(2)} ft³`, 'ft3')}
                     title="Copy value"
                   >
-                    {copiedKey === 'ft3' ? '✓ Copied' : '📋 Copy'}
+                    {copiedKey === 'ft3' ? <Check size={12} color="var(--ok)" /> : <Copy size={12} />}
                   </button>
                 </div>
-                <div className="converter-card-val">{volumeResults.ft3.toFixed(2)}</div>
+                <div className="converter-card-val tabular-nums">{volumeResults.ft3.toFixed(2)}</div>
                 <div className="converter-card-sub">27 cu ft = 1 cu yard</div>
               </div>
 
@@ -255,42 +256,42 @@ export const UnitConverter: React.FC = () => {
                     onClick={() => handleCopy(`${Math.round(volumeResults.litres)} L`, 'litres')}
                     title="Copy value"
                   >
-                    {copiedKey === 'litres' ? '✓ Copied' : '📋 Copy'}
+                    {copiedKey === 'litres' ? <Check size={12} color="var(--ok)" /> : <Copy size={12} />}
                   </button>
                 </div>
-                <div className="converter-card-val">{Math.round(volumeResults.litres).toLocaleString('en-GB')}</div>
-                <div className="converter-card-sub">Useful for mixer drum capacity</div>
+                <div className="converter-card-val tabular-nums">{Math.round(volumeResults.litres).toLocaleString('en-GB')}</div>
+                <div className="converter-card-sub">Useful for mixer drum capacities</div>
               </div>
 
               <div className={`converter-card ${volumeUnit === 'bags25' ? 'highlight' : ''}`}>
                 <div className="converter-card-label">
-                  <span>25kg Bags (Dry Mix)</span>
+                  <span>25kg Bags</span>
                   <button
                     type="button"
                     className="converter-copy-btn"
                     onClick={() => handleCopy(`${Math.ceil(volumeResults.bags25)} bags`, 'bags25')}
                     title="Copy value"
                   >
-                    {copiedKey === 'bags25' ? '✓ Copied' : '📋 Copy'}
+                    {copiedKey === 'bags25' ? <Check size={12} color="var(--ok)" /> : <Copy size={12} />}
                   </button>
                 </div>
-                <div className="converter-card-val">~{Math.ceil(volumeResults.bags25)}</div>
-                <div className="converter-card-sub">Based on ~0.012 m³ yield per bag</div>
+                <div className="converter-card-val tabular-nums">~{Math.ceil(volumeResults.bags25)}</div>
+                <div className="converter-card-sub">At ~0.012 m³ yield per 25kg bag</div>
               </div>
 
               <div className={`converter-card ${volumeUnit === 'wheelbarrows' ? 'highlight' : ''}`}>
                 <div className="converter-card-label">
-                  <span>Wheelbarrows</span>
+                  <span>Wheelbarrow Loads</span>
                   <button
                     type="button"
                     className="converter-copy-btn"
                     onClick={() => handleCopy(`${Math.ceil(volumeResults.wheelbarrows)} barrows`, 'wheelbarrows')}
                     title="Copy value"
                   >
-                    {copiedKey === 'wheelbarrows' ? '✓ Copied' : '📋 Copy'}
+                    {copiedKey === 'wheelbarrows' ? <Check size={12} color="var(--ok)" /> : <Copy size={12} />}
                   </button>
                 </div>
-                <div className="converter-card-val">~{Math.ceil(volumeResults.wheelbarrows)}</div>
+                <div className="converter-card-val tabular-nums">~{Math.ceil(volumeResults.wheelbarrows)}</div>
                 <div className="converter-card-sub">Approx 14–15 full loads per m³</div>
               </div>
             </div>
@@ -302,7 +303,7 @@ export const UnitConverter: React.FC = () => {
           <div>
             <div className="converter-input-box">
               <div className="f" style={{ margin: 0 }}>
-                <label htmlFor="wt-val">Enter Weight Value</label>
+                <label htmlFor="wt-val">Weight Value</label>
                 <input
                   id="wt-val"
                   type="number"
@@ -311,11 +312,11 @@ export const UnitConverter: React.FC = () => {
                   step="0.01"
                   value={weightValue}
                   onChange={(e) => setWeightValue(e.target.value)}
-                  placeholder="e.g. 1"
+                  placeholder="1.0"
                 />
               </div>
               <div className="f" style={{ margin: 0 }}>
-                <label htmlFor="wt-unit">Unit to Convert From</label>
+                <label htmlFor="wt-unit">Convert From</label>
                 <select
                   id="wt-unit"
                   value={weightUnit}
@@ -330,10 +331,6 @@ export const UnitConverter: React.FC = () => {
               </div>
             </div>
 
-            <div style={{ fontSize: '13px', fontWeight: 600, color: 'var(--muted)', marginTop: '16px' }}>
-              EQUIVALENT WEIGHTS:
-            </div>
-
             <div className="converter-grid">
               <div className={`converter-card ${weightUnit === 'tonnes' ? 'highlight' : ''}`}>
                 <div className="converter-card-label">
@@ -342,12 +339,11 @@ export const UnitConverter: React.FC = () => {
                     type="button"
                     className="converter-copy-btn"
                     onClick={() => handleCopy(`${weightResults.tonnes.toFixed(3)} t`, 'tonnes')}
-                    title="Copy value"
                   >
-                    {copiedKey === 'tonnes' ? '✓ Copied' : '📋 Copy'}
+                    {copiedKey === 'tonnes' ? <Check size={12} color="var(--ok)" /> : <Copy size={12} />}
                   </button>
                 </div>
-                <div className="converter-card-val">{weightResults.tonnes.toFixed(3)}</div>
+                <div className="converter-card-val tabular-nums">{weightResults.tonnes.toFixed(3)}</div>
                 <div className="converter-card-sub">1 tonne = 1,000 kg</div>
               </div>
 
@@ -358,13 +354,12 @@ export const UnitConverter: React.FC = () => {
                     type="button"
                     className="converter-copy-btn"
                     onClick={() => handleCopy(`${Math.round(weightResults.kg)} kg`, 'kg')}
-                    title="Copy value"
                   >
-                    {copiedKey === 'kg' ? '✓ Copied' : '📋 Copy'}
+                    {copiedKey === 'kg' ? <Check size={12} color="var(--ok)" /> : <Copy size={12} />}
                   </button>
                 </div>
-                <div className="converter-card-val">{Math.round(weightResults.kg).toLocaleString('en-GB')}</div>
-                <div className="converter-card-sub">Base SI weight unit</div>
+                <div className="converter-card-val tabular-nums">{Math.round(weightResults.kg).toLocaleString('en-GB')}</div>
+                <div className="converter-card-sub">Base metric weight</div>
               </div>
 
               <div className={`converter-card ${weightUnit === 'bulk_bags' ? 'highlight' : ''}`}>
@@ -374,13 +369,12 @@ export const UnitConverter: React.FC = () => {
                     type="button"
                     className="converter-copy-btn"
                     onClick={() => handleCopy(`${weightResults.bulk_bags.toFixed(2)} bulk bags`, 'bulk_bags')}
-                    title="Copy value"
                   >
-                    {copiedKey === 'bulk_bags' ? '✓ Copied' : '📋 Copy'}
+                    {copiedKey === 'bulk_bags' ? <Check size={12} color="var(--ok)" /> : <Copy size={12} />}
                   </button>
                 </div>
-                <div className="converter-card-val">{weightResults.bulk_bags.toFixed(2)}</div>
-                <div className="converter-card-sub">Merchant sand &amp; gravel bags</div>
+                <div className="converter-card-val tabular-nums">{weightResults.bulk_bags.toFixed(2)}</div>
+                <div className="converter-card-sub">Builders merchant sand/gravel bags</div>
               </div>
 
               <div className={`converter-card ${weightUnit === 'lbs' ? 'highlight' : ''}`}>
@@ -390,12 +384,11 @@ export const UnitConverter: React.FC = () => {
                     type="button"
                     className="converter-copy-btn"
                     onClick={() => handleCopy(`${Math.round(weightResults.lbs)} lbs`, 'lbs')}
-                    title="Copy value"
                   >
-                    {copiedKey === 'lbs' ? '✓ Copied' : '📋 Copy'}
+                    {copiedKey === 'lbs' ? <Check size={12} color="var(--ok)" /> : <Copy size={12} />}
                   </button>
                 </div>
-                <div className="converter-card-val">{Math.round(weightResults.lbs).toLocaleString('en-GB')}</div>
+                <div className="converter-card-val tabular-nums">{Math.round(weightResults.lbs).toLocaleString('en-GB')}</div>
                 <div className="converter-card-sub">1 kg ≈ 2.205 lbs</div>
               </div>
 
@@ -406,19 +399,18 @@ export const UnitConverter: React.FC = () => {
                     type="button"
                     className="converter-copy-btn"
                     onClick={() => handleCopy(`${Math.ceil(weightResults.bags25)} bags`, 'w_bags25')}
-                    title="Copy value"
                   >
-                    {copiedKey === 'w_bags25' ? '✓ Copied' : '📋 Copy'}
+                    {copiedKey === 'w_bags25' ? <Check size={12} color="var(--ok)" /> : <Copy size={12} />}
                   </button>
                 </div>
-                <div className="converter-card-val">~{Math.ceil(weightResults.bags25)}</div>
+                <div className="converter-card-val tabular-nums">~{Math.ceil(weightResults.bags25)}</div>
                 <div className="converter-card-sub">Standard individual cement bag</div>
               </div>
             </div>
           </div>
         )}
 
-        {/* TAB 3: VOLUME ⇄ WET WEIGHT ESTIMATOR */}
+        {/* TAB 3: VOLUME ⇄ WET WEIGHT */}
         {activeTab === 'density' && (
           <div>
             <div className="row" style={{ marginBottom: '16px' }}>
@@ -430,7 +422,7 @@ export const UnitConverter: React.FC = () => {
                   onChange={(e) => setDensityMode(e.target.value as 'vol_to_wt' | 'wt_to_vol')}
                 >
                   <option value="vol_to_wt">Volume (m³) ➔ Wet Weight (Tonnes &amp; kg)</option>
-                  <option value="wt_to_vol">Weight (Tonnes) ➔ Concrete Volume (m³ &amp; yd³)</option>
+                  <option value="wt_to_vol">Weight (Tonnes) ➔ Volume (m³ &amp; yd³)</option>
                 </select>
               </div>
               <div className="f" style={{ margin: 0 }}>
@@ -449,7 +441,7 @@ export const UnitConverter: React.FC = () => {
 
             <div className="f">
               <label htmlFor="density-val">
-                {densityMode === 'vol_to_wt' ? 'Enter Concrete Volume (m³)' : 'Enter Total Weight (Tonnes)'}
+                {densityMode === 'vol_to_wt' ? 'Concrete Volume (m³)' : 'Total Weight (Tonnes)'}
               </label>
               <input
                 id="density-val"
@@ -459,7 +451,7 @@ export const UnitConverter: React.FC = () => {
                 step="0.01"
                 value={densityInputVal}
                 onChange={(e) => setDensityInputVal(e.target.value)}
-                placeholder="1"
+                placeholder="1.0"
               />
             </div>
 
@@ -468,9 +460,9 @@ export const UnitConverter: React.FC = () => {
                 <div className="converter-card-label">
                   <span>Wet Weight (Tonnes)</span>
                 </div>
-                <div className="converter-card-val">{wetWeightTonnes.toFixed(2)} t</div>
-                <div className="converter-card-sub">
-                  {Math.round(wetWeightKg).toLocaleString('en-GB')} kg total wet concrete
+                <div className="converter-card-val tabular-nums">{wetWeightTonnes.toFixed(2)} t</div>
+                <div className="converter-card-sub tabular-nums">
+                  {Math.round(wetWeightKg).toLocaleString('en-GB')} kg wet concrete
                 </div>
               </div>
 
@@ -478,78 +470,78 @@ export const UnitConverter: React.FC = () => {
                 <div className="converter-card-label">
                   <span>Equivalent Volume (m³)</span>
                 </div>
-                <div className="converter-card-val">{concreteM3.toFixed(2)} m³</div>
-                <div className="converter-card-sub">{concreteYd3.toFixed(2)} cubic yards</div>
+                <div className="converter-card-val tabular-nums">{concreteM3.toFixed(2)} m³</div>
+                <div className="converter-card-sub tabular-nums">{concreteYd3.toFixed(2)} cubic yards</div>
               </div>
 
               <div className="converter-card">
                 <div className="converter-card-label">
                   <span>Wheelbarrow Loads</span>
                 </div>
-                <div className="converter-card-val">~{Math.ceil(concreteM3 / 0.07)} barrows</div>
+                <div className="converter-card-val tabular-nums">~{Math.ceil(concreteM3 / 0.07)} barrows</div>
                 <div className="converter-card-sub">At ~160kg per loaded barrow</div>
               </div>
 
               <div className="converter-card">
                 <div className="converter-card-label">
-                  <span>Skip / Axle Load Safety</span>
+                  <span>Haulage &amp; Skip Rating</span>
                 </div>
                 <div className="converter-card-val">
-                  {wetWeightTonnes <= 4 ? 'Standard Skip' : 'Heavy Inert Skip'}
+                  {wetWeightTonnes <= 4 ? 'Standard Skip' : 'Heavy Inert Only'}
                 </div>
                 <div className="converter-card-sub">
-                  {wetWeightTonnes > 6 ? '⚠️ Heavy load: confirm haulier limits' : '✓ Normal domestic load'}
+                  {wetWeightTonnes > 6 ? '⚠️ Check maximum vehicle axle limits' : '✓ Normal domestic load'}
                 </div>
               </div>
             </div>
           </div>
         )}
 
-        {/* Quick Reference Table for Suppliers */}
+        {/* Trade Reference Table */}
         <details style={{ marginTop: '24px', borderTop: '1px solid var(--line)', paddingTop: '14px' }}>
-          <summary style={{ fontSize: '14px', fontWeight: 700, color: 'var(--ink)' }}>
-            📖 Supplier Specification Cheat Sheet (UK Builder Standards)
+          <summary>
+            Supplier Specification Cheat Sheet (UK Merchant Standards)
           </summary>
-          <div className="scroll" style={{ marginTop: '12px' }}>
-            <table className="quick-ref-table">
+          <div className="scroll" style={{ marginTop: '10px' }}>
+            <table>
               <thead>
                 <tr>
                   <th>Measurement</th>
                   <th>Metric Equivalent</th>
                   <th>Imperial Equivalent</th>
-                  <th>Common Trade Application</th>
+                  <th>Trade Use</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody className="tabular-nums">
                 <tr>
                   <td><strong>1 Cubic Metre (m³)</strong></td>
-                  <td>1,000 litres · ~83 bags of 25kg mix</td>
-                  <td>1.308 yd³ · 35.315 ft³</td>
-                  <td>Standard ready-mix and volumetric delivery unit</td>
+                  <td>1,000 litres &middot; ~83 bags (25kg)</td>
+                  <td>1.308 yd³ &middot; 35.315 ft³</td>
+                  <td>Ready-mix &amp; volumetric delivery</td>
                 </tr>
                 <tr>
                   <td><strong>1 Cubic Yard (yd³)</strong></td>
-                  <td>0.765 m³ · 764.5 litres</td>
-                  <td>27 ft³ · ~64 bags of 25kg mix</td>
-                  <td>Imperial drawings &amp; American specifications</td>
+                  <td>0.765 m³ &middot; 764.5 litres</td>
+                  <td>27 ft³ &middot; ~64 bags (25kg)</td>
+                  <td>Imperial blueprints &amp; US designs</td>
                 </tr>
                 <tr>
                   <td><strong>1 Metric Tonne (t)</strong></td>
-                  <td>1,000 kg · ~1.18 bulk bags (850kg)</td>
-                  <td>2,204.6 lbs · 0.984 long ton</td>
-                  <td>Aggregate merchant weight rating &amp; skip hire limits</td>
+                  <td>1,000 kg &middot; ~1.18 bulk bags (850kg)</td>
+                  <td>2,204.6 lbs</td>
+                  <td>Skip hire &amp; aggregate orders</td>
                 </tr>
                 <tr>
                   <td><strong>1 Bulk Bag (Jumbo)</strong></td>
-                  <td>~850 kg (~0.85 tonnes) · ~0.55 m³</td>
+                  <td>~850 kg (~0.85 tonnes) &middot; ~0.55 m³</td>
                   <td>1,874 lbs</td>
-                  <td>Builders merchant delivery bag for sharp sand &amp; gravel</td>
+                  <td>Builders merchant sand &amp; gravel</td>
                 </tr>
                 <tr>
                   <td><strong>1 Builder&apos;s Barrow</strong></td>
-                  <td>~65–75 litres (wet concrete: ~150–180 kg)</td>
+                  <td>~65–75 litres (~150–180 kg wet)</td>
                   <td>~2.5 cubic feet</td>
-                  <td>Barrowing from mixer or truck (14–16 barrows per m³)</td>
+                  <td>Barrowing (14–16 barrows per m³)</td>
                 </tr>
               </tbody>
             </table>

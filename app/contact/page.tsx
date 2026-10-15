@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import { Breadcrumbs } from '../components/Breadcrumbs';
 
 export default function ContactPage() {
   const [submitted, setSubmitted] = useState<boolean>(false);
@@ -16,6 +17,12 @@ export default function ContactPage() {
 
   return (
     <div className="wrap">
+      <Breadcrumbs
+        items={[
+          { label: 'home', href: '/' },
+          { label: 'contact' },
+        ]}
+      />
       <div className="post">
         <h1>Contact</h1>
         <p>

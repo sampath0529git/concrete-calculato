@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import type { Metadata } from 'next';
+import { Breadcrumbs } from '../components/Breadcrumbs';
 
 export const metadata: Metadata = {
   title: 'Concrete Shed Base: How Much Concrete Do You Need? – ConcreteCalc.UK',
@@ -10,16 +11,14 @@ export const metadata: Metadata = {
 export default function ShedBasePage() {
   return (
     <div className="wrap">
+      <Breadcrumbs
+        items={[
+          { label: 'home', href: '/' },
+          { label: 'guides', href: '/blog' },
+          { label: 'concrete shed base' },
+        ]}
+      />
       <article className="post">
-        <div style={{ marginBottom: '14px' }}>
-          <Link
-            href="/blog"
-            className="btn-action"
-            style={{ display: 'inline-flex', width: 'auto', padding: '6px 12px' }}
-          >
-            ← All guides
-          </Link>
-        </div>
         <h1>Concrete Shed Base: How Much Concrete Do You Need?</h1>
         <div className="meta">Published 2026-10-14 &middot; ConcreteCalc.UK</div>
         <p>

@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import type { Metadata } from 'next';
+import { Breadcrumbs } from '../components/Breadcrumbs';
 
 export const metadata: Metadata = {
   title: 'Ready-Mix vs Bagged Concrete: Which Should You Choose? – ConcreteCalc.UK',
@@ -10,16 +11,14 @@ export const metadata: Metadata = {
 export default function ReadyMixVsBaggedPage() {
   return (
     <div className="wrap">
+      <Breadcrumbs
+        items={[
+          { label: 'home', href: '/' },
+          { label: 'guides', href: '/blog' },
+          { label: 'ready-mix vs bagged' },
+        ]}
+      />
       <article className="post">
-        <div style={{ marginBottom: '14px' }}>
-          <Link
-            href="/blog"
-            className="btn-action"
-            style={{ display: 'inline-flex', width: 'auto', padding: '6px 12px' }}
-          >
-            ← All guides
-          </Link>
-        </div>
         <h1>Ready-Mix vs Bagged Concrete: Which Should You Choose?</h1>
         <div className="meta">Published 2026-10-14 &middot; ConcreteCalc.UK</div>
         <p>The right choice depends mostly on volume, access and how much labour you have.</p>

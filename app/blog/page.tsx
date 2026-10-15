@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import type { Metadata } from 'next';
+import { Breadcrumbs } from '../components/Breadcrumbs';
 import { BlogCards } from '../components/BlogCards';
 
 export const metadata: Metadata = {
@@ -11,10 +12,17 @@ export const metadata: Metadata = {
 export default function BlogPage() {
   return (
     <div className="wrap">
+      <Breadcrumbs
+        items={[
+          { label: 'home', href: '/' },
+          { label: 'guides' },
+        ]}
+      />
+
       <div className="hero">
-        <h1>Concrete guides</h1>
+        <h1>Concrete Guides &amp; Worked Examples</h1>
         <p className="lead">
-          Practical, plain-English advice for UK DIYers and tradespeople.
+          Practical, plain-English advice and worked mix examples for UK DIYers, homeowners, and tradespeople.
         </p>
       </div>
 

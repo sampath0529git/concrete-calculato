@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import type { Metadata } from 'next';
+import { Breadcrumbs } from '../components/Breadcrumbs';
 
 export const metadata: Metadata = {
   title: 'How Many Bags of Concrete Make 1 Cubic Metre? – ConcreteCalc.UK',
@@ -10,16 +11,14 @@ export const metadata: Metadata = {
 export default function BagsPerCubicMetrePage() {
   return (
     <div className="wrap">
+      <Breadcrumbs
+        items={[
+          { label: 'home', href: '/' },
+          { label: 'guides', href: '/blog' },
+          { label: 'bags per cubic metre' },
+        ]}
+      />
       <article className="post">
-        <div style={{ marginBottom: '14px' }}>
-          <Link
-            href="/blog"
-            className="btn-action"
-            style={{ display: 'inline-flex', width: 'auto', padding: '6px 12px' }}
-          >
-            ← All guides
-          </Link>
-        </div>
         <h1>How Many Bags of Concrete Make 1 Cubic Metre?</h1>
         <div className="meta">Published 2026-10-14 &middot; ConcreteCalc.UK</div>
         <p>

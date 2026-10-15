@@ -2,5 +2,7 @@
   "name": "Concrete Calculator UK",
   "description": "Calculate cubic metres, 25kg bags, wet weight, and estimated costs for slabs, bases, footings, post holes, and steps with UK mix guides and worked examples.",
   "permissions": [],
-  "capabilities": []
+  "capabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
 }

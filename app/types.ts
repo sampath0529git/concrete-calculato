@@ -1,39 +1,44 @@
-export type ConcreteShape = 'slab' | 'footing' | 'column' | 'circle' | 'steps';
+export type ConcreteShape =
+  | 'slab'
+  | 'footing'
+  | 'column'
+  | 'circle'
+  | 'tube'
+  | 'curb'
+  | 'steps';
 
 export interface Preset {
   label: string;
   value: number;
 }
 
-export interface ShapeConfig {
-  hasRect: boolean;
-  hasDia: boolean;
-  hasSteps: boolean;
-  hasDepth: boolean;
-  depthLabel: string;
-  defaultDepth: number;
-  presets: Preset[];
-}
-
 export type UnitSystem = 'metric' | 'imperial';
+
+export type LengthUnit = 'meters' | 'centimeters' | 'feet' | 'inches' | 'yards';
 
 export type MixRatioKey = '1:2:4' | '1:1.5:3' | '1:3:6' | '1:2:3' | '1:5';
 
 export interface CalculationResult {
-  netVolume: number;
+  shape: ConcreteShape;
+  netVolume: number; // m³
   wastePercent: number;
-  totalVolume: number;
-  cubicYards?: number;
+  totalVolume: number; // m³
+  cubicYards: number;
+  cubicFeet: number;
   mixRatio: MixRatioKey;
   mixRatioLabel: string;
+  // Bag counts
   bags25kg: number;
   bags20kg: number;
-  // Site-mixed aggregate requirements
+  bags60lb: number;
+  bags80lb: number;
+  // Site-mixed raw aggregate requirements
   cement25kgBags: number;
   sandTonnes: number;
   gravelTonnes: number;
   readyMixOrder: number;
   wetWeightTonnes: number;
+  wetWeightLbs: number;
   bgCostLow: number;
   bgCostHigh: number;
   rmCostLow: number;
