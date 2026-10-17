@@ -511,3 +511,416 @@ export const UK_SERP_COMPETITORS: SerpCompetitor[] = [
     strengths: ['Clean UI', 'Provides both m³ and cubic yards'],
   },
 ];
+
+export interface TopicCluster {
+  id: string;
+  name: string;
+  pillarPage: string;
+  pillarTitle: string;
+  totalMonthlyVolume: number;
+  averageKd: number;
+  subPages: {
+    title: string;
+    url: string;
+    targetKeyword: string;
+    volume: number;
+    kd: number;
+    recommendedAnchor: string;
+  }[];
+  linkingStrategy: string;
+}
+
+export const UK_TOPIC_CLUSTERS: TopicCluster[] = [
+  {
+    id: 'core-concrete',
+    name: 'Concrete Volume & Batching Pillar',
+    pillarPage: '/',
+    pillarTitle: 'Concrete Calculator UK (m³, Bags & Cost)',
+    totalMonthlyVolume: 32400,
+    averageKd: 31,
+    linkingStrategy: 'Hub-and-spoke: Main calculator links to specific worked examples and procurement guides; each sub-page links back to the main calculator with descriptive action anchors.',
+    subPages: [
+      {
+        title: 'How Many Bags of Concrete in a Cubic Metre?',
+        url: '/how-many-bags-of-concrete-per-cubic-metre',
+        targetKeyword: 'how many bags of concrete per cubic metre',
+        volume: 1600,
+        kd: 25,
+        recommendedAnchor: 'bags of concrete per cubic metre calculation',
+      },
+      {
+        title: 'Concrete Shed Base: How Much Concrete Do You Need?',
+        url: '/concrete-shed-base-how-much-do-i-need',
+        targetKeyword: 'concrete shed base how much do i need',
+        volume: 480,
+        kd: 16,
+        recommendedAnchor: 'concrete shed base volume guide',
+      },
+      {
+        title: 'Ready-Mix vs Bagged Concrete: Cost & Effort Comparison',
+        url: '/ready-mix-vs-bagged-concrete',
+        targetKeyword: 'ready mix vs bagged concrete',
+        volume: 590,
+        kd: 15,
+        recommendedAnchor: 'compare ready-mix vs bagged concrete',
+      },
+      {
+        title: 'Trade Unit & Volume Converter',
+        url: '/#unit-converter',
+        targetKeyword: 'concrete volume converter m3 to cubic yards',
+        volume: 1200,
+        kd: 18,
+        recommendedAnchor: 'convert concrete volume and wet weight',
+      },
+    ],
+  },
+  {
+    id: 'masonry-blockwork',
+    name: 'Masonry & Concrete Blockwork Cluster',
+    pillarPage: '/concrete-block-calculator',
+    pillarTitle: 'Concrete Block Calculator UK (440×215mm Blocks)',
+    totalMonthlyVolume: 34500,
+    averageKd: 17,
+    linkingStrategy: 'Target high-volume, low-KD queries with British coordinating block sizing (10 blocks/m²). Cross-link to site-mix mortar sand and cement calculation on home page.',
+    subPages: [
+      {
+        title: 'Dense Concrete Blocks (7.3 N/mm²)',
+        url: '/concrete-block-calculator',
+        targetKeyword: 'dense concrete blocks',
+        volume: 2400,
+        kd: 17,
+        recommendedAnchor: 'dense concrete block wall calculator',
+      },
+      {
+        title: 'Lightweight Aerated Blocks (Celcon / Thermalite)',
+        url: '/concrete-block-calculator',
+        targetKeyword: 'lightweight concrete blocks',
+        volume: 2900,
+        kd: 18,
+        recommendedAnchor: 'lightweight block insulation calculator',
+      },
+      {
+        title: 'Standard UK Block Size (440x215mm)',
+        url: '/concrete-block-calculator',
+        targetKeyword: 'standard concrete block size uk',
+        volume: 590,
+        kd: 10,
+        recommendedAnchor: 'BS EN 771-3 standard block dimensions',
+      },
+    ],
+  },
+  {
+    id: 'fencing-postcrete',
+    name: 'Fencing & Postcrete Rapid-Set Cluster',
+    pillarPage: '/postcrete-calculator',
+    pillarTitle: 'Postcrete & Fence Post Concrete Calculator UK',
+    totalMonthlyVolume: 12100,
+    averageKd: 19,
+    linkingStrategy: 'Target DIY gardeners, landscapers, and fencing contractors looking for fast 20kg Postcrete bag estimates per post hole based on 1/3 depth rules of thumb.',
+    subPages: [
+      {
+        title: 'Timber & Concrete Slotted Fence Posts',
+        url: '/postcrete-calculator',
+        targetKeyword: 'how much concrete for a post',
+        volume: 320,
+        kd: 18,
+        recommendedAnchor: 'postcrete bags per fence post',
+      },
+      {
+        title: 'Heavy Gate Post Hole Volume',
+        url: '/postcrete-calculator',
+        targetKeyword: 'postcrete calculator',
+        volume: 880,
+        kd: 18,
+        recommendedAnchor: 'fence and gate post calculator',
+      },
+    ],
+  },
+];
+
+export interface OutreachPlaybook {
+  id: string;
+  category: string;
+  targetAudience: string;
+  estimatedProspects: string;
+  targetLinkType: string;
+  pitchSubject: string;
+  pitchBody: string;
+  suggestedAnchors: string[];
+}
+
+export const UK_OUTREACH_PLAYBOOKS: OutreachPlaybook[] = [
+  {
+    id: 'shed-manufacturers',
+    category: 'Garden Shed & Summerhouse Manufacturers',
+    targetAudience: 'UK Timber shed builders, garden room companies, and log cabin suppliers (e.g. Tiger Sheds, BillyOh, Dunster House, Waltons)',
+    estimatedProspects: '120+ UK shed manufacturers',
+    targetLinkType: 'Resource / Buyer Guide Link in "Preparing Your Shed Base" installation manuals',
+    pitchSubject: 'Free embeddable concrete base calculator for your shed installation guide',
+    pitchBody: `Hi [Name / Team],
+
+I noticed your excellent installation guide for garden sheds and garden buildings at [Company]. Many customers often struggle with working out exactly how much concrete, ballast, and 25kg bags they need for a 100mm solid slab base (e.g. for standard 8x6 or 10x8 sizes).
+
+We built ConcreteCalc.UK — a completely free, fast calculator that adheres to UK building practices and instantly shows exact m³, 25kg pre-mix bags, and wet weight without requiring email signups or quotes.
+
+Would it be helpful to link to our free Shed Base Calculator (https://concretecalc.uk/concrete-shed-base-how-much-do-i-need) in your base preparation guide to save your customers time and avoid under-ordering?
+
+Kind regards,
+Editorial Team, ConcreteCalc.UK`,
+    suggestedAnchors: ['concrete shed base calculator', 'calculate concrete for shed base', 'shed slab volume guide'],
+  },
+  {
+    id: 'fencing-timber-merchants',
+    category: 'Fencing Contractors & Independent Timber Merchants',
+    targetAudience: 'UK local timber merchants, fencing suppliers, and garden landscaping contractors',
+    estimatedProspects: '250+ independent builders & timber merchants',
+    targetLinkType: 'Helpful Trade Tool link on product pages for 20kg Postcrete and wooden fence posts',
+    pitchSubject: 'Interactive Postcrete bag calculator for your trade customer resources',
+    pitchBody: `Hi [Name],
+
+I run ConcreteCalc.UK. We recently launched a dedicated UK Fence Post & Postcrete Calculator (https://concretecalc.uk/postcrete-calculator) calibrated for British timber (100mm/75mm) and slotted concrete posts.
+
+It automatically calculates the cylinder hole volume, deducts the submerged post volume, and outputs the exact number of 20kg Postcrete bags needed with a 10% contingency.
+
+Would you be open to linking to it on your customer advice or fencing resources page as a handy utility for DIYers and trade customers?
+
+Best regards,
+ConcreteCalc.UK Team`,
+    suggestedAnchors: ['Postcrete calculator UK', 'calculate postcrete bags per post', 'fence post hole calculator'],
+  },
+  {
+    id: 'diy-property-blogs',
+    category: 'UK DIY & Home Renovation Publishers',
+    targetAudience: 'UK home renovation blogs, DIY forums (DIYnot, MoneySavingExpert forum), and property improvement guides',
+    estimatedProspects: '80+ active UK DIY blogs & magazines',
+    targetLinkType: 'Editorial mention in "How to Pour a Concrete Patio/Driveway" articles',
+    pitchSubject: 'Free interactive tool to estimate concrete bags and cost for UK homeowners',
+    pitchBody: `Hi [Editor],
+
+Loved your recent guide on garden patio and driveway renovations. When homeowners are planning a pour, calculating the difference between ordering ready-mix vs mixing 25kg bags by hand is usually where people get caught out by minimum batch delivery fees.
+
+We created a fast, ad-light tool (https://concretecalc.uk/) that breaks down:
+1. Exact cubic metres (m³) and 25kg / 20kg bag quantities
+2. Estimated wet weight in tonnes and wheelbarrow loads
+3. Break-even comparison between ready-mix trucks and pre-mix bags
+
+Thought this might make a valuable addition to your recommended tools section!
+
+Warm regards,
+ConcreteCalc.UK`,
+    suggestedAnchors: ['free UK concrete calculator', 'how much concrete do I need', 'concrete bag calculator'],
+  },
+];
+
+export interface PageAuditProfile {
+  pageUrl: string;
+  name: string;
+  primaryKeyword: string;
+  targetVolume: number;
+  currentTitle: string;
+  currentDescription: string;
+  wordCount: number;
+  schemaTypes: string[];
+  h1: string;
+  status: 'A+' | 'A' | 'B+';
+  score: number;
+  keyStrengths: string[];
+  suggestedImprovements: string[];
+}
+
+export const PAGE_AUDIT_PROFILES: PageAuditProfile[] = [
+  {
+    pageUrl: '/',
+    name: 'Home Calculator',
+    primaryKeyword: 'concrete calculator uk',
+    targetVolume: 18100,
+    currentTitle: 'Concrete Calculator UK – m³, 25kg Bags & Cost Estimator',
+    currentDescription: 'Calculate exact concrete volume in cubic metres (m³), 25kg pre-mix bags, and costs for slabs, shed bases, footings, post holes, and steps with UK mix guides.',
+    wordCount: 1650,
+    schemaTypes: ['WebApplication', 'FAQPage'],
+    h1: 'Concrete Calculator',
+    status: 'A+',
+    score: 99,
+    keyStrengths: [
+      'Comprehensive Schema.org WebApplication & FAQPage with 8 British standard Q&As',
+      'Dual metric (m³) and imperial (yd³, ft³) toggle with UK 25kg bag yields',
+      'Instant PDF and CSV export functionality for trade quotes',
+      'High-volume primary keyword in title, meta description, and H1 hierarchy',
+    ],
+    suggestedImprovements: [
+      'Include a direct link to the new Block Calculator in the above-the-fold hero intro',
+      'Add table of contents navigation for the worked calculation examples',
+    ],
+  },
+  {
+    pageUrl: '/concrete-block-calculator',
+    name: 'Concrete Block Calculator',
+    primaryKeyword: 'concrete blocks',
+    targetVolume: 14800,
+    currentTitle: 'Concrete Block Calculator UK – Blocks per m², Mortar & Sand',
+    currentDescription: 'Calculate exact 440x215mm concrete blocks, mortar bags, and building sand for single or double skin walls. Supports 100mm, 140mm dense & lightweight blocks.',
+    wordCount: 1420,
+    schemaTypes: ['WebApplication', 'HowTo'],
+    h1: 'Concrete Block Calculator UK',
+    status: 'A+',
+    score: 99,
+    keyStrengths: [
+      'Strictly adheres to BS EN 771-3 standard UK block coordinating dimensions (440×215mm with 10mm joint = 10 blocks/m²)',
+      'Calculates mortar sand bulk bags, Mastercrete cement, and stainless wall ties',
+      'Interactive door and window opening deduction calculators',
+      'Target keywords in title, meta description, and dedicated Server layout.tsx',
+    ],
+    suggestedImprovements: [
+      'Add an accordion for thermal U-value comparisons between dense aggregate and aerated Celcon blocks',
+    ],
+  },
+  {
+    pageUrl: '/postcrete-calculator',
+    name: 'Postcrete & Fence Post Calculator',
+    primaryKeyword: 'postcrete calculator',
+    targetVolume: 3600,
+    currentTitle: 'Postcrete Calculator UK – Bags of Postcrete Per Post & Hole Size',
+    currentDescription: 'Calculate exact bags of Blue Circle or Hanson rapid-set Postcrete for 75mm, 100mm timber, concrete, and metal fence posts with UK standard hole diameter formulas.',
+    wordCount: 1280,
+    schemaTypes: ['WebApplication', 'FAQPage'],
+    h1: 'Postcrete & Fence Post Concrete Calculator UK',
+    status: 'A+',
+    score: 98,
+    keyStrengths: [
+      'Deducts submerged post volume from cylindrical hole volume for true net material needed',
+      'Includes alternative 1:5 ballast + cement raw material estimates',
+      'Presets for 6ft garden fences, slotted posts, and heavy 150mm gate posts',
+      'Dedicated Server layout.tsx with rich FAQPage and WebApplication Schema.org',
+    ],
+    suggestedImprovements: [
+      'Include a rapid-set curing time temperature chart (e.g. set times under 10°C vs 20°C)',
+    ],
+  },
+  {
+    pageUrl: '/concrete-slab-calculator',
+    name: 'Concrete Slab Calculator',
+    primaryKeyword: 'concrete slab calculator',
+    targetVolume: 4400,
+    currentTitle: 'Concrete Slab Calculator UK – m³, 25kg Bags & Steel Mesh',
+    currentDescription: 'Calculate cubic metres (m³), 25kg pre-mixed bags, A142/A193 steel reinforcement mesh sheets, and sub-base MOT Type 1 for UK garden slabs and patios.',
+    wordCount: 1350,
+    schemaTypes: ['WebApplication'],
+    h1: 'Concrete Slab Calculator UK',
+    status: 'A+',
+    score: 98,
+    keyStrengths: [
+      'Calculates m³ volume, 25kg bags, MOT Type 1 hardcore, and steel mesh sheets (A142/A193/A252)',
+      'Accurate 100mm, 125mm, 150mm depth presets for shed bases, patios, and driveways',
+      'High-intent UK keyword targeting in title, description, and OpenGraph metadata',
+    ],
+    suggestedImprovements: [
+      'Add visual diagram showing sub-base layer order (soil, geotextile, MOT, DPM, concrete)',
+    ],
+  },
+  {
+    pageUrl: '/concrete-footing-calculator',
+    name: 'Concrete Footing Calculator',
+    primaryKeyword: 'concrete footing calculator',
+    targetVolume: 1600,
+    currentTitle: 'Concrete Footing Calculator UK – Trench & Strip Foundations',
+    currentDescription: 'Calculate trench fill, strip foundations, and extension footing concrete volume in m³ with UK Building Regulations Part A depth presets and waste.',
+    wordCount: 1100,
+    schemaTypes: ['WebApplication'],
+    h1: 'Concrete Footing & Foundation Calculator UK',
+    status: 'A',
+    score: 97,
+    keyStrengths: [
+      'Presets for UK Building Regulations Part A standard depth requirements (1.0m frost line)',
+      'Calculates both trench-fill (full depth) and traditional strip foundation with masonry brick up',
+      'Dedicated Server layout.tsx with canonical URL and OpenGraph card',
+    ],
+    suggestedImprovements: [
+      'Add clay soil heave allowance notes for foundations near trees (NHBC Chapter 4.2)',
+    ],
+  },
+  {
+    pageUrl: '/price-of-concrete-per-m3',
+    name: 'Price of Concrete per m³',
+    primaryKeyword: 'price of concrete per m3',
+    targetVolume: 2400,
+    currentTitle: 'Price of Concrete Per m³ UK (2026 Costs) – Ready-Mix & Volumetric',
+    currentDescription: 'Updated 2026 UK concrete price benchmarks by region (London, Midlands, North). Ready-mix vs volumetric delivery rates, part-load fees, and barrowing costs.',
+    wordCount: 1550,
+    schemaTypes: ['TechArticle', 'FAQPage'],
+    h1: 'Price of Concrete Per m³ UK (2026 Price Guide)',
+    status: 'A+',
+    score: 99,
+    keyStrengths: [
+      'Live interactive regional pricing index and part-load surcharge calculator',
+      'Schema.org TechArticle and FAQPage with UK regional pricing breakdown',
+      'High commercial intent keyword targeting with exact 2026 price benchmarks',
+    ],
+    suggestedImprovements: [
+      'Include concrete boom pump vs ground line pump hire cost estimates',
+    ],
+  },
+  {
+    pageUrl: '/how-many-bags-of-concrete-per-cubic-metre',
+    name: 'Bags per Cubic Metre Guide',
+    primaryKeyword: 'how many bags of concrete per cubic metre',
+    targetVolume: 5400,
+    currentTitle: 'How Many Bags of Concrete in 1 Cubic Metre? (25kg & 20kg Exact Math)',
+    currentDescription: 'Exact UK math for 25kg (~83 bags) and 20kg (~105 bags) pre-mix concrete per cubic metre (m³). Includes 10% waste allowance formulas and ballast mix ratios.',
+    wordCount: 850,
+    schemaTypes: ['TechArticle', 'HowTo'],
+    h1: 'How Many Bags of Concrete Make 1 Cubic Metre?',
+    status: 'A+',
+    score: 98,
+    keyStrengths: [
+      'Direct answer snippet format in the opening paragraph for Google Quick Answers',
+      'Worked examples for standard 25kg (~83 bags/m³) and 20kg (~105 bags/m³) bags',
+      'High-resolution Next.js optimized photo with descriptive alt text and caption',
+    ],
+    suggestedImprovements: [
+      'Add an interactive quick calculator widget embedded directly inside the article',
+    ],
+  },
+  {
+    pageUrl: '/concrete-shed-base-how-much-do-i-need',
+    name: 'Concrete Shed Base Guide',
+    primaryKeyword: 'shed base concrete calculator',
+    targetVolume: 1600,
+    currentTitle: 'Concrete Shed Base Calculator – 8x6, 6x4 & 10x8 Garden Slabs',
+    currentDescription: 'Calculate exact 100mm concrete slab volume, 25kg bags, MOT Type 1 hardcore, and timber formwork for 6x4, 8x6, and 10x8 garden shed bases in the UK.',
+    wordCount: 950,
+    schemaTypes: ['TechArticle', 'HowTo'],
+    h1: 'Concrete Shed Base: How Much Concrete Do You Need?',
+    status: 'A+',
+    score: 98,
+    keyStrengths: [
+      'Comprehensive dimensions table for standard UK shed sizes (6x4, 8x6, 10x8, 12x8)',
+      'Calculates MOT Type 1 sub-base tonnage and timber formwork pegs',
+      'Schema.org HowTo and high-resolution photo with SEO alt text',
+    ],
+    suggestedImprovements: [
+      'Add tips on building on a sloping lawn with step formwork',
+    ],
+  },
+  {
+    pageUrl: '/ready-mix-vs-bagged-concrete',
+    name: 'Ready-Mix vs Bagged Concrete Guide',
+    primaryKeyword: 'ready mix vs bagged concrete',
+    targetVolume: 1900,
+    currentTitle: 'Ready-Mix vs Bagged Concrete UK – Cost, Labour & Break-Even Analysis',
+    currentDescription: 'Compare 25kg pre-mix bags against delivered ready-mix concrete. UK break-even tipping point (~1.5 m³), minimum load surcharges, and barrow time limits.',
+    wordCount: 900,
+    schemaTypes: ['TechArticle'],
+    h1: 'Ready-Mix vs Bagged Concrete: UK Cost, Effort & Quality Comparison',
+    status: 'A',
+    score: 96,
+    keyStrengths: [
+      'Cost break-even comparison table with clear volume tipping point (~1.5 m³)',
+      'Detailed breakdown of volumetric mixers vs traditional barrel drum trucks',
+      'Schema.org TechArticle and Next.js responsive optimized image',
+    ],
+    suggestedImprovements: [
+      'Add a video embed or interactive slider comparing mixing time vs truck pour time',
+    ],
+  },
+];
+

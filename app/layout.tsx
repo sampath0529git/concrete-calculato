@@ -6,14 +6,51 @@ import { Footer } from './components/Footer';
 import { CookieBanner } from './components/CookieBanner';
 
 export const metadata: Metadata = {
-  title: 'Concrete Calculator UK – m³, Bags & Cost for Slabs, Bases & Footings',
+  metadataBase: new URL('https://concretecalc.co.uk'),
+  title: {
+    default: 'Concrete Calculator UK – m³, 25kg Bags & Cost Estimator',
+    template: '%s | ConcreteCalc UK',
+  },
   description:
-    'Calculate cubic metres, 25kg bags, wet weight, and estimated costs for slabs, bases, footings, post holes, and steps with UK mix guides and worked examples.',
+    'Calculate exact concrete volume in cubic metres (m³), 25kg pre-mix bags, and costs for slabs, shed bases, footings, post holes, and steps with UK mix guides.',
+  keywords: [
+    'concrete calculator uk',
+    'concrete calculator',
+    'calculate concrete m3',
+    'concrete volume calculator',
+    'concrete mix calculator uk',
+    'how much concrete do i need',
+    'concrete bags calculator',
+    'ready mix concrete calculator uk',
+    'concrete slab calculator uk',
+    'cubic metres to bags of concrete',
+  ],
+  alternates: {
+    canonical: '/',
+  },
   openGraph: {
-    title: 'Concrete Calculator UK – m³, Bags & Cost',
+    title: 'Concrete Calculator UK – m³, 25kg Bags & Cost Estimator',
     description:
-      'How much concrete do you need? Calculate m³, bags and cost for slabs, footings, columns and steps.',
+      'Calculate exact concrete volume in cubic metres (m³), 25kg pre-mix bags, and estimated costs for slabs, footings, shed bases, and post holes in the UK.',
+    url: 'https://concretecalc.co.uk',
+    siteName: 'ConcreteCalc UK',
+    locale: 'en_GB',
     type: 'website',
+    images: [
+      {
+        url: '/images/concrete-bags-cubic-metre.jpg',
+        width: 1200,
+        height: 675,
+        alt: 'Concrete Calculator UK – Stacked 25kg cement bags and builder wheelbarrow',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Concrete Calculator UK – m³, 25kg Bags & Cost Estimator',
+    description:
+      'Free UK concrete calculator. Calculate cubic metres, 25kg bags, ballast, cement, and ready-mix costs for any project.',
+    images: ['/images/concrete-bags-cubic-metre.jpg'],
   },
   icons: {
     icon: 'data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧱</text></svg>',

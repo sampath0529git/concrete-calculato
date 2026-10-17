@@ -2,6 +2,7 @@
 
 import React, { useState, useMemo } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Breadcrumbs } from '../components/Breadcrumbs';
 import {
   Wrench,
@@ -399,6 +400,18 @@ Generated via ConcreteCalc.UK`;
 
             <div style={{ marginTop: '10px', fontSize: '12px', color: 'var(--muted)', textAlign: 'center' }}>
               Standard Rule: <strong>1.5 to 2 bags of Postcrete</strong> per 6ft fence post
+            </div>
+
+            {/* Visual Photo */}
+            <div style={{ marginTop: '14px', position: 'relative', width: '100%', height: '160px', borderRadius: '8px', overflow: 'hidden', border: '1px solid var(--line)' }}>
+              <Image
+                src="/images/postcrete-fence-post-calculator.jpg"
+                alt="Setting square timber fence post into hole with water and rapid set Postcrete mix - Postcrete Calculator UK"
+                fill
+                sizes="(max-width: 768px) 100vw, 380px"
+                style={{ objectFit: 'cover' }}
+                referrerPolicy="no-referrer"
+              />
             </div>
           </div>
         </div>

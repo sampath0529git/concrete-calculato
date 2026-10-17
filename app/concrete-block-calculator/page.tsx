@@ -2,6 +2,7 @@
 
 import React, { useState, useMemo } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Breadcrumbs } from '../components/Breadcrumbs';
 import {
   Layers,
@@ -367,7 +368,7 @@ Generated via ConcreteCalc.UK`;
                     >
                       <option value="5">5% — Simple rectangular wall, straight run</option>
                       <option value="10">10% — Recommended standard UK trade allowance</option>
-                      <option value="15">15% — Complex layout, gable ends, or nhiều cuts</option>
+                      <option value="15">15% — Complex layout, gable ends, or many cuts</option>
                     </select>
                   </td>
                 </tr>
@@ -513,6 +514,18 @@ Generated via ConcreteCalc.UK`;
 
             <div style={{ marginTop: '12px', fontSize: '12.5px', color: 'var(--muted)', textAlign: 'center' }}>
               Standard UK Block: <strong>440mm × 215mm × 100mm</strong>
+            </div>
+
+            {/* Visual Blockwork Photo */}
+            <div style={{ marginTop: '16px', position: 'relative', width: '100%', height: '170px', borderRadius: '8px', overflow: 'hidden', border: '1px solid var(--line)' }}>
+              <Image
+                src="/images/concrete-block-calculator.jpg"
+                alt="Building single-skin garden retaining wall with standard British dense concrete blocks (440x215mm) and mortar - Concrete Block Calculator UK"
+                fill
+                sizes="(max-width: 768px) 100vw, 380px"
+                style={{ objectFit: 'cover' }}
+                referrerPolicy="no-referrer"
+              />
             </div>
           </div>
         </div>
