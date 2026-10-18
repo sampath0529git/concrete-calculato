@@ -924,9 +924,9 @@ export default function ConcreteWeightConverterPage() {
               {copiedKey?.startsWith('all-quote') && (
                 <div
                   style={{
-                    background: 'rgba(22, 163, 74, 0.12)',
-                    border: '1px solid #16a34a',
-                    color: '#15803d',
+                    background: 'var(--status-success-bg)',
+                    border: '1px solid var(--status-success-border)',
+                    color: 'var(--status-success-text)',
                     borderRadius: '8px',
                     padding: '10px 16px',
                     display: 'flex',
@@ -945,9 +945,9 @@ export default function ConcreteWeightConverterPage() {
               {pdfExported && (
                 <div
                   style={{
-                    background: 'rgba(22, 163, 74, 0.12)',
-                    border: '1px solid #16a34a',
-                    color: '#15803d',
+                    background: 'var(--status-success-bg)',
+                    border: '1px solid var(--status-success-border)',
+                    color: 'var(--status-success-text)',
                     borderRadius: '8px',
                     padding: '10px 16px',
                     display: 'flex',
@@ -987,7 +987,7 @@ export default function ConcreteWeightConverterPage() {
                       type="button"
                       onClick={() => handleCopy(generateDensityQuoteReport(), 'all-quote-tab1')}
                       style={{
-                        background: copiedKey === 'all-quote-tab1' ? '#16a34a' : 'var(--accent)',
+                        background: copiedKey === 'all-quote-tab1' ? 'var(--ok)' : 'var(--accent)',
                         border: 'none',
                         borderRadius: '6px',
                         padding: '6px 14px',
@@ -1012,7 +1012,7 @@ export default function ConcreteWeightConverterPage() {
                       type="button"
                       onClick={handleExportDensityPdf}
                       style={{
-                        background: pdfExported ? '#16a34a' : '#1d2127',
+                        background: pdfExported ? 'var(--ok)' : 'var(--calc-blue)',
                         border: 'none',
                         borderRadius: '6px',
                         padding: '6px 14px',
@@ -1158,7 +1158,7 @@ export default function ConcreteWeightConverterPage() {
                       style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '2px', color: 'var(--muted)' }}
                       title="Copy bag count"
                     >
-                      {copiedKey === 'copy-bags25' ? <Check size={12} color="#16a34a" /> : <Copy size={12} />}
+                      {copiedKey === 'copy-bags25' ? <Check size={12} color="var(--ok)" /> : <Copy size={12} />}
                     </button>
                   </div>
                   <div style={{ fontSize: '1.6rem', fontWeight: 800, color: 'var(--ink)', margin: '4px 0' }}>
@@ -1188,7 +1188,7 @@ export default function ConcreteWeightConverterPage() {
                       style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '2px', color: 'var(--muted)' }}
                       title="Copy wheelbarrow count"
                     >
-                      {copiedKey === 'copy-barrows' ? <Check size={12} color="#16a34a" /> : <Copy size={12} />}
+                      {copiedKey === 'copy-barrows' ? <Check size={12} color="var(--ok)" /> : <Copy size={12} />}
                     </button>
                   </div>
                   <div style={{ fontSize: '1.6rem', fontWeight: 800, color: 'var(--ink)', margin: '4px 0' }}>
@@ -1218,7 +1218,7 @@ export default function ConcreteWeightConverterPage() {
                       style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '2px', color: 'var(--muted)' }}
                       title="Copy bulk bag count"
                     >
-                      {copiedKey === 'copy-bulkbags' ? <Check size={12} color="#16a34a" /> : <Copy size={12} />}
+                      {copiedKey === 'copy-bulkbags' ? <Check size={12} color="var(--ok)" /> : <Copy size={12} />}
                     </button>
                   </div>
                   <div style={{ fontSize: '1.6rem', fontWeight: 800, color: 'var(--ink)', margin: '4px 0' }}>
@@ -1248,7 +1248,7 @@ export default function ConcreteWeightConverterPage() {
                       style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '2px', color: 'var(--muted)' }}
                       title="Copy truck load %"
                     >
-                      {copiedKey === 'copy-truck' ? <Check size={12} color="#16a34a" /> : <Copy size={12} />}
+                      {copiedKey === 'copy-truck' ? <Check size={12} color="var(--ok)" /> : <Copy size={12} />}
                     </button>
                   </div>
                   <div style={{ fontSize: '1.6rem', fontWeight: 800, color: 'var(--ink)', margin: '4px 0' }}>
@@ -1308,7 +1308,7 @@ export default function ConcreteWeightConverterPage() {
                       type="button"
                       onClick={handleExportDensityPdf}
                       style={{
-                        background: pdfExported ? '#16a34a' : '#1d2127',
+                        background: pdfExported ? 'var(--ok)' : 'var(--calc-blue)',
                         color: '#ffffff',
                         border: 'none',
                         borderRadius: '6px',
@@ -1331,7 +1331,7 @@ export default function ConcreteWeightConverterPage() {
                       type="button"
                       onClick={() => handleCopy(generateDensityQuoteReport(), 'all-quote-tab1-box')}
                       style={{
-                        background: copiedKey === 'all-quote-tab1-box' ? '#16a34a' : 'var(--accent)',
+                        background: copiedKey === 'all-quote-tab1-box' ? 'var(--ok)' : 'var(--accent)',
                         color: '#ffffff',
                         border: 'none',
                         borderRadius: '6px',
@@ -1497,9 +1497,9 @@ export default function ConcreteWeightConverterPage() {
             {copiedKey === 'all-quote-vol' && (
               <div
                 style={{
-                  background: 'rgba(22, 163, 74, 0.12)',
-                  border: '1px solid #16a34a',
-                  color: '#15803d',
+                  background: 'var(--status-success-bg)',
+                  border: '1px solid var(--status-success-border)',
+                  color: 'var(--status-success-text)',
                   borderRadius: '8px',
                   padding: '10px 16px',
                   marginBottom: '16px',
@@ -1519,9 +1519,9 @@ export default function ConcreteWeightConverterPage() {
             {pdfExported && (
               <div
                 style={{
-                  background: 'rgba(22, 163, 74, 0.12)',
-                  border: '1px solid #16a34a',
-                  color: '#15803d',
+                  background: 'var(--status-success-bg)',
+                  border: '1px solid var(--status-success-border)',
+                  color: 'var(--status-success-text)',
                   borderRadius: '8px',
                   padding: '10px 16px',
                   marginBottom: '16px',
@@ -1547,7 +1547,7 @@ export default function ConcreteWeightConverterPage() {
                   type="button"
                   onClick={handleExportVolumePdf}
                   style={{
-                    background: pdfExported ? '#16a34a' : '#1d2127',
+                    background: pdfExported ? 'var(--ok)' : 'var(--calc-blue)',
                     color: '#ffffff',
                     border: 'none',
                     borderRadius: '6px',
@@ -1570,7 +1570,7 @@ export default function ConcreteWeightConverterPage() {
                   type="button"
                   onClick={() => handleCopy(generateVolumeQuoteReport(), 'all-quote-vol')}
                   style={{
-                    background: copiedKey === 'all-quote-vol' ? '#16a34a' : 'var(--accent)',
+                    background: copiedKey === 'all-quote-vol' ? 'var(--ok)' : 'var(--accent)',
                     color: '#ffffff',
                     border: 'none',
                     borderRadius: '6px',
@@ -1609,7 +1609,7 @@ export default function ConcreteWeightConverterPage() {
                     style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '2px', color: 'var(--muted)' }}
                     title="Copy m³"
                   >
-                    {copiedKey === 'v_m3' ? <Check size={12} color="#16a34a" /> : <Copy size={12} />}
+                    {copiedKey === 'v_m3' ? <Check size={12} color="var(--ok)" /> : <Copy size={12} />}
                   </button>
                 </div>
                 <div style={{ fontSize: '1.4rem', fontWeight: 800, color: 'var(--ink)', margin: '4px 0' }}>
@@ -1627,7 +1627,7 @@ export default function ConcreteWeightConverterPage() {
                     style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '2px', color: 'var(--muted)' }}
                     title="Copy yd³"
                   >
-                    {copiedKey === 'v_yd3' ? <Check size={12} color="#16a34a" /> : <Copy size={12} />}
+                    {copiedKey === 'v_yd3' ? <Check size={12} color="var(--ok)" /> : <Copy size={12} />}
                   </button>
                 </div>
                 <div style={{ fontSize: '1.4rem', fontWeight: 800, color: 'var(--ink)', margin: '4px 0' }}>
@@ -1645,7 +1645,7 @@ export default function ConcreteWeightConverterPage() {
                     style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '2px', color: 'var(--muted)' }}
                     title="Copy ft³"
                   >
-                    {copiedKey === 'v_ft3' ? <Check size={12} color="#16a34a" /> : <Copy size={12} />}
+                    {copiedKey === 'v_ft3' ? <Check size={12} color="var(--ok)" /> : <Copy size={12} />}
                   </button>
                 </div>
                 <div style={{ fontSize: '1.4rem', fontWeight: 800, color: 'var(--ink)', margin: '4px 0' }}>
@@ -1663,7 +1663,7 @@ export default function ConcreteWeightConverterPage() {
                     style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '2px', color: 'var(--muted)' }}
                     title="Copy litres"
                   >
-                    {copiedKey === 'v_litres' ? <Check size={12} color="#16a34a" /> : <Copy size={12} />}
+                    {copiedKey === 'v_litres' ? <Check size={12} color="var(--ok)" /> : <Copy size={12} />}
                   </button>
                 </div>
                 <div style={{ fontSize: '1.4rem', fontWeight: 800, color: 'var(--ink)', margin: '4px 0' }}>
@@ -1681,7 +1681,7 @@ export default function ConcreteWeightConverterPage() {
                     style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '2px', color: 'var(--muted)' }}
                     title="Copy bag count"
                   >
-                    {copiedKey === 'v_bags25' ? <Check size={12} color="#16a34a" /> : <Copy size={12} />}
+                    {copiedKey === 'v_bags25' ? <Check size={12} color="var(--ok)" /> : <Copy size={12} />}
                   </button>
                 </div>
                 <div style={{ fontSize: '1.4rem', fontWeight: 800, color: 'var(--ink)', margin: '4px 0' }}>
@@ -1699,7 +1699,7 @@ export default function ConcreteWeightConverterPage() {
                     style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '2px', color: 'var(--muted)' }}
                     title="Copy tonnes"
                   >
-                    {copiedKey === 'v_tonnes' ? <Check size={12} color="#16a34a" /> : <Copy size={12} />}
+                    {copiedKey === 'v_tonnes' ? <Check size={12} color="var(--ok)" /> : <Copy size={12} />}
                   </button>
                 </div>
                 <div style={{ fontSize: '1.4rem', fontWeight: 800, color: 'var(--accent)', margin: '4px 0' }}>
@@ -1731,7 +1731,7 @@ export default function ConcreteWeightConverterPage() {
                     type="button"
                     onClick={handleExportVolumePdf}
                     style={{
-                      background: pdfExported ? '#16a34a' : '#1d2127',
+                      background: pdfExported ? 'var(--ok)' : 'var(--calc-blue)',
                       color: '#ffffff',
                       border: 'none',
                       borderRadius: '6px',
@@ -1754,7 +1754,7 @@ export default function ConcreteWeightConverterPage() {
                     type="button"
                     onClick={() => handleCopy(generateVolumeQuoteReport(), 'all-quote-vol-card')}
                     style={{
-                      background: copiedKey === 'all-quote-vol-card' ? '#16a34a' : 'var(--accent)',
+                      background: copiedKey === 'all-quote-vol-card' ? 'var(--ok)' : 'var(--accent)',
                       color: '#ffffff',
                       border: 'none',
                       borderRadius: '6px',
@@ -1918,9 +1918,9 @@ export default function ConcreteWeightConverterPage() {
             {copiedKey === 'all-quote-wt' && (
               <div
                 style={{
-                  background: 'rgba(22, 163, 74, 0.12)',
-                  border: '1px solid #16a34a',
-                  color: '#15803d',
+                  background: 'var(--status-success-bg)',
+                  border: '1px solid var(--status-success-border)',
+                  color: 'var(--status-success-text)',
                   borderRadius: '8px',
                   padding: '10px 16px',
                   marginBottom: '16px',
@@ -1940,9 +1940,9 @@ export default function ConcreteWeightConverterPage() {
             {pdfExported && (
               <div
                 style={{
-                  background: 'rgba(22, 163, 74, 0.12)',
-                  border: '1px solid #16a34a',
-                  color: '#15803d',
+                  background: 'var(--status-success-bg)',
+                  border: '1px solid var(--status-success-border)',
+                  color: 'var(--status-success-text)',
                   borderRadius: '8px',
                   padding: '10px 16px',
                   marginBottom: '16px',
@@ -1968,7 +1968,7 @@ export default function ConcreteWeightConverterPage() {
                   type="button"
                   onClick={handleExportWeightPdf}
                   style={{
-                    background: pdfExported ? '#16a34a' : '#1d2127',
+                    background: pdfExported ? 'var(--ok)' : 'var(--calc-blue)',
                     color: '#ffffff',
                     border: 'none',
                     borderRadius: '6px',
@@ -1991,7 +1991,7 @@ export default function ConcreteWeightConverterPage() {
                   type="button"
                   onClick={() => handleCopy(generateWeightQuoteReport(), 'all-quote-wt')}
                   style={{
-                    background: copiedKey === 'all-quote-wt' ? '#16a34a' : 'var(--accent)',
+                    background: copiedKey === 'all-quote-wt' ? 'var(--ok)' : 'var(--accent)',
                     color: '#ffffff',
                     border: 'none',
                     borderRadius: '6px',
@@ -2030,7 +2030,7 @@ export default function ConcreteWeightConverterPage() {
                     style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '2px', color: 'var(--muted)' }}
                     title="Copy tonnes"
                   >
-                    {copiedKey === 'w_tonnes' ? <Check size={12} color="#16a34a" /> : <Copy size={12} />}
+                    {copiedKey === 'w_tonnes' ? <Check size={12} color="var(--ok)" /> : <Copy size={12} />}
                   </button>
                 </div>
                 <div style={{ fontSize: '1.4rem', fontWeight: 800, color: 'var(--ink)', margin: '4px 0' }}>
@@ -2048,7 +2048,7 @@ export default function ConcreteWeightConverterPage() {
                     style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '2px', color: 'var(--muted)' }}
                     title="Copy kg"
                   >
-                    {copiedKey === 'w_kg' ? <Check size={12} color="#16a34a" /> : <Copy size={12} />}
+                    {copiedKey === 'w_kg' ? <Check size={12} color="var(--ok)" /> : <Copy size={12} />}
                   </button>
                 </div>
                 <div style={{ fontSize: '1.4rem', fontWeight: 800, color: 'var(--ink)', margin: '4px 0' }}>
@@ -2066,7 +2066,7 @@ export default function ConcreteWeightConverterPage() {
                     style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '2px', color: 'var(--muted)' }}
                     title="Copy lbs"
                   >
-                    {copiedKey === 'w_lbs' ? <Check size={12} color="#16a34a" /> : <Copy size={12} />}
+                    {copiedKey === 'w_lbs' ? <Check size={12} color="var(--ok)" /> : <Copy size={12} />}
                   </button>
                 </div>
                 <div style={{ fontSize: '1.4rem', fontWeight: 800, color: 'var(--ink)', margin: '4px 0' }}>
@@ -2084,7 +2084,7 @@ export default function ConcreteWeightConverterPage() {
                     style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '2px', color: 'var(--muted)' }}
                     title="Copy bulk bag count"
                   >
-                    {copiedKey === 'w_bulkbags' ? <Check size={12} color="#16a34a" /> : <Copy size={12} />}
+                    {copiedKey === 'w_bulkbags' ? <Check size={12} color="var(--ok)" /> : <Copy size={12} />}
                   </button>
                 </div>
                 <div style={{ fontSize: '1.4rem', fontWeight: 800, color: 'var(--ink)', margin: '4px 0' }}>
@@ -2102,7 +2102,7 @@ export default function ConcreteWeightConverterPage() {
                     style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '2px', color: 'var(--muted)' }}
                     title="Copy 25kg bag count"
                   >
-                    {copiedKey === 'w_bags25' ? <Check size={12} color="#16a34a" /> : <Copy size={12} />}
+                    {copiedKey === 'w_bags25' ? <Check size={12} color="var(--ok)" /> : <Copy size={12} />}
                   </button>
                 </div>
                 <div style={{ fontSize: '1.4rem', fontWeight: 800, color: 'var(--ink)', margin: '4px 0' }}>
@@ -2120,7 +2120,7 @@ export default function ConcreteWeightConverterPage() {
                     style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '2px', color: 'var(--muted)' }}
                     title="Copy volume equivalent"
                   >
-                    {copiedKey === 'w_m3' ? <Check size={12} color="#16a34a" /> : <Copy size={12} />}
+                    {copiedKey === 'w_m3' ? <Check size={12} color="var(--ok)" /> : <Copy size={12} />}
                   </button>
                 </div>
                 <div style={{ fontSize: '1.4rem', fontWeight: 800, color: 'var(--accent)', margin: '4px 0' }}>
@@ -2152,7 +2152,7 @@ export default function ConcreteWeightConverterPage() {
                     type="button"
                     onClick={handleExportWeightPdf}
                     style={{
-                      background: pdfExported ? '#16a34a' : '#1d2127',
+                      background: pdfExported ? 'var(--ok)' : 'var(--calc-blue)',
                       color: '#ffffff',
                       border: 'none',
                       borderRadius: '6px',
@@ -2175,7 +2175,7 @@ export default function ConcreteWeightConverterPage() {
                     type="button"
                     onClick={() => handleCopy(generateWeightQuoteReport(), 'all-quote-wt-card')}
                     style={{
-                      background: copiedKey === 'all-quote-wt-card' ? '#16a34a' : 'var(--accent)',
+                      background: copiedKey === 'all-quote-wt-card' ? 'var(--ok)' : 'var(--accent)',
                       color: '#ffffff',
                       border: 'none',
                       borderRadius: '6px',

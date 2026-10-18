@@ -151,12 +151,14 @@ const themeInitializerScript = `
 (function() {
   try {
     var stored = localStorage.getItem('concretecalc_theme') || localStorage.getItem('theme');
-    var theme = stored;
-    if (!theme) {
-      theme = (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
+    var setting = (stored === 'light' || stored === 'dark' || stored === 'system') ? stored : 'light';
+    var resolved = setting;
+    if (setting === 'system') {
+      resolved = (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
     }
-    document.documentElement.setAttribute('data-theme', theme);
-    document.documentElement.style.colorScheme = theme;
+    document.documentElement.setAttribute('data-theme', resolved);
+    document.documentElement.setAttribute('data-theme-setting', setting);
+    document.documentElement.style.colorScheme = resolved;
   } catch (e) {}
 })();
 `;
@@ -230,7 +232,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en-GB" suppressHydrationWarning>
+    <html lang="en-GB" data-theme="light" data-theme-setting="light" suppressHydrationWarning>
       <head>
         <script
           dangerouslySetInnerHTML={{ __html: themeInitializerScript }}

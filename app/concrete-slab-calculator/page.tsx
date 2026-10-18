@@ -473,7 +473,7 @@ Generated via ConcreteCalc.UK`;
 
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '14px' }}>
           {/* Card 1: Sub-Base */}
-          <div className="card" style={{ borderLeft: '4px solid #64748b' }}>
+          <div className="card" style={{ borderLeft: '4px solid var(--muted)' }}>
             <div style={{ fontWeight: 700, fontSize: '13.5px', color: 'var(--ink)' }}>
               1. MOT Type 1 Sub-Base
             </div>
@@ -521,7 +521,7 @@ Generated via ConcreteCalc.UK`;
           </div>
 
           {/* Card 4: Timber Formwork */}
-          <div className="card" style={{ borderLeft: '4px solid #b45309' }}>
+          <div className="card" style={{ borderLeft: '4px solid var(--status-warning-text)' }}>
             <div style={{ fontWeight: 700, fontSize: '13.5px', color: 'var(--ink)' }}>
               4. Timber Shuttering Formwork
             </div>

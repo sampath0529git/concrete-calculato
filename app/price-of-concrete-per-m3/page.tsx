@@ -402,7 +402,7 @@ Best Route: ${recommendation.title}`;
             <ul style={{ paddingLeft: '18px', margin: 0, fontSize: '12px', color: 'var(--ink-secondary)', lineHeight: '1.6' }}>
               <li>Material rate: £{region.readyMixPerM3}/m³</li>
               {isPartLoad ? (
-                <li style={{ color: '#b45309', fontWeight: 600 }}>
+                <li style={{ color: 'var(--status-warning-text)', fontWeight: 600 }}>
                   Part-load fee: +£{partLoadSurcharge} (under 4m³)
                 </li>
               ) : (
@@ -436,14 +436,14 @@ Best Route: ${recommendation.title}`;
           </div>
 
           {/* Card 3: 25kg Pre-Mix Bags */}
-          <div className="card" style={{ borderTop: '3px solid #8b5cf6' }}>
+          <div className="card" style={{ borderTop: '3px solid var(--accent)' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
               <div style={{ fontWeight: 700, fontSize: '14px', color: 'var(--ink)' }}>
                 3. Pre-Mixed 25kg Bags
               </div>
-              <Package size={18} color="#8b5cf6" />
+              <Package size={18} color="var(--accent)" />
             </div>
-            <div style={{ fontSize: '24px', fontWeight: 800, color: '#8b5cf6', margin: '8px 0 4px' }}>
+            <div style={{ fontSize: '24px', fontWeight: 800, color: 'var(--accent)', margin: '8px 0 4px' }}>
               £{(baggedTotalCost).toFixed(2)}
             </div>
             <div style={{ fontSize: '12px', color: 'var(--muted)', marginBottom: '10px' }}>
@@ -542,7 +542,7 @@ Best Route: ${recommendation.title}`;
         <h2>Beware of Hidden Ready-Mix Costs</h2>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '16px', margin: '20px 0' }}>
           <div className="card">
-            <h3 style={{ display: 'flex', alignItems: 'center', gap: '6px', color: '#b45309', margin: '0 0 6px', fontSize: '14.5px' }}>
+            <h3 style={{ display: 'flex', alignItems: 'center', gap: '6px', color: 'var(--status-warning-text)', margin: '0 0 6px', fontSize: '14.5px' }}>
               <AlertTriangle size={16} />
               Part-Load / Short-Load Charges
             </h3>
@@ -552,7 +552,7 @@ Best Route: ${recommendation.title}`;
           </div>
 
           <div className="card">
-            <h3 style={{ display: 'flex', alignItems: 'center', gap: '6px', color: '#b45309', margin: '0 0 6px', fontSize: '14.5px' }}>
+            <h3 style={{ display: 'flex', alignItems: 'center', gap: '6px', color: 'var(--status-warning-text)', margin: '0 0 6px', fontSize: '14.5px' }}>
               <Clock size={16} />
               Waiting Time Penalties
             </h3>

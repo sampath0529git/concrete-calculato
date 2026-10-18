@@ -489,20 +489,20 @@ Generated via ConcreteCalc.UK`;
               {/* Graphical Brick Stretcher Bond Pattern */}
               <div style={{ display: 'flex', flexDirection: 'column', gap: '3px', margin: '8px 0', opacity: 0.85 }}>
                 <div style={{ display: 'flex', gap: '3px', height: '14px' }}>
-                  <div style={{ flex: 1, background: '#cbd5e1', borderRadius: '2px' }} />
-                  <div style={{ flex: 1, background: '#94a3b8', borderRadius: '2px' }} />
-                  <div style={{ flex: 1, background: '#cbd5e1', borderRadius: '2px' }} />
+                  <div style={{ flex: 1, background: 'var(--line-strong)', borderRadius: '2px' }} />
+                  <div style={{ flex: 1, background: 'var(--muted-subtle)', borderRadius: '2px' }} />
+                  <div style={{ flex: 1, background: 'var(--line-strong)', borderRadius: '2px' }} />
                 </div>
                 <div style={{ display: 'flex', gap: '3px', height: '14px' }}>
-                  <div style={{ flex: 0.5, background: '#94a3b8', borderRadius: '2px' }} />
-                  <div style={{ flex: 1, background: '#cbd5e1', borderRadius: '2px' }} />
-                  <div style={{ flex: 1, background: '#94a3b8', borderRadius: '2px' }} />
-                  <div style={{ flex: 0.5, background: '#cbd5e1', borderRadius: '2px' }} />
+                  <div style={{ flex: 0.5, background: 'var(--muted-subtle)', borderRadius: '2px' }} />
+                  <div style={{ flex: 1, background: 'var(--line-strong)', borderRadius: '2px' }} />
+                  <div style={{ flex: 1, background: 'var(--muted-subtle)', borderRadius: '2px' }} />
+                  <div style={{ flex: 0.5, background: 'var(--line-strong)', borderRadius: '2px' }} />
                 </div>
                 <div style={{ display: 'flex', gap: '3px', height: '14px' }}>
-                  <div style={{ flex: 1, background: '#cbd5e1', borderRadius: '2px' }} />
-                  <div style={{ flex: 1, background: '#94a3b8', borderRadius: '2px' }} />
-                  <div style={{ flex: 1, background: '#cbd5e1', borderRadius: '2px' }} />
+                  <div style={{ flex: 1, background: 'var(--line-strong)', borderRadius: '2px' }} />
+                  <div style={{ flex: 1, background: 'var(--muted-subtle)', borderRadius: '2px' }} />
+                  <div style={{ flex: 1, background: 'var(--line-strong)', borderRadius: '2px' }} />
                 </div>
               </div>
 

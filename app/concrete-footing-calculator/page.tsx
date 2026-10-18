@@ -325,9 +325,9 @@ Generated via ConcreteCalc.UK`;
 
         {/* Building Regs Notice if any */}
         {buildingRegsValidation.length > 0 && (
-          <div style={{ background: '#fef3c7', border: '1px solid #fde68a', borderRadius: '8px', padding: '12px 16px', marginBottom: '18px', display: 'flex', gap: '10px', alignItems: 'center' }}>
-            <AlertTriangle size={20} color="#b45309" />
-            <div style={{ fontSize: '13px', color: '#92400e' }}>
+          <div className="alert-banner warning">
+            <AlertTriangle size={20} style={{ flexShrink: 0, color: 'var(--status-warning-text)' }} />
+            <div>
               <strong>Building Control Advisory:</strong> {buildingRegsValidation.join(' ')}
             </div>
           </div>

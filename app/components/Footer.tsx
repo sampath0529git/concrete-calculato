@@ -41,10 +41,9 @@ export const Footer: React.FC = () => {
 
           <div>
             <div style={{ fontWeight: 700, fontSize: '13px', color: 'var(--ink)', marginBottom: '8px', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
-              Platform &amp; SEO
+              Company &amp; Legal
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', fontSize: '13px' }}>
-              <Link href="/seo-dashboard">UK SEO &amp; Growth Dashboard</Link>
               <Link href="/about">About &amp; Methodology</Link>
               <Link href="/contact">Contact &amp; Feedback</Link>
               <Link href="/privacy">Privacy Policy</Link>

@@ -34,8 +34,8 @@ export default function HomePage() {
           <a href="/postcrete-calculator" className="calc-preset-tag" style={{ textDecoration: 'none' }}>
             🪵 Postcrete &amp; Fence Post Calc
           </a>
-          <a href="/seo-dashboard" className="calc-preset-tag" style={{ textDecoration: 'none', borderColor: 'var(--accent)' }}>
-            📊 UK SEO Growth Hub
+          <a href="/concrete-weight-converter" className="calc-preset-tag" style={{ textDecoration: 'none' }}>
+            ⚖️ Concrete Weight &amp; Unit Converter
           </a>
         </div>
       </div>

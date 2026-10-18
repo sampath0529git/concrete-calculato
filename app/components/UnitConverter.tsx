@@ -357,7 +357,7 @@ export const UnitConverter: React.FC = () => {
                   type="button"
                   onClick={handlePdfVolume}
                   style={{
-                    background: pdfDownloaded === 'pdf_vol' ? 'var(--ok, #16a34a)' : '#1d2127',
+                    background: pdfDownloaded === 'pdf_vol' ? 'var(--ok)' : 'var(--calc-blue)',
                     color: '#ffffff',
                     border: 'none',
                     borderRadius: '6px',
@@ -543,7 +543,7 @@ export const UnitConverter: React.FC = () => {
                   type="button"
                   onClick={handlePdfWeight}
                   style={{
-                    background: pdfDownloaded === 'pdf_wt' ? 'var(--ok, #16a34a)' : '#1d2127',
+                    background: pdfDownloaded === 'pdf_wt' ? 'var(--ok)' : 'var(--calc-blue)',
                     color: '#ffffff',
                     border: 'none',
                     borderRadius: '6px',
@@ -720,7 +720,7 @@ export const UnitConverter: React.FC = () => {
                   type="button"
                   onClick={handlePdfDensity}
                   style={{
-                    background: pdfDownloaded === 'pdf_density' ? 'var(--ok, #16a34a)' : '#1d2127',
+                    background: pdfDownloaded === 'pdf_density' ? 'var(--ok)' : 'var(--calc-blue)',
                     color: '#ffffff',
                     border: 'none',
                     borderRadius: '6px',
