@@ -48,6 +48,24 @@ const priceJsonLd = {
   '@context': 'https://schema.org',
   '@graph': [
     {
+      '@type': 'BreadcrumbList',
+      '@id': 'https://concretecalc.co.uk/price-of-concrete-per-m3#breadcrumb',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Home',
+          item: 'https://concretecalc.co.uk',
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Price of Concrete Per m³',
+          item: 'https://concretecalc.co.uk/price-of-concrete-per-m3',
+        },
+      ],
+    },
+    {
       '@type': 'TechArticle',
       headline: 'Price of Concrete Per m³ in the UK (2026 Updated Rates)',
       description:

@@ -1,6 +1,6 @@
 {
-  "summary": "Implementation plan for comprehensive professional Dark and Light mode optimization across ConcreteCalc.UK Next.js application. Introduces a unified semantic design token system, WCAG 2.2 AA compliant contrast, 3-state theme toggle (Light / Dark / System) with Sun/Moon/Monitor icons, flash-free hydration, SVG diagram adaptability, and audit of all calculator and guide routes.",
-  "updatedAt": "2026-10-18T05:19:18.742471109Z",
+  "summary": "Comprehensive SEO & Rich Structured Data (Schema Markup) implementation plan for ConcreteCalc UK. Covers FAQPage schema, HowTo step-by-step schema, BreadcrumbList hierarchy, dynamic Next.js App Router sitemap.ts, robots.ts, and per-page canonical tags to maximize Google Search visibility and rich snippet CTR.",
+  "updatedAt": "2026-10-18T07:27:23.290156812Z",
   "requestFeedback": true,
   "userFacing": true
 }

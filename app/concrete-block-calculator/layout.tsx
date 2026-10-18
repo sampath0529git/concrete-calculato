@@ -87,6 +87,62 @@ const blockJsonLd = {
         },
       ],
     },
+    {
+      '@type': 'BreadcrumbList',
+      '@id': 'https://concretecalc.co.uk/concrete-block-calculator#breadcrumb',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Home',
+          item: 'https://concretecalc.co.uk',
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Concrete Block Calculator',
+          item: 'https://concretecalc.co.uk/concrete-block-calculator',
+        },
+      ],
+    },
+    {
+      '@type': 'FAQPage',
+      '@id': 'https://concretecalc.co.uk/concrete-block-calculator#faq',
+      mainEntity: [
+        {
+          '@type': 'Question',
+          name: 'How many concrete blocks are needed per square metre (m²)?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Standard UK concrete blocks measuring 440mm long by 215mm high with standard 10mm mortar bed joints require exactly 9.88 blocks per square metre. In trade estimation, this is universally rounded to 10 blocks per m² (or 20 blocks per m² for a double-skin cavity wall).',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'How much mortar do I need for 100 concrete blocks?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'For 100mm thick standard blocks, 100 blocks require approximately 0.06 m³ of mortar, which corresponds to roughly 3 bags of 25kg cement and 12 bags (or 300kg) of building sand mixed at a 1:4 ratio.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'What is the difference between dense and lightweight concrete blocks?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Dense aggregate blocks (typically 17–20kg each, 7.3N/mm²) offer superior strength, sound insulation, and moisture resistance, making them ideal for retaining walls, foundations, and external leaves. Lightweight aerated blocks (e.g. Thermalite/Celcon, 7–10kg each, 3.6N/mm²) provide superior thermal insulation and are faster to lay for internal partitions and cavity walls.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'How many blocks are in a standard UK pallet?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'A standard UK pallet of 100mm dense aggregate blocks typically contains 72 blocks (approx. 7.2 m² of walling) and weighs approximately 1.3 to 1.4 tonnes. 100mm lightweight aerated blocks often come in packs of 60 to 72 blocks weighing around 600kg.',
+          },
+        },
+      ],
+    },
   ],
 };
 

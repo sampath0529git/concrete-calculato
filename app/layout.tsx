@@ -1,9 +1,15 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import './globals.css';
 import { globalStyles } from './styles';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { CookieBanner } from './components/CookieBanner';
+
+export const viewport: Viewport = {
+  themeColor: '#034694',
+  width: 'device-width',
+  initialScale: 1,
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://concretecalc.co.uk'),
@@ -53,8 +59,18 @@ export const metadata: Metadata = {
     images: ['/images/concrete-bags-cubic-metre.jpg'],
   },
   icons: {
-    icon: 'data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧱</text></svg>',
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/favicon-32x32.png', type: 'image/png', sizes: '32x32' },
+      { url: '/favicon-16x16.png', type: 'image/png', sizes: '16x16' },
+      { url: '/icon-192.png', type: 'image/png', sizes: '192x192' },
+    ],
+    apple: [
+      { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
+    ],
+    shortcut: ['/favicon.ico'],
   },
+  manifest: '/site.webmanifest',
   robots: {
     index: true,
     follow: true,
@@ -66,14 +82,76 @@ const jsonLd = {
   '@context': 'https://schema.org',
   '@graph': [
     {
+      '@type': 'Organization',
+      '@id': 'https://concretecalc.co.uk/#organization',
+      name: 'ConcreteCalc UK',
+      url: 'https://concretecalc.co.uk',
+      logo: 'https://concretecalc.co.uk/images/logo.png',
+      description:
+        'UK industry-standard concrete volume, weight, mix design, and pre-mixed bag estimation tools for builders, contractors, and DIYers.',
+    },
+    {
       '@type': 'WebApplication',
+      '@id': 'https://concretecalc.co.uk/#webapp',
       name: 'Concrete Calculator UK',
+      url: 'https://concretecalc.co.uk',
       applicationCategory: 'UtilityApplication',
       operatingSystem: 'Any',
       description:
-        'Calculate concrete volume in cubic metres, number of 25kg bags and estimated cost for UK slabs, bases, footings, columns and steps.',
+        'Calculate concrete volume in cubic metres, number of 25kg bags, ballast, cement, and estimated cost for UK slabs, footings, shed bases, columns, and walls.',
       offers: { '@type': 'Offer', price: '0', priceCurrency: 'GBP' },
       inLanguage: 'en-GB',
+      featureList: [
+        'Cubic Metres (m³) Volume Calculation',
+        '25kg Pre-Mix Bag Estimator',
+        'UK Standard Concrete Mixes (C20, C25, C30)',
+        'Steel Reinforcing Mesh (A142, A193) Estimation',
+        'MOT Type 1 Sub-Base & DPM Calculations',
+        'Postcrete Fence Post Estimator',
+        'Dense & Lightweight Concrete Blockwork Estimator',
+      ],
+    },
+    {
+      '@type': 'HowTo',
+      '@id': 'https://concretecalc.co.uk/#howto-calculate-concrete',
+      name: 'How to Calculate Concrete Volume and 25kg Bags for UK Projects',
+      description:
+        'Step-by-step instructions to calculate exact cubic metres (m³), 25kg pre-mix bags, and raw ballast/cement quantities for domestic building projects.',
+      totalTime: 'PT10M',
+      tool: [
+        { '@type': 'HowToTool', name: 'Tape measure (metric)' },
+        { '@type': 'HowToTool', name: 'ConcreteCalc UK online tool' },
+      ],
+      supply: [
+        { '@type': 'HowToSupply', name: '25kg pre-mixed concrete bags or ready-mix concrete' },
+        { '@type': 'HowToSupply', name: 'Water' },
+      ],
+      step: [
+        {
+          '@type': 'HowToStep',
+          position: 1,
+          name: 'Measure Area Dimensions in Metres',
+          text: 'Measure the length and width of your pour area in metres. Measure the slab or footing depth in millimetres and convert to metres (e.g. 100mm = 0.10m; 150mm = 0.15m).',
+        },
+        {
+          '@type': 'HowToStep',
+          position: 2,
+          name: 'Calculate Net Volume (m³)',
+          text: 'Multiply length × width × depth to obtain net cubic metres (m³). For example: a 4m × 3m slab at 100mm depth equals 4 × 3 × 0.10 = 1.20 m³.',
+        },
+        {
+          '@type': 'HowToStep',
+          position: 3,
+          name: 'Add 10% Waste & Ground Excavation Contingency',
+          text: 'Excavated ground is rarely level and formwork can deflect slightly. Multiply net volume by 1.10 (10% waste allowance) to ensure you do not run short before finishing the pour.',
+        },
+        {
+          '@type': 'HowToStep',
+          position: 4,
+          name: 'Calculate Bag Quantities or Order Ready-Mix',
+          text: 'Multiply total required m³ by 83 to 92 bags to calculate standard 25kg dry pre-mix bags, or order ready-mix rounded up to the nearest 0.1 m³ if over 1.0 m³.',
+        },
+      ],
     },
     {
       '@type': 'FAQPage',

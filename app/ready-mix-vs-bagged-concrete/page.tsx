@@ -46,19 +46,86 @@ export const metadata: Metadata = {
 
 const readyMixJsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'TechArticle',
-  headline: 'Ready-Mix vs Bagged Concrete: Which Should You Choose for UK Projects?',
-  description:
-    'Comprehensive comparison between bagged dry mix concrete and commercial ready-mix truck deliveries in the UK market.',
-  image: 'https://concretecalc.uk/images/ready-mix-vs-bagged-concrete-truck.jpg',
-  author: {
-    '@type': 'Organization',
-    name: 'ConcreteCalc.UK',
-    url: 'https://concretecalc.uk',
-  },
-  datePublished: '2026-10-14',
-  dateModified: '2026-10-15',
-  inLanguage: 'en-GB',
+  '@graph': [
+    {
+      '@type': 'BreadcrumbList',
+      '@id': 'https://concretecalc.co.uk/ready-mix-vs-bagged-concrete#breadcrumb',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Home',
+          item: 'https://concretecalc.co.uk',
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Guides',
+          item: 'https://concretecalc.co.uk/guides',
+        },
+        {
+          '@type': 'ListItem',
+          position: 3,
+          name: 'Ready-Mix vs Bagged Concrete',
+          item: 'https://concretecalc.co.uk/ready-mix-vs-bagged-concrete',
+        },
+      ],
+    },
+    {
+      '@type': 'TechArticle',
+      '@id': 'https://concretecalc.co.uk/ready-mix-vs-bagged-concrete#article',
+      headline: 'Ready-Mix vs Bagged Concrete: Which Should You Choose for UK Projects?',
+      description:
+        'Comprehensive comparison between bagged dry mix concrete and commercial ready-mix truck deliveries in the UK market.',
+      image: 'https://concretecalc.co.uk/images/ready-mix-vs-bagged-concrete-truck.jpg',
+      author: {
+        '@type': 'Organization',
+        name: 'ConcreteCalc UK',
+        url: 'https://concretecalc.co.uk',
+      },
+      publisher: {
+        '@type': 'Organization',
+        name: 'ConcreteCalc UK',
+        logo: {
+          '@type': 'ImageObject',
+          url: 'https://concretecalc.co.uk/images/logo.png',
+        },
+      },
+      datePublished: '2026-10-14',
+      dateModified: '2026-10-18',
+      inLanguage: 'en-GB',
+    },
+    {
+      '@type': 'FAQPage',
+      '@id': 'https://concretecalc.co.uk/ready-mix-vs-bagged-concrete#faq',
+      mainEntity: [
+        {
+          '@type': 'Question',
+          name: 'At what volume does ready-mix concrete become cheaper than bags?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'For projects below 0.6 m³ (~50 bags), buying 25kg pre-mix bags is cheaper and avoids part-load delivery surcharges. For projects between 0.6 m³ and 1.2 m³, cost is comparable. Above 1.2 m³, ready-mix is usually cheaper per cubic metre and saves hours of intense physical labour.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'What is a volumetric concrete truck and why is it popular?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Volumetric trucks carry dry unmixed cement, aggregate, and water in separate compartments and mix the exact required quantity on-site. You pay only for what you pour, eliminating part-load charges and the risk of ordering too much or too little.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'How long do I get to unload a ready-mix concrete lorry?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'UK ready-mix suppliers typically include 20 to 30 minutes of free discharge waiting time. Waiting time charges thereafter range from £1.50 to £2.50 per minute (£90 to £150 per hour), so ensure your barrow team is ready prior to arrival.',
+          },
+        },
+      ],
+    },
+  ],
 };
 
 export default function ReadyMixVsBaggedPage() {

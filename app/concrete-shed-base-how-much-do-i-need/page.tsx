@@ -47,38 +47,100 @@ export const metadata: Metadata = {
 
 const shedJsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'HowTo',
-  name: 'How to Calculate Concrete for a Garden Shed Base',
-  description:
-    'Step-by-step guide to calculating concrete volume, 25kg bags, and hardcore sub-base for standard UK garden shed bases.',
-  image: 'https://concretecalc.uk/images/shed-base-slab-pouring.jpg',
-  totalTime: 'PT4H',
-  estimatedCost: {
-    '@type': 'MonetaryAmount',
-    currency: 'GBP',
-    value: '220',
-  },
-  supply: [
-    { '@type': 'HowToSupply', name: '25kg Pre-mixed Concrete bags (or ready-mix)' },
-    { '@type': 'HowToSupply', name: 'MOT Type 1 Hardcore Sub-base' },
-    { '@type': 'HowToSupply', name: 'Timber formwork boards (100mm x 25mm)' },
-    { '@type': 'HowToSupply', name: '1200-gauge Damp Proof Membrane (DPM)' },
-  ],
-  step: [
+  '@graph': [
     {
-      '@type': 'HowToStep',
-      name: 'Excavate and Compact Sub-base',
-      text: 'Dig out topsoil to 150-200mm depth and compact 75-100mm of MOT Type 1 crushed stone hardcore with a plate compactor.',
+      '@type': 'BreadcrumbList',
+      '@id': 'https://concretecalc.co.uk/concrete-shed-base-how-much-do-i-need#breadcrumb',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Home',
+          item: 'https://concretecalc.co.uk',
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Guides',
+          item: 'https://concretecalc.co.uk/guides',
+        },
+        {
+          '@type': 'ListItem',
+          position: 3,
+          name: 'Concrete Shed Base Guide',
+          item: 'https://concretecalc.co.uk/concrete-shed-base-how-much-do-i-need',
+        },
+      ],
     },
     {
-      '@type': 'HowToStep',
-      name: 'Construct Level Timber Formwork',
-      text: 'Build sturdy 100mm timber shuttering aligned with stakes every 600mm. Check diagonals to ensure true 90-degree square corners.',
+      '@type': 'HowTo',
+      '@id': 'https://concretecalc.co.uk/concrete-shed-base-how-much-do-i-need#howto',
+      name: 'How to Calculate Concrete for a Garden Shed Base',
+      description:
+        'Step-by-step guide to calculating concrete volume, 25kg bags, and hardcore sub-base for standard UK garden shed bases.',
+      image: 'https://concretecalc.co.uk/images/shed-base-slab-pouring.jpg',
+      totalTime: 'PT4H',
+      estimatedCost: {
+        '@type': 'MonetaryAmount',
+        currency: 'GBP',
+        value: '220',
+      },
+      supply: [
+        { '@type': 'HowToSupply', name: '25kg Pre-mixed Concrete bags (or ready-mix)' },
+        { '@type': 'HowToSupply', name: 'MOT Type 1 Hardcore Sub-base' },
+        { '@type': 'HowToSupply', name: 'Timber formwork boards (100mm x 25mm)' },
+        { '@type': 'HowToSupply', name: '1200-gauge Damp Proof Membrane (DPM)' },
+      ],
+      step: [
+        {
+          '@type': 'HowToStep',
+          position: 1,
+          name: 'Excavate and Compact Sub-base',
+          text: 'Dig out topsoil to 150-200mm depth and compact 75-100mm of MOT Type 1 crushed stone hardcore with a plate compactor.',
+        },
+        {
+          '@type': 'HowToStep',
+          position: 2,
+          name: 'Construct Level Timber Formwork',
+          text: 'Build sturdy 100mm timber shuttering aligned with stakes every 600mm. Check diagonals to ensure true 90-degree square corners.',
+        },
+        {
+          '@type': 'HowToStep',
+          position: 3,
+          name: 'Pour Concrete to 100mm Thickness',
+          text: 'Pour C20 grade concrete into the frame, tamp down with a tamping beam to remove air pockets, and finish with a float.',
+        },
+      ],
     },
     {
-      '@type': 'HowToStep',
-      name: 'Pour Concrete to 100mm Thickness',
-      text: 'Pour C20 grade concrete into the frame, tamp down with a tamping beam to remove air pockets, and finish with a float.',
+      '@type': 'FAQPage',
+      '@id': 'https://concretecalc.co.uk/concrete-shed-base-how-much-do-i-need#faq',
+      mainEntity: [
+        {
+          '@type': 'Question',
+          name: 'How much concrete do I need for an 8x6 shed base?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'An 8ft × 6ft (2.4m × 1.8m) timber garden shed on a 100mm slab requires approximately 0.43 m³ net, or 0.48 m³ with a 10% waste contingency (roughly 40 bags of 25kg pre-mix concrete).',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'How much concrete do I need for a 10x8 shed base?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'A 10ft × 8ft (3.0m × 2.4m) shed base at 100mm depth requires approximately 0.72 m³ net, or 0.80 m³ with 10% waste (approx. 67 bags of 25kg pre-mix concrete).',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'How deep should a concrete shed base be in the UK?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'For standard wooden garden sheds and workshops up to 12x8, a 100mm (4 inches) concrete slab laid over a 75-100mm compacted MOT Type 1 sub-base is the UK trade standard.',
+          },
+        },
+      ],
     },
   ],
 };

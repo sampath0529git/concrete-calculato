@@ -7,8 +7,16 @@ export const Footer: React.FC = () => {
       <div className="wrap">
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '24px', paddingBottom: '20px' }}>
           <div>
-            <div style={{ fontWeight: 800, fontSize: '15px', color: 'var(--ink)', marginBottom: '8px' }}>
-              ConcreteCalc<span style={{ color: 'var(--accent)' }}>.</span>UK
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontWeight: 800, fontSize: '15px', color: 'var(--ink)', marginBottom: '8px' }}>
+              <img
+                src="/images/logo.png"
+                alt="ConcreteCalc.UK Logo"
+                width={26}
+                height={26}
+                style={{ borderRadius: '6px', objectFit: 'contain', flexShrink: 0 }}
+                referrerPolicy="no-referrer"
+              />
+              <span>ConcreteCalc<span style={{ color: 'var(--accent)' }}>.</span>UK</span>
             </div>
             <p style={{ fontSize: '12.5px', color: 'var(--muted)', lineHeight: '1.5', margin: 0 }}>
               Independent UK construction calculation platform adhering to British Standards BS 8500, BS EN 206, and BS EN 771-3.

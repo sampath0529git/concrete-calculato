@@ -46,27 +46,120 @@ export const metadata: Metadata = {
 
 const articleJsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'TechArticle',
-  headline: 'How Many Bags of Concrete Make 1 Cubic Metre?',
-  description:
-    'Exact calculations for standard 25kg and 20kg pre-mix concrete bags required per cubic metre with UK trade waste factors.',
-  image: 'https://concretecalc.uk/images/how-many-bags-of-concrete-per-cubic-metre.jpg',
-  author: {
-    '@type': 'Organization',
-    name: 'ConcreteCalc.UK',
-    url: 'https://concretecalc.uk',
-  },
-  publisher: {
-    '@type': 'Organization',
-    name: 'ConcreteCalc.UK',
-    logo: {
-      '@type': 'ImageObject',
-      url: 'https://concretecalc.uk/images/concrete-background.webp',
+  '@graph': [
+    {
+      '@type': 'BreadcrumbList',
+      '@id': 'https://concretecalc.co.uk/how-many-bags-of-concrete-per-cubic-metre#breadcrumb',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Home',
+          item: 'https://concretecalc.co.uk',
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Guides',
+          item: 'https://concretecalc.co.uk/guides',
+        },
+        {
+          '@type': 'ListItem',
+          position: 3,
+          name: 'Bags of Concrete Per m³',
+          item: 'https://concretecalc.co.uk/how-many-bags-of-concrete-per-cubic-metre',
+        },
+      ],
     },
-  },
-  datePublished: '2026-10-14',
-  dateModified: '2026-10-15',
-  inLanguage: 'en-GB',
+    {
+      '@type': 'TechArticle',
+      '@id': 'https://concretecalc.co.uk/how-many-bags-of-concrete-per-cubic-metre#article',
+      headline: 'How Many Bags of Concrete Make 1 Cubic Metre?',
+      description:
+        'Exact calculations for standard 25kg and 20kg pre-mix concrete bags required per cubic metre with UK trade waste factors.',
+      image: 'https://concretecalc.co.uk/images/how-many-bags-of-concrete-per-cubic-metre.jpg',
+      author: {
+        '@type': 'Organization',
+        name: 'ConcreteCalc UK',
+        url: 'https://concretecalc.co.uk',
+      },
+      publisher: {
+        '@type': 'Organization',
+        name: 'ConcreteCalc UK',
+        logo: {
+          '@type': 'ImageObject',
+          url: 'https://concretecalc.co.uk/images/logo.png',
+        },
+      },
+      datePublished: '2026-10-14',
+      dateModified: '2026-10-18',
+      inLanguage: 'en-GB',
+    },
+    {
+      '@type': 'HowTo',
+      '@id': 'https://concretecalc.co.uk/how-many-bags-of-concrete-per-cubic-metre#howto',
+      name: 'How to Calculate 25kg Concrete Bags for Any Volume',
+      description:
+        'Quick practical calculation to determine how many 25kg bags of pre-mixed concrete you need to purchase for your project.',
+      totalTime: 'PT5M',
+      tool: [
+        { '@type': 'HowToTool', name: 'Calculator' },
+      ],
+      supply: [
+        { '@type': 'HowToSupply', name: '25kg pre-mixed concrete bags' },
+      ],
+      step: [
+        {
+          '@type': 'HowToStep',
+          position: 1,
+          name: 'Determine Net m³ Volume',
+          text: 'Multiply length (m) × width (m) × depth (m) of your trench, slab, or base.',
+        },
+        {
+          '@type': 'HowToStep',
+          position: 2,
+          name: 'Multiply by 83 to 84 (Theoretical Net Bags)',
+          text: 'One 25kg bag produces approximately 0.012 m³ of wet concrete, so 1 ÷ 0.012 = ~83.3 bags per 1.0 m³.',
+        },
+        {
+          '@type': 'HowToStep',
+          position: 3,
+          name: 'Add 10% Waste Factor',
+          text: 'Multiply total net bags by 1.10. For 1.0 m³, this equals ~92 bags. Always round up to ensure you do not run short midway through mixing.',
+        },
+      ],
+    },
+    {
+      '@type': 'FAQPage',
+      '@id': 'https://concretecalc.co.uk/how-many-bags-of-concrete-per-cubic-metre#faq',
+      mainEntity: [
+        {
+          '@type': 'Question',
+          name: 'Exactly how many 25kg bags of concrete are in 1 cubic metre?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'It takes exactly 83 to 84 standard 25kg bags of dry pre-mixed concrete to produce 1 cubic metre (m³) of cured concrete. When ordering, builders consistently add a 10% allowance for excavation irregularities and wastage, resulting in a recommended order of 92 bags per m³.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'How many 20kg bags of concrete make one cubic metre?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'A 20kg bag yields approximately 0.0095 m³ of mixed concrete. Therefore, 1 cubic metre requires approximately 105 bags net, or around 115 bags with a 10% waste allowance.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'How much ballast and cement do I need to mix 1 cubic metre from scratch?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'To mix 1 cubic metre of standard C20 concrete (1:5 cement to all-in ballast ratio), you need approximately 14 bags (350kg) of 25kg cement and approximately 1.75 to 2.0 tonnes (about 2 bulk bags) of all-in 20mm ballast.',
+          },
+        },
+      ],
+    },
+  ],
 };
 
 export default function BagsPerCubicMetrePage() {

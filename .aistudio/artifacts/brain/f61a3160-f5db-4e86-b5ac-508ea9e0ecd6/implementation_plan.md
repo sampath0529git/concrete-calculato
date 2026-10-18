@@ -1,174 +1,114 @@
-# Professional Dark & Light Theme Optimization System
+# Rich Structured Data & Advanced SEO Implementation Plan
 
-A comprehensive, production-grade overhaul of the Light and Dark Mode experience for ConcreteCalc.UK. This plan unifies semantic design tokens across the application, eliminates unreadable hardcoded colors, implements a robust 3-state theme switcher (Light, Dark, System) with zero flash of incorrect theme, ensures WCAG 2.2 AA contrast compliance across all tools and SVG diagrams, and preserves the clean, high-utility UK construction brand identity.
+A comprehensive roadmap to elevate **ConcreteCalc UK**'s organic search visibility, click-through rates (CTR), and Google search appearance using high-impact JSON-LD schema markups, rich snippets (FAQPage & HowTo), BreadcrumbList hierarchies, and Next.js App Router dynamic sitemap and canonical infrastructure.
+
+---
 
 ### User Review & Critical Decisions
 
 > [!IMPORTANT]
-> **Theme Switching Strategy**:
-> - We will expand the current 2-way toggle to a clean, accessible 3-state segmented control (**Light**, **System**, **Dark**) featuring `Sun`, `Monitor`, and `Moon` icons from `lucide-react`.
-> - When set to **System**, the application dynamically listens to OS dark mode changes via `matchMedia('(prefers-color-scheme: dark)')` with zero page reloads.
-> - The user's explicit preference is stored in `localStorage` under `concretecalc_theme` and synchronized across browser tabs.
-> - An ultra-fast inline script in `<head>` applies the `data-theme` attribute and `color-scheme` CSS property prior to first paint, eliminating any white or dark theme flash.
+> **Key Architecture Decisions Based on User Preferences**:
+> - **Rich Snippet Schemas**: Implement Google-compliant **FAQPage** and **HowTo** structured data on primary calculator and guide pages to qualify for interactive search result accordions and numbered step snippets.
+> - **BreadcrumbList Schemas**: Add structured breadcrumbs so search result listings display clean URL paths (`concretecalc.co.uk > Calculators > Slab Calculator`) instead of raw slugs.
+> - **Dynamic Next.js App Router Sitemap**: Generate `app/sitemap.ts` ensuring all 12+ calculators, comparison articles, and resource guides are dynamically indexed with appropriate `changeFrequency` and `priority` values.
+> - **Dynamic Robots Directives**: Provide `app/robots.ts` pointing directly to the sitemap and allowing clean crawling of all public routes while excluding private utility endpoints.
+> - **Valid JSON-LD Standards**: Ensure every schema graph passes Google's Rich Results Test specifications with zero missing mandatory properties.
 
 ---
 
-## 1. Overview & Core Concept
+## 1. Overview & SEO Objective
 
-ConcreteCalc.UK is an engineering and trade estimation suite used on desktop computers, tablets, and on-site mobile phones by UK builders, tradespeople, and DIY homeowners.
-The goal of this optimization is to make the application visually exceptional and comfortable for extended daily use in both bright daylight (Light Mode) and low-light environments (Dark Mode).
+ConcreteCalc UK is an engineering and trade estimation suite targeting UK builders, tradespeople, landscaping contractors, and DIYers. To rank #1 for queries such as *"how much concrete do i need"*, *"concrete slab calculator uk"*, *"how many 25kg bags in a m3"*, and *"postcrete calculator"*, search engines need explicit, machine-readable semantic signals.
 
-### Target Audience & Use Contexts
-1. **On-Site Tradespeople & Builders**: Requiring high-contrast, glare-resistant readability on mobile devices in outdoor lighting conditions.
-2. **Estimators, Architects & DIYers**: Requiring a soothing, dark slate environment during evening desktop planning sessions without harsh white flashes or illegible gray-on-dark text.
-
-### Key Value
-- **Zero Illegible States**: Eliminates dark text on dark backgrounds and low-contrast muted labels.
-- **Semantic Token Architecture**: Centralizes all colors into CSS custom properties so no component relies on hardcoded hex codes.
-- **Theme-Adaptive Visuals**: Diagrams, specification tables, calculation result badges, and formula cards automatically adjust their strokes, fills, and backgrounds.
+### Target SERP Features
+1. **Google FAQ Accordions**: Expanding Q&A rich snippets directly below search results, increasing SERP screen real estate.
+2. **Google How-To Rich Cards**: Step-by-step instructions for calculating concrete volume and mixing bags.
+3. **SoftwareApplication / WebApplication Badges**: Showcasing ConcreteCalc UK as a certified zero-cost web tool.
+4. **Enhanced Breadcrumb Trails**: Replacing bare URLs with navigational breadcrumbs in mobile and desktop SERP listings.
 
 ---
 
-## 2. User Experience & Visual Design
-
-### Visual Identity & Theme Tokens
-
-#### 1. Light Mode Palette ("Architectural Precision")
-- **Main Canvas (`--bg`)**: `#f8fafc` (Slate 50 — calm, comfortable off-white that prevents harsh eye strain).
-- **Surfaces & Cards (`--surface`, `--surface-card`)**: `#ffffff` with subtle hairline border `#e2e8f0` and soft dual-stop shadow `0 2px 8px -2px rgba(15, 23, 42, 0.04)`.
-- **Elevated & Sunken Surfaces (`--surface-elevated`, `--surface-sunken`)**: `#f1f5f9` (Slate 100).
-- **Primary Ink (`--ink`)**: `#0f172a` (Slate 900 — crisp, 14:1 contrast ratio against canvas).
-- **Secondary Ink (`--ink-secondary`)**: `#334155` (Slate 700 — 8:1 contrast).
-- **Muted Metadata (`--muted`)**: `#64748b` (Slate 500 — 4.6:1 contrast, exceeding WCAG AA).
-- **Brand Blue (`--calc-blue`)**: `#034694` (BS construction navy blue, accessible 8.5:1 contrast).
-- **Action Green (`--calc-green`)**: `#1b7a2d` (Vibrant trade green CTA with hover `#145e22`).
-
-#### 2. Dark Mode Palette ("Deep Obsidian Studio")
-- **Main Canvas (`--bg`)**: `#0b0f19` (Rich midnight slate; avoids pure `#000000` to prevent harsh OLED smear and optical vibration).
-- **Primary Surfaces (`--surface`)**: `#111827` (Gray 900).
-- **Card Surfaces (`--surface-card`)**: `#151e32` (Subtly elevated slate navy with 1px border `rgba(255, 255, 255, 0.08)`).
-- **Elevated Surfaces (`--surface-elevated`)**: `#1e293b` (Slate 800 for tabs, dropdowns, and table headers).
-- **Sunken Surfaces (`--surface-sunken`)**: `#0d1322` (For input fields and diagram containers).
-- **Primary Ink (`--ink`)**: `#f8fafc` (Slate 50 — bright, crystal-clear 15.5:1 contrast).
-- **Secondary Ink (`--ink-secondary`)**: `#cbd5e1` (Slate 300 — 9:1 contrast).
-- **Muted Metadata (`--muted`)**: `#94a3b8` (Slate 400 — 5.8:1 contrast).
-- **Brand Blue (`--calc-blue`)**: `#60a5fa` (Luminous sky blue — 7:1 contrast on dark canvas).
-- **Action Green (`--calc-green`)**: `#22c55e` (Emerald green with dark hover `#16a34a`).
-- **Input Fields (`--field`)**: `#0d1322` with border `#28354d` and text `#f8fafc`.
-
-#### 3. Semantic Status Tokens (Light & Dark)
-```css
-/* Light Mode */
---status-success-bg: #ecfdf5;
---status-success-border: #a7f3d0;
---status-success-text: #065f46;
-
---status-warning-bg: #fffbeb;
---status-warning-border: #fde68a;
---status-warning-text: #92400e;
-
---status-info-bg: #f0f9ff;
---status-info-border: #bae6fd;
---status-info-text: #0369a1;
-
-/* Dark Mode */
---status-success-bg: rgba(16, 185, 129, 0.14);
---status-success-border: rgba(16, 185, 129, 0.35);
---status-success-text: #34d399;
-
---status-warning-bg: rgba(245, 158, 11, 0.14);
---status-warning-border: rgba(245, 158, 11, 0.35);
---status-warning-text: #fbbf24;
-
---status-info-bg: rgba(56, 189, 248, 0.14);
---status-info-border: rgba(56, 189, 248, 0.35);
---status-info-text: #7dd3fc;
-```
-
-### Interactive Feedback & Component Styling
-- **Theme Toggle**: Accessible 3-way segment control (`Light` | `System` | `Dark`) located in header action zone and mobile navigation drawer. Keyboard-focusable with `tabindex="0"`, `role="radiogroup"`, and clear active pill sliding indicator.
-- **Inputs & Selects**: Consistent 44px touch targets on mobile with smooth focus rings (`box-shadow: 0 0 0 2px var(--accent-subtle)`).
-- **SVG Diagrams**: Converted to responsive strokes using CSS variables (`stroke: var(--calc-blue)`, `fill: var(--surface-elevated)`), eliminating invisible lines in dark mode.
-
----
-
-## 3. Key Product Decisions & Trade-Offs
-
-### Decision 1: Pure CSS Custom Properties vs Runtime Provider Library
-- **Chosen Approach**: Use native CSS custom properties applied at `:root[data-theme="light"]`, `:root[data-theme="dark"]`, and `@media (prefers-color-scheme: dark)`.
-- **Why**: Zero runtime overhead, 0 kB bundle addition, zero hydration mismatch errors, and instant paint with no flash of unstyled theme (FOUT). Avoids adding `next-themes` which can cause React 19 peer dependency conflicts.
-- **Alternatives Considered**: Installing `next-themes`. Passed over because the app already has a lightweight inline script in `<head>` that can be perfected to handle `system`, `light`, and `dark` flawlessly.
-
-### Decision 2: SVG Shape Diagrams Theme Synchronization
-- **Chosen Approach**: Update `ShapeDiagrams.tsx` (Slab, Column, Tube, Curb, Stairs) to use semantic theme classes and `currentColor` / CSS custom properties rather than hardcoded `#333`, `#e0e0e0`, or `#0056b3`.
-- **Why**: Ensures structural geometry and measurement dimension lines remain crisp and readable against both light and dark card backgrounds.
-
----
-
-## 4. Technical Architecture & Data Strategy
+## 2. Technical Implementation Architecture
 
 ```
-┌────────────────────────────────────────────────────────────────────────┐
-│                        Next.js Root Layout (<head>)                    │
-│  ┌──────────────────────────────────────────────────────────────────┐  │
-│  │   themeInitializerScript (Synchronous IIFE before React mounts) │  │
-│  │   - Reads localStorage ('concretecalc_theme')                    │  │
-│  │   - Checks window.matchMedia('(prefers-color-scheme: dark)')     │  │
-│  │   - Sets document.documentElement.setAttribute('data-theme', ...)│  │
-│  │   - Sets document.documentElement.style.colorScheme = ...        │  │
-│  └──────────────────────────────────────────────────────────────────┘  │
-└───────────────────────────────────┬────────────────────────────────────┘
-                                    │
-                                    ▼
-┌────────────────────────────────────────────────────────────────────────┐
-│                    Centralized Design Tokens (globals.css)             │
-│  ┌─────────────────────────┐  ┌─────────────────────────┐              │
-│  │ :root[data-theme="light"]│  │ :root[data-theme="dark"]│              │
-│  │ - --bg: #f8fafc         │  │ - --bg: #0b0f19         │              │
-│  │ - --surface: #ffffff    │  │ - --surface: #111827    │              │
-│  │ - --ink: #0f172a        │  │ - --ink: #f8fafc        │              │
-│  │ - --calc-blue: #034694  │  │ - --calc-blue: #60a5fa  │              │
-│  │ - Status & Form tokens  │  │ - Status & Form tokens  │              │
-│  └─────────────────────────┘  └─────────────────────────┘              │
-└───────────────────────────────────┬────────────────────────────────────┘
-                                    │
-         ┌──────────────────────────┼──────────────────────────┐
-         ▼                          ▼                          ▼
-┌─────────────────┐       ┌─────────────────┐       ┌─────────────────┐
-│ Header & Mobile │       │ Calculator Core │       │ Dedicated Calcs │
-│ - 3-Way Toggle  │       │ - Form tables   │       │ - Weight Conv.  │
-│ - Brand Wordmark│       │ - Result tiles  │       │ - Block Calc    │
-│ - Nav Links     │       │ - SVG Diagrams  │       │ - Footing Calc  │
-└─────────────────┘       └─────────────────┘       └─────────────────┘
+                    ┌──────────────────────────────────────────┐
+                    │            Next.js App Router            │
+                    └────────────────────┬─────────────────────┘
+                                         │
+          ┌──────────────────────────────┼──────────────────────────────┐
+          │                              │                              │
+          ▼                              ▼                              ▼
+┌──────────────────┐           ┌──────────────────┐           ┌──────────────────┐
+│  Root Metadata   │           │ Dynamic Crawlers │           │ Per-Page Schemas │
+├──────────────────┤           ├──────────────────┤           ├──────────────────┤
+│• WebApplication  │           │• app/sitemap.ts  │           │• FAQPage Schema  │
+│• Organization    │           │• app/robots.ts   │           │• HowTo Schema    │
+│• Global OpenGraph│           │• Canonical tags  │           │• BreadcrumbList  │
+└──────────────────┘           └──────────────────┘           └──────────────────┘
 ```
 
-### Component Audit & Modifications Plan
+---
 
-1. **`app/globals.css` & `app/styles.ts`**:
-   - Complete token dictionary: canvas, surfaces, text tiers, borders, status banners, forms, buttons, tables, shadows.
-   - Refine optical contrast for both themes to ensure 100% WCAG 2.2 AA compliance.
-   - Set `color-scheme: light dark;` so native scrollbars, form controls, and select dropdown arrows adapt automatically.
+## 3. Detailed Component Plan
 
-2. **`app/layout.tsx`**:
-   - Update `themeInitializerScript` to parse `'system' | 'light' | 'dark'`.
-   - Ensure `suppressHydrationWarning` on `<html>` and `<body>` prevents React mismatches.
+### Step 1: Dynamic Sitemap (`app/sitemap.ts`)
+Create a native Next.js App Router `sitemap.ts` that automatically serves `https://concretecalc.co.uk/sitemap.xml`:
+- **Priority 1.0 (Daily)**: Homepage / Main Concrete Calculator (`/`)
+- **Priority 0.9 (Weekly)**: Dedicated Calculators:
+  - `/concrete-slab-calculator`
+  - `/concrete-footing-calculator`
+  - `/concrete-block-calculator`
+  - `/postcrete-calculator`
+  - `/concrete-weight-converter`
+  - `/concrete-shed-base-how-much-do-i-need`
+- **Priority 0.8 (Monthly)**: Educational UK Guides:
+  - `/how-many-bags-of-concrete-per-cubic-metre`
+  - `/ready-mix-vs-bagged-concrete`
+  - `/price-of-concrete-per-m3`
+  - `/guides`
+- **Priority 0.5 (Yearly)**: Informational Pages (`/about`, `/contact`, `/privacy-policy`, `/terms`)
 
-3. **`app/components/Header.tsx`**:
-   - Build a 3-way toggle component: `[ Sun (Light) | Monitor (System) | Moon (Dark) ]`.
-   - Add event listener for `mediaQuery.addEventListener('change', ...)` when theme is `'system'`.
-   - Synchronize desktop and mobile drawer instances with ARIA accessibility roles (`role="radiogroup"` / `role="radio"`).
+### Step 2: Search Engine Directives (`app/robots.ts`)
+Create `app/robots.ts` defining user-agent rules and linking to the sitemap:
+- Allow all verified search bots (`Googlebot`, `Bingbot`, etc.)
+- Disallow `/api/` endpoints
+- Explicitly point to `https://concretecalc.co.uk/sitemap.xml`
 
-4. **`app/components/ShapeDiagrams.tsx`**:
-   - Upgrade diagram stroke and fill definitions to use CSS variables (`var(--line-strong)`, `var(--calc-blue)`, `var(--ink-secondary)`).
+### Step 3: Reusable SEO Schema Components (`app/components/JsonLd.tsx`)
+Create modular, type-safe schema helper components:
+1. `FaqJsonLd`: Generates valid `FAQPage` schema from an array of `{ question, answer }`.
+2. `HowToJsonLd`: Generates valid `HowTo` schema with steps, supply items, and estimated time.
+3. `BreadcrumbJsonLd`: Generates `BreadcrumbList` linking homepage to tool category and specific calculator.
 
-5. **`app/components/Calculator.tsx` & `app/components/UnitConverter.tsx`**:
-   - Eliminate all inline `#084298`, `#2e7d32`, `#64748b`, `#f8faff` colors.
-   - Replace with `--calc-blue`, `--calc-green`, `--muted`, `--surface-card`.
+### Step 4: Inject Schemas into Key Calculator Pages
+1. **Homepage / Main Calculator (`app/page.tsx`)**:
+   - WebApplication schema with aggregate rating & features.
+   - Comprehensive UK Concrete FAQ schema (e.g., standard bag counts, drying times, ready mix ordering tolerances).
+   - HowTo schema: *"How to Calculate Concrete Volume in 4 Simple Steps"*.
+2. **Concrete Slab Calculator (`app/concrete-slab-calculator/page.tsx`)**:
+   - Specialized slab FAQ schema (sub-base thickness, reinforcement, minimum slab depths for patios vs driveways).
+   - HowTo schema for measuring rectangular, circular, or triangular slabs.
+3. **Concrete Block Calculator (`app/concrete-block-calculator/page.tsx`)**:
+   - Blockwork FAQ schema (standard 440x215mm dense blocks, mortar ratios, wall surface area).
+4. **Postcrete & Fence Post Calculator (`app/postcrete-calculator/page.tsx`)**:
+   - Fence post FAQ schema (post depth rule-of-thumb, bags per post, setting time).
+5. **Bag Volume Guide (`app/how-many-bags-of-concrete-per-cubic-metre/page.tsx`)**:
+   - Guide FAQ schema (exact 25kg pre-mixed bags per m³ = ~88 to 108 bags depending on mix density).
 
-6. **All Calculator Pages & Guides**:
-   - Audit `app/concrete-weight-converter/page.tsx`, `app/concrete-block-calculator/page.tsx`, `app/concrete-footing-calculator/page.tsx`, `app/concrete-slab-calculator/page.tsx`, `app/postcrete-calculator/page.tsx`, `app/price-of-concrete-per-m3/page.tsx`.
-   - Replace hardcoded alert boxes (`#ecfdf5`, `#fef3c7`, `#fee2e2`) with semantic status variables.
+### Step 5: Canonical URLs & Meta Enhancements
+- Audit all pages to ensure each page explicitly defines its own canonical link in `metadata.alternates.canonical`.
+- Ensure consistent OpenGraph and Twitter card metadata for each route.
 
-7. **Verification & Testing**:
-   - Execute `npm run lint` (`tsc --noEmit`) and `compile_applet` (`npm run build`).
-   - Validate contrast across key views in both themes.
+---
+
+## 4. Verification & Validation Plan
+
+### Automated Validation
+1. **TypeScript & Linter**: Run `npm run lint` and `compile_applet` to verify clean compilation with zero type errors.
+2. **Schema Syntax Verification**: Verify JSON-LD outputs conform to schema.org standards with `@context`, `@type`, and mandatory fields.
+3. **Sitemap & Robots Verification**: Test output of `/sitemap.xml` and `/robots.txt` via curl/HTTP checks.
+
+### Google Rich Results Readiness
+- Verify FAQ items contain proper plaintext answers without illegal HTML tags.
+- Verify HowTo items include `name`, `text`, and step URLs.
+- Verify Breadcrumb items follow 1-indexed `position` sequences.
