@@ -1,7 +1,9 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Box, Scale, RefreshCw, Copy, Check, Info } from 'lucide-react';
+import Link from 'next/link';
+import { Box, Scale, RefreshCw, Copy, Check, Info, ArrowRight, ClipboardCheck, FileDown } from 'lucide-react';
+import { exportTradeQuotePdf } from '../lib/exportPdf';
 
 type ConverterTab = 'volume' | 'weight' | 'density';
 type VolumeUnit = 'm3' | 'yd3' | 'ft3' | 'litres' | 'bags25' | 'wheelbarrows';
@@ -23,6 +25,7 @@ export const UnitConverter: React.FC = () => {
   const [densityInputVal, setDensityInputVal] = useState<string>('1');
   const [densityGrade, setDensityGrade] = useState<number>(2.4);
   const [copiedKey, setCopiedKey] = useState<string | null>(null);
+  const [pdfDownloaded, setPdfDownloaded] = useState<string | null>(null);
 
   const handleCopy = (text: string, key: string) => {
     if (navigator?.clipboard) {
@@ -115,19 +118,166 @@ export const UnitConverter: React.FC = () => {
     concreteYd3 = concreteM3 * 1.30795;
   }
 
+  const generateVolumeReport = () => {
+    return [
+      '==================================================',
+      ' CONCRETE VOLUME ESTIMATION & TRADE QUOTE',
+      '==================================================',
+      `• Input Volume:       ${volumeValue} ${volumeUnit}`,
+      `• Cubic Metres (m³):  ${volumeResults.m3.toFixed(3)} m³`,
+      `• Cubic Yards (yd³):  ${volumeResults.yd3.toFixed(3)} cu yd (${volumeResults.ft3.toFixed(1)} cu ft)`,
+      `• Litres (L):         ${Math.round(volumeResults.litres).toLocaleString('en-GB')} L`,
+      '--------------------------------------------------',
+      `• Estimated Weight:   ~${(volumeResults.m3 * 2.4).toFixed(2)} Metric Tonnes (~${Math.round(volumeResults.m3 * 2400).toLocaleString('en-GB')} kg wet)`,
+      `• 25kg Pre-Mix Bags:  ~${Math.ceil(volumeResults.bags25)} bags (@ 0.012 m³ yield)`,
+      `• Wheelbarrow Loads:  ~${Math.ceil(volumeResults.wheelbarrows)} barrows (~70L each)`,
+      '--------------------------------------------------',
+      'Generated via Concrete Calculator UK',
+      '=================================================='
+    ].join('\n');
+  };
+
+  const generateWeightReport = () => {
+    return [
+      '==================================================',
+      ' CONCRETE WEIGHT ESTIMATION & TRADE QUOTE',
+      '==================================================',
+      `• Input Weight:       ${weightValue} ${weightUnit}`,
+      `• Metric Tonnes:      ${weightResults.tonnes.toFixed(3)} Tonnes`,
+      `• Kilograms (kg):     ${Math.round(weightResults.kg).toLocaleString('en-GB')} kg`,
+      `• Imperial (lbs):     ${Math.round(weightResults.lbs).toLocaleString('en-GB')} lbs`,
+      '--------------------------------------------------',
+      `• 25kg Pre-Mix Bags:  ~${Math.ceil(weightResults.bags25)} bags (40 bags / tonne)`,
+      `• 850kg Bulk Bags:    ${weightResults.bulk_bags.toFixed(2)} merchant dumpy bags`,
+      `• Est. Concrete Vol:  ~${(weightResults.tonnes / 2.4).toFixed(3)} m³ (@ 2.4 t/m³ BS 8500)`,
+      '--------------------------------------------------',
+      'Generated via Concrete Calculator UK',
+      '=================================================='
+    ].join('\n');
+  };
+
+  const generateDensityReport = () => {
+    const gradeLabel = densityGrade === 2.4 ? 'C20 Domestic (2.40 t/m³)' : densityGrade === 2.45 ? 'C25/C30 Heavy Duty (2.45 t/m³)' : 'C10/C15 Lean Mix (2.35 t/m³)';
+    return [
+      '==================================================',
+      ' CONCRETE SPECIFICATION & TRADE QUOTE REPORT',
+      ' Standard: BS 8500 Compliant',
+      '==================================================',
+      `• VOLUME (Net):       ${concreteM3.toFixed(2)} m³ (${concreteYd3.toFixed(2)} cu yd)`,
+      `• WET WEIGHT:         ${wetWeightTonnes.toFixed(2)} Metric Tonnes (${Math.round(wetWeightKg).toLocaleString('en-GB')} kg)`,
+      `• 25kg Bags Yield:    ~${Math.ceil(concreteM3 / 0.012)} pre-mix bags`,
+      `• Wheelbarrow Loads:  ~${Math.ceil(concreteM3 / 0.07)} builder barrows (~70L / ~160kg wet)`,
+      `• Mix Specification:  ${gradeLabel}`,
+      `• Haulage / Skip:     ${wetWeightTonnes <= 4 ? 'Standard Skip / 3.5t Transit' : 'Heavy Inert Grab / Multi-Axle HGV'}`,
+      '--------------------------------------------------',
+      'Generated via Concrete Calculator UK',
+      '=================================================='
+    ].join('\n');
+  };
+
+  const handlePdfVolume = () => {
+    exportTradeQuotePdf({
+      tab: 'volume',
+      mixName: 'Standard UK Concrete Mix (C20 / 2,400 kg/m³)',
+      densityKgM3: 2400,
+      inputDescription: `${volumeValue} ${volumeUnit}`,
+      volumeM3: volumeResults.m3,
+      volumeYd3: volumeResults.yd3,
+      volumeFt3: volumeResults.ft3,
+      litres: volumeResults.litres,
+      tonnes: volumeResults.m3 * 2.4,
+      kg: volumeResults.m3 * 2400,
+      lbs: volumeResults.m3 * 2400 * 2.20462,
+      bags25: volumeResults.bags25,
+      bulkBags: (volumeResults.m3 * 2400) / 850,
+      wheelbarrows: volumeResults.wheelbarrows,
+      truckCapacityPercent6m3: (volumeResults.m3 / 6) * 100,
+    });
+    setPdfDownloaded('pdf_vol');
+    setTimeout(() => setPdfDownloaded(null), 2500);
+  };
+
+  const handlePdfWeight = () => {
+    exportTradeQuotePdf({
+      tab: 'weight',
+      mixName: 'Standard UK Concrete Mix (C20 / 2,400 kg/m³)',
+      densityKgM3: 2400,
+      inputDescription: `${weightValue} ${weightUnit}`,
+      volumeM3: weightResults.tonnes / 2.4,
+      volumeYd3: (weightResults.tonnes / 2.4) * 1.30795,
+      volumeFt3: (weightResults.tonnes / 2.4) * 35.3147,
+      litres: (weightResults.tonnes / 2.4) * 1000,
+      tonnes: weightResults.tonnes,
+      kg: weightResults.kg,
+      lbs: weightResults.lbs,
+      bags25: weightResults.bags25,
+      bulkBags: weightResults.bulk_bags,
+      wheelbarrows: (weightResults.tonnes / 2.4) / 0.07,
+      truckCapacityPercent6m3: ((weightResults.tonnes / 2.4) / 6) * 100,
+    });
+    setPdfDownloaded('pdf_wt');
+    setTimeout(() => setPdfDownloaded(null), 2500);
+  };
+
+  const handlePdfDensity = () => {
+    const gradeLabel = densityGrade === 2.4 ? 'C20 Domestic (2.40 t/m³)' : densityGrade === 2.45 ? 'C25/C30 Heavy Duty (2.45 t/m³)' : 'C10/C15 Lean Mix (2.35 t/m³)';
+    exportTradeQuotePdf({
+      tab: 'density',
+      mixName: gradeLabel,
+      densityKgM3: densityGrade * 1000,
+      inputDescription: densityMode === 'vol_to_wt' ? `${densityInputVal} m³ volume` : `${densityInputVal} tonnes weight`,
+      volumeM3: concreteM3,
+      volumeYd3: concreteYd3,
+      volumeFt3: concreteM3 * 35.3147,
+      litres: concreteM3 * 1000,
+      tonnes: wetWeightTonnes,
+      kg: wetWeightKg,
+      lbs: wetWeightKg * 2.20462,
+      bags25: concreteM3 / 0.012,
+      bulkBags: wetWeightKg / 850,
+      wheelbarrows: concreteM3 / 0.07,
+      truckCapacityPercent6m3: (concreteM3 / 6) * 100,
+      transportRecommendation: wetWeightTonnes <= 4 ? 'Standard Skip / 3.5t Transit' : 'Heavy Inert Grab / Multi-Axle HGV',
+    });
+    setPdfDownloaded('pdf_density');
+    setTimeout(() => setPdfDownloaded(null), 2500);
+  };
+
   return (
     <section className="converter-section" id="unit-converter">
       <div className="panel">
-        <div style={{ marginBottom: '20px' }}>
-          <div style={{ fontSize: '12px', fontWeight: 700, color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '0.04em', marginBottom: '6px' }}>
-            Trade Conversion Tool
+        <div style={{ marginBottom: '20px', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '14px' }}>
+          <div>
+            <div style={{ fontSize: '12px', fontWeight: 700, color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '0.04em', marginBottom: '6px' }}>
+              Trade Conversion Tool
+            </div>
+            <h2 style={{ margin: '0 0 6px', fontSize: '1.5rem', fontWeight: 700 }}>
+              Concrete Unit &amp; Weight Converter
+            </h2>
+            <p style={{ margin: 0, color: 'var(--muted)', fontSize: '14.5px' }}>
+              Instantly convert between UK cubic metres, American cubic yards, 850kg merchant bulk bags, DIY bags, and wet weight.
+            </p>
           </div>
-          <h2 style={{ margin: '0 0 6px', fontSize: '1.5rem', fontWeight: 700 }}>
-            Concrete Unit &amp; Weight Converter
-          </h2>
-          <p style={{ margin: 0, color: 'var(--muted)', fontSize: '14.5px' }}>
-            Instantly convert between UK cubic metres, American cubic yards, 850kg merchant bulk bags, DIY bags, and wet weight.
-          </p>
+          <Link
+            href="/concrete-weight-converter"
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '6px',
+              padding: '8px 14px',
+              borderRadius: '8px',
+              background: 'rgba(217, 119, 6, 0.12)',
+              color: 'var(--accent)',
+              fontSize: '13px',
+              fontWeight: 700,
+              textDecoration: 'none',
+              border: '1px solid rgba(217, 119, 6, 0.25)',
+              transition: 'all 0.15s ease',
+            }}
+          >
+            <span>Open Dedicated Standalone Page</span>
+            <ArrowRight size={14} />
+          </Link>
         </div>
 
         {/* Tab selection */}
@@ -195,6 +345,59 @@ export const UnitConverter: React.FC = () => {
                   <option value="bags25">25kg Pre-Mix Bags (at 0.012 m³)</option>
                   <option value="wheelbarrows">Builder Wheelbarrows (~70 Litres)</option>
                 </select>
+              </div>
+            </div>
+
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '8px', marginBottom: '12px', marginTop: '14px' }}>
+              <div style={{ fontSize: '13px', fontWeight: 700, color: 'var(--ink)' }}>
+                Converted Results (Volume, Tonnes, Bags)
+              </div>
+              <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+                <button
+                  type="button"
+                  onClick={handlePdfVolume}
+                  style={{
+                    background: pdfDownloaded === 'pdf_vol' ? 'var(--ok, #16a34a)' : '#1d2127',
+                    color: '#ffffff',
+                    border: 'none',
+                    borderRadius: '6px',
+                    padding: '5px 12px',
+                    fontSize: '12px',
+                    fontWeight: 700,
+                    cursor: 'pointer',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '5px',
+                    boxShadow: '0 1px 3px rgba(0,0,0,0.1)',
+                    transition: 'all 0.15s ease',
+                  }}
+                  title="Download volume calculations as formatted trade quote PDF"
+                >
+                  {pdfDownloaded === 'pdf_vol' ? <Check size={13} /> : <FileDown size={13} />}
+                  <span>{pdfDownloaded === 'pdf_vol' ? 'PDF Exported!' : 'Export PDF'}</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => handleCopy(generateVolumeReport(), 'quote_vol_home')}
+                  style={{
+                    background: copiedKey === 'quote_vol_home' ? 'var(--ok, #16a34a)' : 'var(--accent)',
+                    color: '#ffffff',
+                    border: 'none',
+                    borderRadius: '6px',
+                    padding: '5px 12px',
+                    fontSize: '12px',
+                    fontWeight: 700,
+                    cursor: 'pointer',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '5px',
+                    boxShadow: '0 1px 3px rgba(0,0,0,0.1)',
+                  }}
+                  title="Format converted volume, tonnes, and bags into structured trade quote report"
+                >
+                  {copiedKey === 'quote_vol_home' ? <Check size={13} /> : <ClipboardCheck size={13} />}
+                  <span>{copiedKey === 'quote_vol_home' ? 'Trade Quote Copied!' : 'Copy All Results'}</span>
+                </button>
               </div>
             </div>
 
@@ -331,6 +534,59 @@ export const UnitConverter: React.FC = () => {
               </div>
             </div>
 
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '8px', marginBottom: '12px', marginTop: '14px' }}>
+              <div style={{ fontSize: '13px', fontWeight: 700, color: 'var(--ink)' }}>
+                Converted Weight Results
+              </div>
+              <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+                <button
+                  type="button"
+                  onClick={handlePdfWeight}
+                  style={{
+                    background: pdfDownloaded === 'pdf_wt' ? 'var(--ok, #16a34a)' : '#1d2127',
+                    color: '#ffffff',
+                    border: 'none',
+                    borderRadius: '6px',
+                    padding: '5px 12px',
+                    fontSize: '12px',
+                    fontWeight: 700,
+                    cursor: 'pointer',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '5px',
+                    boxShadow: '0 1px 3px rgba(0,0,0,0.1)',
+                    transition: 'all 0.15s ease',
+                  }}
+                  title="Download weight calculations as formatted trade quote PDF"
+                >
+                  {pdfDownloaded === 'pdf_wt' ? <Check size={13} /> : <FileDown size={13} />}
+                  <span>{pdfDownloaded === 'pdf_wt' ? 'PDF Exported!' : 'Export PDF'}</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => handleCopy(generateWeightReport(), 'quote_wt_home')}
+                  style={{
+                    background: copiedKey === 'quote_wt_home' ? 'var(--ok, #16a34a)' : 'var(--accent)',
+                    color: '#ffffff',
+                    border: 'none',
+                    borderRadius: '6px',
+                    padding: '5px 12px',
+                    fontSize: '12px',
+                    fontWeight: 700,
+                    cursor: 'pointer',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '5px',
+                    boxShadow: '0 1px 3px rgba(0,0,0,0.1)',
+                  }}
+                  title="Format converted weight, volume, and bags into structured trade quote report"
+                >
+                  {copiedKey === 'quote_wt_home' ? <Check size={13} /> : <ClipboardCheck size={13} />}
+                  <span>{copiedKey === 'quote_wt_home' ? 'Trade Quote Copied!' : 'Copy All Results'}</span>
+                </button>
+              </div>
+            </div>
+
             <div className="converter-grid">
               <div className={`converter-card ${weightUnit === 'tonnes' ? 'highlight' : ''}`}>
                 <div className="converter-card-label">
@@ -453,6 +709,59 @@ export const UnitConverter: React.FC = () => {
                 onChange={(e) => setDensityInputVal(e.target.value)}
                 placeholder="1.0"
               />
+            </div>
+
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '8px', marginBottom: '12px', marginTop: '14px' }}>
+              <div style={{ fontSize: '13px', fontWeight: 700, color: 'var(--ink)' }}>
+                Wet Weight &amp; Trade Yield Results
+              </div>
+              <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+                <button
+                  type="button"
+                  onClick={handlePdfDensity}
+                  style={{
+                    background: pdfDownloaded === 'pdf_density' ? 'var(--ok, #16a34a)' : '#1d2127',
+                    color: '#ffffff',
+                    border: 'none',
+                    borderRadius: '6px',
+                    padding: '5px 12px',
+                    fontSize: '12px',
+                    fontWeight: 700,
+                    cursor: 'pointer',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '5px',
+                    boxShadow: '0 1px 3px rgba(0,0,0,0.1)',
+                    transition: 'all 0.15s ease',
+                  }}
+                  title="Download density specification and yield calculations as trade quote PDF"
+                >
+                  {pdfDownloaded === 'pdf_density' ? <Check size={13} /> : <FileDown size={13} />}
+                  <span>{pdfDownloaded === 'pdf_density' ? 'PDF Exported!' : 'Export PDF'}</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => handleCopy(generateDensityReport(), 'quote_density_home')}
+                  style={{
+                    background: copiedKey === 'quote_density_home' ? 'var(--ok, #16a34a)' : 'var(--accent)',
+                    color: '#ffffff',
+                    border: 'none',
+                    borderRadius: '6px',
+                    padding: '5px 12px',
+                    fontSize: '12px',
+                    fontWeight: 700,
+                    cursor: 'pointer',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '5px',
+                    boxShadow: '0 1px 3px rgba(0,0,0,0.1)',
+                  }}
+                  title="Format wet weight, volume, and bags into structured trade quote report"
+                >
+                  {copiedKey === 'quote_density_home' ? <Check size={13} /> : <ClipboardCheck size={13} />}
+                  <span>{copiedKey === 'quote_density_home' ? 'Trade Quote Copied!' : 'Copy All Results'}</span>
+                </button>
+              </div>
             </div>
 
             <div className="converter-grid" style={{ marginTop: '14px' }}>

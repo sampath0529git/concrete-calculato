@@ -23,7 +23,7 @@ export const Footer: React.FC = () => {
               <Link href="/">Concrete Calculator (m³ &amp; Bags)</Link>
               <Link href="/concrete-block-calculator">Concrete Block Calculator</Link>
               <Link href="/postcrete-calculator">Postcrete &amp; Fence Post Calc</Link>
-              <Link href="/#unit-converter">Unit &amp; Volume Converter</Link>
+              <Link href="/concrete-weight-converter">Concrete Unit &amp; Weight Converter</Link>
             </div>
           </div>
 

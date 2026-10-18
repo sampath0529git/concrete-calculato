@@ -13,14 +13,47 @@ export const Header: React.FC = () => {
 
   useEffect(() => {
     setMounted(true);
-    const savedTheme = localStorage.getItem('concretecalc_theme') as 'light' | 'dark' | null;
-    if (savedTheme) {
-      setTheme(savedTheme);
-      document.documentElement.setAttribute('data-theme', savedTheme);
-    } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      setTheme('dark');
-      document.documentElement.setAttribute('data-theme', 'dark');
-    }
+    // Read from data-theme attribute on <html> first (initialized by themeInitializerScript) or localStorage
+    const currentAttr = typeof document !== 'undefined'
+      ? (document.documentElement.getAttribute('data-theme') as 'light' | 'dark' | null)
+      : null;
+    const savedTheme = (typeof window !== 'undefined'
+      ? (localStorage.getItem('concretecalc_theme') || localStorage.getItem('theme'))
+      : null) as 'light' | 'dark' | null;
+    const initialTheme = currentAttr || savedTheme || (typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+
+    setTheme(initialTheme);
+    document.documentElement.setAttribute('data-theme', initialTheme);
+    document.documentElement.style.colorScheme = initialTheme;
+
+    // Cross-tab sync listener
+    const handleStorageChange = (e: StorageEvent) => {
+      if ((e.key === 'concretecalc_theme' || e.key === 'theme') && e.newValue) {
+        const next = e.newValue as 'light' | 'dark';
+        setTheme(next);
+        document.documentElement.setAttribute('data-theme', next);
+        document.documentElement.style.colorScheme = next;
+      }
+    };
+    window.addEventListener('storage', handleStorageChange);
+
+    // Dynamic OS color scheme change listener if user hasn't explicitly set a preference
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    const handleMediaChange = (e: MediaQueryListEvent) => {
+      const explicit = localStorage.getItem('concretecalc_theme') || localStorage.getItem('theme');
+      if (!explicit) {
+        const autoTheme = e.matches ? 'dark' : 'light';
+        setTheme(autoTheme);
+        document.documentElement.setAttribute('data-theme', autoTheme);
+        document.documentElement.style.colorScheme = autoTheme;
+      }
+    };
+    mediaQuery.addEventListener('change', handleMediaChange);
+
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+      mediaQuery.removeEventListener('change', handleMediaChange);
+    };
   }, []);
 
   useEffect(() => {
@@ -41,7 +74,12 @@ export const Header: React.FC = () => {
     const nextTheme = theme === 'light' ? 'dark' : 'light';
     setTheme(nextTheme);
     document.documentElement.setAttribute('data-theme', nextTheme);
-    localStorage.setItem('concretecalc_theme', nextTheme);
+    document.documentElement.style.colorScheme = nextTheme;
+    try {
+      localStorage.setItem('concretecalc_theme', nextTheme);
+      localStorage.setItem('theme', nextTheme);
+      window.dispatchEvent(new CustomEvent('themechange', { detail: { theme: nextTheme } }));
+    } catch (e) {}
   };
 
   const isBlogActive =
@@ -79,6 +117,12 @@ export const Header: React.FC = () => {
             Postcrete
           </Link>
           <Link
+            href="/concrete-weight-converter"
+            className={pathname === '/concrete-weight-converter' ? 'active' : ''}
+          >
+            Converter
+          </Link>
+          <Link
             href="/blog"
             className={isBlogActive ? 'active' : ''}
           >
@@ -96,28 +140,29 @@ export const Header: React.FC = () => {
           </Link>
         </nav>
 
-        {/* Zone 3: 1 primary action & theme toggle + mobile menu toggle */}
+        {/* Zone 3: Theme-aware persistent switch, primary action & mobile menu toggle */}
         <div className="action-zone">
-          <button
-            type="button"
-            className="theme-toggle-btn"
-            onClick={toggleTheme}
-            title={mounted ? `Switch to ${theme === 'light' ? 'dark' : 'light'} mode` : 'Toggle theme'}
-            aria-label="Toggle theme"
-            suppressHydrationWarning
-          >
-            {mounted && theme === 'dark' ? (
-              <>
-                <Sun size={14} aria-hidden="true" />
-                <span>Light</span>
-              </>
-            ) : (
-              <>
-                <Moon size={14} aria-hidden="true" />
-                <span>Dark</span>
-              </>
-            )}
-          </button>
+          <div className="theme-switch-wrap">
+            <button
+              type="button"
+              role="switch"
+              aria-checked={theme === 'dark'}
+              aria-label={`Current theme is ${theme}. Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+              title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+              className="theme-switch-control"
+              onClick={toggleTheme}
+            >
+              <div className="theme-switch-track" aria-hidden="true">
+                <span className={`theme-switch-option ${theme === 'light' ? 'active' : ''}`}>
+                  <Sun size={13} style={{ color: theme === 'light' ? '#d97706' : undefined }} />
+                </span>
+                <span className={`theme-switch-option ${theme === 'dark' ? 'active' : ''}`}>
+                  <Moon size={13} style={{ color: theme === 'dark' ? '#38bdf8' : undefined }} />
+                </span>
+                <span className={`theme-switch-thumb ${theme === 'dark' ? 'dark' : 'light'}`} />
+              </div>
+            </button>
+          </div>
 
           <Link href="/#calculator" className="header-cta-btn">
             <Calculator size={14} aria-hidden="true" />
@@ -171,10 +216,11 @@ export const Header: React.FC = () => {
               Postcrete &amp; Post Calculator
             </Link>
             <Link
-              href="/#unit-converter"
+              href="/concrete-weight-converter"
+              className={pathname === '/concrete-weight-converter' ? 'active' : ''}
               onClick={() => setMobileMenuOpen(false)}
             >
-              Unit &amp; Volume Converter
+              Unit &amp; Weight Converter
             </Link>
             <Link
               href="/blog"
@@ -204,6 +250,37 @@ export const Header: React.FC = () => {
             >
               Contact
             </Link>
+
+            {/* Mobile Drawer Dedicated Theme Switch Row */}
+            <div className="mobile-theme-section">
+              <div className="mobile-theme-info">
+                {theme === 'dark' ? (
+                  <Moon size={16} color="#38bdf8" aria-hidden="true" />
+                ) : (
+                  <Sun size={16} color="#d97706" aria-hidden="true" />
+                )}
+                <span>Theme: {theme === 'dark' ? 'Dark Mode' : 'Light Mode'}</span>
+              </div>
+              <button
+                type="button"
+                role="switch"
+                aria-checked={theme === 'dark'}
+                aria-label={`Current theme is ${theme}. Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+                title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+                className="theme-switch-control"
+                onClick={toggleTheme}
+              >
+                <div className="theme-switch-track" aria-hidden="true">
+                  <span className={`theme-switch-option ${theme === 'light' ? 'active' : ''}`}>
+                    <Sun size={13} style={{ color: theme === 'light' ? '#d97706' : undefined }} />
+                  </span>
+                  <span className={`theme-switch-option ${theme === 'dark' ? 'active' : ''}`}>
+                    <Moon size={13} style={{ color: theme === 'dark' ? '#38bdf8' : undefined }} />
+                  </span>
+                  <span className={`theme-switch-thumb ${theme === 'dark' ? 'dark' : 'light'}`} />
+                </div>
+              </button>
+            </div>
           </div>
         </nav>
       )}

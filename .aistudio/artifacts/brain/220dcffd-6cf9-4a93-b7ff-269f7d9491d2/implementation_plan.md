@@ -1,53 +1,69 @@
-# On-Page SEO & Metadata Optimization Plan
+# Concrete Unit & Weight Converter – Standalone Page Implementation Plan
 
 ## Overview
-Comprehensive On-Page SEO optimization for **ConcreteCalc.UK** across all calculator tools and educational guides. Each page will be equipped with optimized `<title>` tags, `<meta name="description">`, target `keywords` arrays, OpenGraph / Twitter social cards, canonical URLs, and Schema.org structured data (JSON-LD) targeted at high-volume UK search terms with low-to-moderate competition (KD% < 25%).
+Create a dedicated standalone page at `/concrete-weight-converter` for **ConcreteCalc.UK** providing full construction-grade unit and weight conversions between volume (m³, yd³, ft³, litres), weight (tonnes, kg, lbs, bulk bags, 25kg bags), and density-based volume-to-weight conversions (wet concrete weight across BS 8500 concrete grades).
 
 ---
 
-## 1. Page-by-Page Target Keywords & Metadata Matrix
+## 1. Page Architecture & Routing
 
-| Page Route | High-Volume UK Target Keywords | Optimized Meta Title (30–60 chars) | Meta Description (120–160 chars) | Schema.org Type |
-| :--- | :--- | :--- | :--- | :--- |
-| **`/`** (Home Hub) | `concrete calculator uk` (14.8K), `calculate concrete m3`, `concrete volume calculator` | `Concrete Calculator UK – m³, 25kg Bags & Cost Estimator` | Calculate exact concrete volume in cubic metres (m³), 25kg pre-mix bags, and costs for slabs, shed bases, footings, and steps with UK mix guides. | `WebApplication`, `FAQPage` |
-| **`/concrete-block-calculator`** | `concrete blocks` (14.8K), `concrete block calculator` (2.4K), `concrete blocks per m2` (1.9K) | `Concrete Block Calculator UK – Blocks per m² & Mortar` | Calculate exact 440x215mm concrete blocks, mortar mix, and building sand for single or double skin walls. Supports 100mm and 140mm UK blocks. | `WebApplication`, `HowTo` |
-| **`/postcrete-calculator`** | `postcrete calculator` (3.6K), `how many bags of postcrete per post` (2.9K), `postcrete bags` | `Postcrete Calculator UK – Bags of Postcrete Per Post` | Calculate exact bags of rapid-set Postcrete for 75mm, 100mm timber and concrete fence posts with UK standard hole diameter formulas and waste. | `WebApplication`, `FAQPage` |
-| **`/concrete-slab-calculator`** | `concrete slab calculator` (4.4K), `concrete slab calculator uk` (1.9K), `shed slab calculator` | `Concrete Slab Calculator UK – m³, Bags & Steel Mesh` | Calculate cubic metres (m³), 25kg pre-mixed bags, A142/A193 steel reinforcement mesh sheets, and sub-base MOT Type 1 for UK garden slabs and patios. | `WebApplication` |
-| **`/concrete-footing-calculator`** | `concrete footing calculator` (1.6K), `foundation concrete calculator` (1.3K), `trench footing uk` | `Concrete Footing Calculator UK – Trench & Strip Foundations` | Calculate trench fill, strip foundations, and extension footing concrete volume in m³ with UK Building Regulations Part A depth presets and waste. | `WebApplication` |
-| **`/price-of-concrete-per-m3`** | `price of concrete per m3` (2.4K), `cost of concrete per m3 uk` (1.9K), `ready mix price uk` | `Price of Concrete Per m³ UK (2026 Costs) – Ready-Mix Rates` | Updated 2026 UK concrete price benchmarks by region (London, Midlands, North). Ready-mix vs volumetric delivery rates, part-load fees, and barrow costs. | `TechArticle`, `FAQPage` |
-| **`/how-many-bags-of-concrete-per-cubic-metre`** | `how many bags of concrete per cubic metre` (5.4K), `how many 25kg bags of concrete in 1m3` (4.4K) | `How Many Bags of Concrete in 1 Cubic Metre? (25kg & 20kg)` | Exact UK math for 25kg (~83 bags) and 20kg (~105 bags) pre-mix concrete per cubic metre (m³). Includes 10% waste allowance formulas and ballast mix ratios. | `TechArticle`, `HowTo` |
-| **`/concrete-shed-base-how-much-do-i-need`** | `shed base concrete calculator` (1.6K), `concrete for 8x6 shed base` (1.3K), `shed base depth uk` | `Concrete Shed Base Calculator – 8x6, 6x4 & 10x8 Garden Slabs` | Calculate exact 100mm concrete slab volume, 25kg bags, MOT Type 1 hardcore, and timber formwork for 6x4, 8x6, and 10x8 garden shed bases in the UK. | `TechArticle`, `HowTo` |
-| **`/ready-mix-vs-bagged-concrete`** | `ready mix vs bagged concrete` (1.9K), `cheapest way to buy concrete uk`, `ready mix minimum load` | `Ready-Mix vs Bagged Concrete UK – Cost & Labour Analysis` | Compare 25kg pre-mix bags against delivered ready-mix concrete. UK break-even tipping point (~1.5 m³), minimum load surcharges, and barrow time limits. | `TechArticle` |
-| **`/seo-dashboard`** | Internal Intelligence Tool | `UK SEO Growth Hub & Keyword Intelligence – ConcreteCalc UK` | Internal SEMrush keyword tracking, SERP simulator, and live On-Page SEO grading for ConcreteCalc.UK. | `noindex, nofollow` |
+### Route: `/concrete-weight-converter`
+- **Layout (`/app/concrete-weight-converter/layout.tsx`)**:
+  - **SEO Title**: `Concrete Weight & Unit Converter UK – m³, Tonnes, kg & Bags`
+  - **Meta Description**: `Free UK concrete weight and volume converter. Convert m³ to tonnes, kg to cubic metres, 25kg bags, bulk bags, wheelbarrows, and imperial yards. Based on BS 8500.`
+  - **Target Keywords**: `concrete weight converter`, `convert m3 to tonnes concrete`, `how much does 1m3 of concrete weigh uk`, `concrete volume converter`, `cubic metres to tonnes`, `25kg bags to m3`, `concrete density calculator uk`
+  - **Canonical URL**: `https://concretecalc.co.uk/concrete-weight-converter`
+  - **Structured Data (JSON-LD)**: `WebApplication` + `HowTo` + `FAQPage` schema.
+
+- **Interactive Page (`/app/concrete-weight-converter/page.tsx`)**:
+  - **Header & Breadcrumbs**: Seamless navigation back to Home Calculator and Guides.
+  - **Hero & Intro**: Clear explanation of wet concrete density (~2,400 kg/m³ or 2.4 tonnes/m³) vs lightweight and heavy mixes.
+  - **Conversion Suite**:
+    1. **Volume Unit Converter**:
+       - Inputs: m³, yd³, ft³, Litres, 25kg pre-mix bags (yield ~0.012 m³), Wheelbarrows (~0.07 m³).
+       - Live synchronized outputs with one-click copy.
+    2. **Weight Converter**:
+       - Inputs: Tonnes (t), Kilograms (kg), Imperial Pounds (lbs), 850kg Bulk Bags (dumpy bags), 25kg Cement/Pre-mix bags.
+       - Live synchronized outputs.
+    3. **Volume ⇄ Wet Weight Converter (Density Matrix)**:
+       - Direct conversion between volume (m³) and weight (tonnes/kg).
+       - Selectable Concrete Grades & Densities according to BS 8500 / BS EN 206:
+         - Standard Domestic Slab / C20/25 (2,400 kg/m³)
+         - Pavement / Commercial C30/37 (2,420 kg/m³)
+         - Lightweight Concrete (1,800 – 2,000 kg/m³)
+         - High-Density Concrete (2,500+ kg/m³)
+         - Custom density override input (kg/m³).
+    4. **Quick Presets**:
+       - 0.5 m³ (Small garden footing / 1.2 t)
+       - 1.0 m³ (Standard yard / 2.4 t / 83 bags)
+       - 1 Bulk Bag (~850 kg aggregate)
+       - 6.0 m³ (Standard UK Ready-Mix Truck capacity / 14.4 t)
+       - 8.0 m³ (Large 8-wheeler transit mixer / 19.2 t)
+    5. **Trade Reference Cheat Sheet & Table**:
+       - Quick reference table: Volume (m³) | Wet Weight (Tonnes) | 25kg Bags | Wheelbarrows | Ready-Mix Truck %
+    6. **Comprehensive FAQ Section**:
+       - How much does 1 cubic metre of concrete weigh in the UK?
+       - How many 25kg bags make 1 tonne of concrete?
+       - How many wheelbarrows in 1 cubic metre of concrete?
+       - What is the difference between wet concrete weight and cured dry concrete weight?
 
 ---
 
-## 2. Technical Implementation Architecture
+## 2. Navigation & Platform Integration
 
-### A. Dedicated Route Layouts for Client Pages
-Because interactive calculators (`app/concrete-block-calculator/page.tsx`, `app/postcrete-calculator/page.tsx`, `app/concrete-slab-calculator/page.tsx`, `app/concrete-footing-calculator/page.tsx`, `app/price-of-concrete-per-m3/page.tsx`) use Next.js `'use client'`, metadata cannot be exported directly from their `page.tsx`.
-- We will create a dedicated Server Component `layout.tsx` for each calculator route.
-- Each `layout.tsx` will export Next.js `Metadata` with:
-  - Exact `title` and template branding (`| ConcreteCalc UK`)
-  - Target-keyword-rich `description`
-  - Explicit `keywords: [...]` array
-  - `openGraph` tags (title, description, URL, image, siteName, locale: `en_GB`, type: `website`)
-  - `twitter` card tags (`summary_large_image`)
-  - `alternates: { canonical: '...' }`
-  - Inline JSON-LD Schema.org scripts (`<script type="application/ld+json">`) for Google rich snippets.
-
-### B. Blog & Guide Page Metadata Enrichment
-- Update `app/how-many-bags-of-concrete-per-cubic-metre/page.tsx`, `app/concrete-shed-base-how-much-do-i-need/page.tsx`, and `app/ready-mix-vs-bagged-concrete/page.tsx`.
-- Add explicit `keywords` array to each page's `Metadata` export.
-- Add canonical URLs and ensure OpenGraph image coordinates and alt-text tags match Google Image SEO specifications.
-
-### C. Root Layout (`app/layout.tsx`) Optimization
-- Enhance global metadata with `metadataBase: new URL('https://concretecalc.co.uk')` to resolve absolute OpenGraph images.
-- Add global `keywords` array targeting primary volume terms (`concrete calculator uk`, `concrete volume calculator`, `calculate concrete m3`).
-- Refine existing `jsonLd` Graph (WebApplication + FAQPage).
+1. **Header Navigation (`/app/components/Header.tsx`)**:
+   - Add **"Converter"** (`/concrete-weight-converter`) to the main desktop navigation bar and mobile drawer.
+2. **Footer Navigation (`/app/components/Footer.tsx`)**:
+   - Update `Unit & Volume Converter` link to point directly to `/concrete-weight-converter`.
+3. **Internal Cross-Links**:
+   - Add a callout box in `/app/components/Calculator.tsx` and educational guides (`/how-many-bags-of-concrete-per-cubic-metre`, `/ready-mix-vs-bagged-concrete`) linking users to the standalone converter.
+4. **SEMrush Growth Hub (`/app/lib/semrushData.ts`)**:
+   - Register the new page profile in `PAGE_AUDIT_PROFILES` with target volume and SEO scorecard benchmarks.
 
 ---
 
-## 3. Verification & SEO Compliance
-1. Run `compile_applet` and `lint_applet` to confirm 0 TypeScript / build errors.
-2. Verify with the **Live Page SEO Grader** in `/seo-dashboard` that page scores reach 95%+ with green indicators on Title lengths, Meta descriptions, and Schema.org validation.
+## 3. Verification & Quality Assurance
+
+- **Build Verification**: Run `compile_applet` to ensure full Next.js server-side and client-side compilation without TypeScript errors.
+- **Lint Check**: Run `lint_applet` to confirm strict typing and clean syntax.
+- **Accuracy Test**: Verify mathematical conversion formulas (e.g. 1 m³ = 2.4 t, 1.30795 yd³, 35.3147 ft³, 1,000 L, ~83.33 bags of 25kg, ~14.28 wheelbarrows).

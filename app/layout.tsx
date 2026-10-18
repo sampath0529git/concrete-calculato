@@ -147,6 +147,20 @@ const jsonLd = {
   ],
 };
 
+const themeInitializerScript = `
+(function() {
+  try {
+    var stored = localStorage.getItem('concretecalc_theme') || localStorage.getItem('theme');
+    var theme = stored;
+    if (!theme) {
+      theme = (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
+    }
+    document.documentElement.setAttribute('data-theme', theme);
+    document.documentElement.style.colorScheme = theme;
+  } catch (e) {}
+})();
+`;
+
 const windowFetchShimScript = `
 (function() {
   try {
@@ -218,6 +232,9 @@ export default function RootLayout({
   return (
     <html lang="en-GB" suppressHydrationWarning>
       <head>
+        <script
+          dangerouslySetInnerHTML={{ __html: themeInitializerScript }}
+        />
         <link
           rel="preload"
           as="image"

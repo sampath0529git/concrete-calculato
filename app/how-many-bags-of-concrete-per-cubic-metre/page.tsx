@@ -121,6 +121,46 @@ export default function BagsPerCubicMetrePage() {
           </div>
         </div>
 
+        {/* Cross-Link Callout to Standalone Converter */}
+        <div
+          style={{
+            background: 'var(--surface-elevated)',
+            border: '1px solid var(--accent)',
+            borderRadius: '8px',
+            padding: '16px 20px',
+            margin: '24px 0',
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            flexWrap: 'wrap',
+            gap: '12px',
+          }}
+        >
+          <div>
+            <div style={{ fontWeight: 700, fontSize: '14.5px', color: 'var(--ink)', marginBottom: '3px' }}>
+              Need to convert tonnes, kilograms or wheelbarrows to bags?
+            </div>
+            <div style={{ fontSize: '13px', color: 'var(--muted)' }}>
+              Use our dedicated UK Concrete Weight &amp; Unit Converter with live BS 8500 density matrix.
+            </div>
+          </div>
+          <Link
+            href="/concrete-weight-converter"
+            style={{
+              padding: '8px 16px',
+              borderRadius: '6px',
+              background: 'var(--accent)',
+              color: '#fff',
+              fontSize: '13px',
+              fontWeight: 700,
+              textDecoration: 'none',
+              whiteSpace: 'nowrap',
+            }}
+          >
+            Launch Weight Converter &rarr;
+          </Link>
+        </div>
+
         <h2>The sum: How the math works</h2>
         <p>
           A standard UK 25kg dry mix bag yields approximately 0.012 m³ (12 litres) of compacted wet concrete. To calculate how many bags your job needs:
