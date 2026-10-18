@@ -116,7 +116,7 @@ export const BreadcrumbJsonLd: React.FC<BreadcrumbJsonLdProps> = ({ items }) => 
       '@type': 'ListItem',
       position: idx + 1,
       name: crumb.name,
-      item: crumb.item.startsWith('http') ? crumb.item : `https://concretecalc.co.uk${crumb.item}`,
+      item: crumb.item.startsWith('http') ? crumb.item : `https://concrete-calculator-uk.vercel.app${crumb.item}`,
     })),
   };
 

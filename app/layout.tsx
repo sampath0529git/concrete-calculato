@@ -12,7 +12,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://concretecalc.co.uk'),
+  metadataBase: new URL('https://concrete-calculator-uk.vercel.app'),
   title: {
     default: 'Concrete Calculator UK – m³, 25kg Bags & Cost Estimator',
     template: '%s | ConcreteCalc UK',
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     title: 'Concrete Calculator UK – m³, 25kg Bags & Cost Estimator',
     description:
       'Calculate exact concrete volume in cubic metres (m³), 25kg pre-mix bags, and estimated costs for slabs, footings, shed bases, and post holes in the UK.',
-    url: 'https://concretecalc.co.uk',
+    url: 'https://concrete-calculator-uk.vercel.app',
     siteName: 'ConcreteCalc UK',
     locale: 'en_GB',
     type: 'website',
@@ -83,18 +83,18 @@ const jsonLd = {
   '@graph': [
     {
       '@type': 'Organization',
-      '@id': 'https://concretecalc.co.uk/#organization',
+      '@id': 'https://concrete-calculator-uk.vercel.app/#organization',
       name: 'ConcreteCalc UK',
-      url: 'https://concretecalc.co.uk',
-      logo: 'https://concretecalc.co.uk/images/logo.png',
+      url: 'https://concrete-calculator-uk.vercel.app',
+      logo: 'https://concrete-calculator-uk.vercel.app/images/logo.png',
       description:
         'UK industry-standard concrete volume, weight, mix design, and pre-mixed bag estimation tools for builders, contractors, and DIYers.',
     },
     {
       '@type': 'WebApplication',
-      '@id': 'https://concretecalc.co.uk/#webapp',
+      '@id': 'https://concrete-calculator-uk.vercel.app/#webapp',
       name: 'Concrete Calculator UK',
-      url: 'https://concretecalc.co.uk',
+      url: 'https://concrete-calculator-uk.vercel.app',
       applicationCategory: 'UtilityApplication',
       operatingSystem: 'Any',
       description:
@@ -113,7 +113,7 @@ const jsonLd = {
     },
     {
       '@type': 'HowTo',
-      '@id': 'https://concretecalc.co.uk/#howto-calculate-concrete',
+      '@id': 'https://concrete-calculator-uk.vercel.app/#howto-calculate-concrete',
       name: 'How to Calculate Concrete Volume and 25kg Bags for UK Projects',
       description:
         'Step-by-step instructions to calculate exact cubic metres (m³), 25kg pre-mix bags, and raw ballast/cement quantities for domestic building projects.',

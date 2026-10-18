@@ -7,7 +7,7 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: ['/api/'],
     },
-    sitemap: 'https://concretecalc.co.uk/sitemap.xml',
-    host: 'https://concretecalc.co.uk',
+    sitemap: 'https://concrete-calculator-uk.vercel.app/sitemap.xml',
+    host: 'https://concrete-calculator-uk.vercel.app',
   };
 }

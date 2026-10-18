@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     title: 'UK Concrete Mix Ratios Guide (C15, C20, C25, C30) & BS 8500 Grades',
     description:
       'Standard British mix ratios by volume and weight. Cement, sharp sand, gravel, and water quantities per m³ for domestic and commercial projects.',
-    url: 'https://concretecalc.co.uk/guides/concrete-mix-ratios-uk',
+    url: 'https://concrete-calculator-uk.vercel.app/guides/concrete-mix-ratios-uk',
     type: 'article',
     images: [
       {
@@ -48,46 +48,46 @@ const mixGuideJsonLd = {
   '@graph': [
     {
       '@type': 'BreadcrumbList',
-      '@id': 'https://concretecalc.co.uk/guides/concrete-mix-ratios-uk#breadcrumb',
+      '@id': 'https://concrete-calculator-uk.vercel.app/guides/concrete-mix-ratios-uk#breadcrumb',
       itemListElement: [
         {
           '@type': 'ListItem',
           position: 1,
           name: 'Home',
-          item: 'https://concretecalc.co.uk',
+          item: 'https://concrete-calculator-uk.vercel.app',
         },
         {
           '@type': 'ListItem',
           position: 2,
           name: 'Guides',
-          item: 'https://concretecalc.co.uk/guides',
+          item: 'https://concrete-calculator-uk.vercel.app/guides',
         },
         {
           '@type': 'ListItem',
           position: 3,
           name: 'Concrete Mix Ratios UK',
-          item: 'https://concretecalc.co.uk/guides/concrete-mix-ratios-uk',
+          item: 'https://concrete-calculator-uk.vercel.app/guides/concrete-mix-ratios-uk',
         },
       ],
     },
     {
       '@type': 'TechArticle',
-      '@id': 'https://concretecalc.co.uk/guides/concrete-mix-ratios-uk#article',
+      '@id': 'https://concrete-calculator-uk.vercel.app/guides/concrete-mix-ratios-uk#article',
       headline: 'UK Concrete Mix Ratios Explained: C15, C20, C25, C30 & BS 8500 Standards',
       description:
         'A comprehensive reference guide for batching concrete by volume and weight using British Standard specifications.',
-      image: 'https://concretecalc.co.uk/images/concrete-bags-cubic-metre.jpg',
+      image: 'https://concrete-calculator-uk.vercel.app/images/concrete-bags-cubic-metre.jpg',
       author: {
         '@type': 'Organization',
         name: 'ConcreteCalc UK',
-        url: 'https://concretecalc.co.uk',
+        url: 'https://concrete-calculator-uk.vercel.app',
       },
       publisher: {
         '@type': 'Organization',
         name: 'ConcreteCalc UK',
         logo: {
           '@type': 'ImageObject',
-          url: 'https://concretecalc.co.uk/images/logo.png',
+          url: 'https://concrete-calculator-uk.vercel.app/images/logo.png',
         },
       },
       datePublished: '2026-10-15',
@@ -96,7 +96,7 @@ const mixGuideJsonLd = {
     },
     {
       '@type': 'HowTo',
-      '@id': 'https://concretecalc.co.uk/guides/concrete-mix-ratios-uk#howto',
+      '@id': 'https://concrete-calculator-uk.vercel.app/guides/concrete-mix-ratios-uk#howto',
       name: 'How to Batch a Standard 1:2:4 (C20) Concrete Mix by Volume',
       description:
         'Step-by-step instructions for mixing C20 domestic concrete using bucket or gauge box proportions.',
@@ -135,7 +135,7 @@ const mixGuideJsonLd = {
     },
     {
       '@type': 'FAQPage',
-      '@id': 'https://concretecalc.co.uk/guides/concrete-mix-ratios-uk#faq',
+      '@id': 'https://concrete-calculator-uk.vercel.app/guides/concrete-mix-ratios-uk#faq',
       mainEntity: [
         {
           '@type': 'Question',

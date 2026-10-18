@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     title: 'Price of Concrete Per m³ UK (2026 Costs) – Ready-Mix & Volumetric',
     description:
       'Live UK cost benchmarks for delivered ready-mix concrete per cubic metre. Regional pricing across London, Midlands, North, and Wales with part-load calculator.',
-    url: 'https://concretecalc.co.uk/price-of-concrete-per-m3',
+    url: 'https://concrete-calculator-uk.vercel.app/price-of-concrete-per-m3',
     type: 'article',
     images: [
       {
@@ -49,19 +49,19 @@ const priceJsonLd = {
   '@graph': [
     {
       '@type': 'BreadcrumbList',
-      '@id': 'https://concretecalc.co.uk/price-of-concrete-per-m3#breadcrumb',
+      '@id': 'https://concrete-calculator-uk.vercel.app/price-of-concrete-per-m3#breadcrumb',
       itemListElement: [
         {
           '@type': 'ListItem',
           position: 1,
           name: 'Home',
-          item: 'https://concretecalc.co.uk',
+          item: 'https://concrete-calculator-uk.vercel.app',
         },
         {
           '@type': 'ListItem',
           position: 2,
           name: 'Price of Concrete Per m³',
-          item: 'https://concretecalc.co.uk/price-of-concrete-per-m3',
+          item: 'https://concrete-calculator-uk.vercel.app/price-of-concrete-per-m3',
         },
       ],
     },

@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     title: 'Concrete Slab Calculator UK – m³, 25kg Bags & Steel Mesh',
     description:
       'Calculate exact concrete volume (m³), 25kg bag count, steel reinforcing mesh (A142/A193/A252), MOT Type 1 sub-base, and damp-proof membrane (DPM).',
-    url: 'https://concretecalc.co.uk/concrete-slab-calculator',
+    url: 'https://concrete-calculator-uk.vercel.app/concrete-slab-calculator',
     type: 'website',
     images: [
       {
@@ -50,27 +50,27 @@ const slabJsonLd = {
   '@graph': [
     {
       '@type': 'BreadcrumbList',
-      '@id': 'https://concretecalc.co.uk/concrete-slab-calculator#breadcrumb',
+      '@id': 'https://concrete-calculator-uk.vercel.app/concrete-slab-calculator#breadcrumb',
       itemListElement: [
         {
           '@type': 'ListItem',
           position: 1,
           name: 'Home',
-          item: 'https://concretecalc.co.uk',
+          item: 'https://concrete-calculator-uk.vercel.app',
         },
         {
           '@type': 'ListItem',
           position: 2,
           name: 'Concrete Slab Calculator',
-          item: 'https://concretecalc.co.uk/concrete-slab-calculator',
+          item: 'https://concrete-calculator-uk.vercel.app/concrete-slab-calculator',
         },
       ],
     },
     {
       '@type': 'WebApplication',
-      '@id': 'https://concretecalc.co.uk/concrete-slab-calculator#webapp',
+      '@id': 'https://concrete-calculator-uk.vercel.app/concrete-slab-calculator#webapp',
       name: 'Concrete Slab Calculator UK',
-      url: 'https://concretecalc.co.uk/concrete-slab-calculator',
+      url: 'https://concrete-calculator-uk.vercel.app/concrete-slab-calculator',
       applicationCategory: 'UtilityApplication',
       operatingSystem: 'Any',
       description:
@@ -80,7 +80,7 @@ const slabJsonLd = {
     },
     {
       '@type': 'HowTo',
-      '@id': 'https://concretecalc.co.uk/concrete-slab-calculator#howto',
+      '@id': 'https://concrete-calculator-uk.vercel.app/concrete-slab-calculator#howto',
       name: 'How to Calculate Concrete Slab Volume and Steel Mesh in the UK',
       description:
         'Step-by-step method to calculate cubic metres, 25kg bags, and steel reinforcing sheets for shed bases, patios, and garage floors.',
@@ -124,7 +124,7 @@ const slabJsonLd = {
     },
     {
       '@type': 'FAQPage',
-      '@id': 'https://concretecalc.co.uk/concrete-slab-calculator#faq',
+      '@id': 'https://concrete-calculator-uk.vercel.app/concrete-slab-calculator#faq',
       mainEntity: [
         {
           '@type': 'Question',

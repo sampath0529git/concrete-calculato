@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     title: 'How Many Bags of Concrete in 1 Cubic Metre? (25kg & 20kg Exact Math)',
     description:
       'Exact math and worked examples for 25kg (~83 bags) and 20kg (~105 bags) pre-mix concrete to make 1 cubic metre (m³) with UK waste allowance.',
-    url: 'https://concretecalc.co.uk/how-many-bags-of-concrete-per-cubic-metre',
+    url: 'https://concrete-calculator-uk.vercel.app/how-many-bags-of-concrete-per-cubic-metre',
     type: 'article',
     images: [
       {
@@ -49,46 +49,46 @@ const articleJsonLd = {
   '@graph': [
     {
       '@type': 'BreadcrumbList',
-      '@id': 'https://concretecalc.co.uk/how-many-bags-of-concrete-per-cubic-metre#breadcrumb',
+      '@id': 'https://concrete-calculator-uk.vercel.app/how-many-bags-of-concrete-per-cubic-metre#breadcrumb',
       itemListElement: [
         {
           '@type': 'ListItem',
           position: 1,
           name: 'Home',
-          item: 'https://concretecalc.co.uk',
+          item: 'https://concrete-calculator-uk.vercel.app',
         },
         {
           '@type': 'ListItem',
           position: 2,
           name: 'Guides',
-          item: 'https://concretecalc.co.uk/guides',
+          item: 'https://concrete-calculator-uk.vercel.app/guides',
         },
         {
           '@type': 'ListItem',
           position: 3,
           name: 'Bags of Concrete Per m³',
-          item: 'https://concretecalc.co.uk/how-many-bags-of-concrete-per-cubic-metre',
+          item: 'https://concrete-calculator-uk.vercel.app/how-many-bags-of-concrete-per-cubic-metre',
         },
       ],
     },
     {
       '@type': 'TechArticle',
-      '@id': 'https://concretecalc.co.uk/how-many-bags-of-concrete-per-cubic-metre#article',
+      '@id': 'https://concrete-calculator-uk.vercel.app/how-many-bags-of-concrete-per-cubic-metre#article',
       headline: 'How Many Bags of Concrete Make 1 Cubic Metre?',
       description:
         'Exact calculations for standard 25kg and 20kg pre-mix concrete bags required per cubic metre with UK trade waste factors.',
-      image: 'https://concretecalc.co.uk/images/how-many-bags-of-concrete-per-cubic-metre.jpg',
+      image: 'https://concrete-calculator-uk.vercel.app/images/how-many-bags-of-concrete-per-cubic-metre.jpg',
       author: {
         '@type': 'Organization',
         name: 'ConcreteCalc UK',
-        url: 'https://concretecalc.co.uk',
+        url: 'https://concrete-calculator-uk.vercel.app',
       },
       publisher: {
         '@type': 'Organization',
         name: 'ConcreteCalc UK',
         logo: {
           '@type': 'ImageObject',
-          url: 'https://concretecalc.co.uk/images/logo.png',
+          url: 'https://concrete-calculator-uk.vercel.app/images/logo.png',
         },
       },
       datePublished: '2026-10-14',
@@ -97,7 +97,7 @@ const articleJsonLd = {
     },
     {
       '@type': 'HowTo',
-      '@id': 'https://concretecalc.co.uk/how-many-bags-of-concrete-per-cubic-metre#howto',
+      '@id': 'https://concrete-calculator-uk.vercel.app/how-many-bags-of-concrete-per-cubic-metre#howto',
       name: 'How to Calculate 25kg Concrete Bags for Any Volume',
       description:
         'Quick practical calculation to determine how many 25kg bags of pre-mixed concrete you need to purchase for your project.',
@@ -131,7 +131,7 @@ const articleJsonLd = {
     },
     {
       '@type': 'FAQPage',
-      '@id': 'https://concretecalc.co.uk/how-many-bags-of-concrete-per-cubic-metre#faq',
+      '@id': 'https://concrete-calculator-uk.vercel.app/how-many-bags-of-concrete-per-cubic-metre#faq',
       mainEntity: [
         {
           '@type': 'Question',

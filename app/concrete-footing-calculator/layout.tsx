@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     title: 'Concrete Footing Calculator UK – Trench & Strip Foundations',
     description:
       'Calculate concrete volume (m³), 25kg bags, and ready-mix lorry loads for domestic house extensions, garden walls, and conservatory foundations.',
-    url: 'https://concretecalc.co.uk/concrete-footing-calculator',
+    url: 'https://concrete-calculator-uk.vercel.app/concrete-footing-calculator',
     type: 'website',
     images: [
       {
@@ -48,27 +48,27 @@ const footingJsonLd = {
   '@graph': [
     {
       '@type': 'BreadcrumbList',
-      '@id': 'https://concretecalc.co.uk/concrete-footing-calculator#breadcrumb',
+      '@id': 'https://concrete-calculator-uk.vercel.app/concrete-footing-calculator#breadcrumb',
       itemListElement: [
         {
           '@type': 'ListItem',
           position: 1,
           name: 'Home',
-          item: 'https://concretecalc.co.uk',
+          item: 'https://concrete-calculator-uk.vercel.app',
         },
         {
           '@type': 'ListItem',
           position: 2,
           name: 'Concrete Footing Calculator',
-          item: 'https://concretecalc.co.uk/concrete-footing-calculator',
+          item: 'https://concrete-calculator-uk.vercel.app/concrete-footing-calculator',
         },
       ],
     },
     {
       '@type': 'WebApplication',
-      '@id': 'https://concretecalc.co.uk/concrete-footing-calculator#webapp',
+      '@id': 'https://concrete-calculator-uk.vercel.app/concrete-footing-calculator#webapp',
       name: 'Concrete Footing & Foundation Calculator UK',
-      url: 'https://concretecalc.co.uk/concrete-footing-calculator',
+      url: 'https://concrete-calculator-uk.vercel.app/concrete-footing-calculator',
       applicationCategory: 'UtilityApplication',
       operatingSystem: 'Any',
       description:
@@ -78,7 +78,7 @@ const footingJsonLd = {
     },
     {
       '@type': 'HowTo',
-      '@id': 'https://concretecalc.co.uk/concrete-footing-calculator#howto',
+      '@id': 'https://concrete-calculator-uk.vercel.app/concrete-footing-calculator#howto',
       name: 'How to Calculate Concrete Volume for Trench Foundations in the UK',
       description:
         'Step-by-step guide to calculating concrete cubic metres for strip foundations and trench fill according to UK Building Regulations Part A.',
@@ -113,7 +113,7 @@ const footingJsonLd = {
     },
     {
       '@type': 'FAQPage',
-      '@id': 'https://concretecalc.co.uk/concrete-footing-calculator#faq',
+      '@id': 'https://concrete-calculator-uk.vercel.app/concrete-footing-calculator#faq',
       mainEntity: [
         {
           '@type': 'Question',

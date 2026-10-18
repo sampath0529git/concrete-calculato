@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     title: 'Concrete Block Calculator UK – Blocks per m², Mortar & Sand',
     description:
       'Free UK concrete block calculator. Calculate standard 440x215mm blocks, mortar volume, sand bags, and wastage for garden and retaining walls.',
-    url: 'https://concretecalc.co.uk/concrete-block-calculator',
+    url: 'https://concrete-calculator-uk.vercel.app/concrete-block-calculator',
     type: 'website',
     images: [
       {
@@ -89,25 +89,25 @@ const blockJsonLd = {
     },
     {
       '@type': 'BreadcrumbList',
-      '@id': 'https://concretecalc.co.uk/concrete-block-calculator#breadcrumb',
+      '@id': 'https://concrete-calculator-uk.vercel.app/concrete-block-calculator#breadcrumb',
       itemListElement: [
         {
           '@type': 'ListItem',
           position: 1,
           name: 'Home',
-          item: 'https://concretecalc.co.uk',
+          item: 'https://concrete-calculator-uk.vercel.app',
         },
         {
           '@type': 'ListItem',
           position: 2,
           name: 'Concrete Block Calculator',
-          item: 'https://concretecalc.co.uk/concrete-block-calculator',
+          item: 'https://concrete-calculator-uk.vercel.app/concrete-block-calculator',
         },
       ],
     },
     {
       '@type': 'FAQPage',
-      '@id': 'https://concretecalc.co.uk/concrete-block-calculator#faq',
+      '@id': 'https://concrete-calculator-uk.vercel.app/concrete-block-calculator#faq',
       mainEntity: [
         {
           '@type': 'Question',

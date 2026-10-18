@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     title: 'Ready-Mix vs Bagged Concrete UK – Cost, Labour & Break-Even Analysis',
     description:
       'Compare 25kg pre-mix bags against delivered ready-mix concrete. UK break-even tipping point (~1.5 m³), minimum load surcharges, and barrow time limits.',
-    url: 'https://concretecalc.co.uk/ready-mix-vs-bagged-concrete',
+    url: 'https://concrete-calculator-uk.vercel.app/ready-mix-vs-bagged-concrete',
     type: 'article',
     images: [
       {
@@ -49,46 +49,46 @@ const readyMixJsonLd = {
   '@graph': [
     {
       '@type': 'BreadcrumbList',
-      '@id': 'https://concretecalc.co.uk/ready-mix-vs-bagged-concrete#breadcrumb',
+      '@id': 'https://concrete-calculator-uk.vercel.app/ready-mix-vs-bagged-concrete#breadcrumb',
       itemListElement: [
         {
           '@type': 'ListItem',
           position: 1,
           name: 'Home',
-          item: 'https://concretecalc.co.uk',
+          item: 'https://concrete-calculator-uk.vercel.app',
         },
         {
           '@type': 'ListItem',
           position: 2,
           name: 'Guides',
-          item: 'https://concretecalc.co.uk/guides',
+          item: 'https://concrete-calculator-uk.vercel.app/guides',
         },
         {
           '@type': 'ListItem',
           position: 3,
           name: 'Ready-Mix vs Bagged Concrete',
-          item: 'https://concretecalc.co.uk/ready-mix-vs-bagged-concrete',
+          item: 'https://concrete-calculator-uk.vercel.app/ready-mix-vs-bagged-concrete',
         },
       ],
     },
     {
       '@type': 'TechArticle',
-      '@id': 'https://concretecalc.co.uk/ready-mix-vs-bagged-concrete#article',
+      '@id': 'https://concrete-calculator-uk.vercel.app/ready-mix-vs-bagged-concrete#article',
       headline: 'Ready-Mix vs Bagged Concrete: Which Should You Choose for UK Projects?',
       description:
         'Comprehensive comparison between bagged dry mix concrete and commercial ready-mix truck deliveries in the UK market.',
-      image: 'https://concretecalc.co.uk/images/ready-mix-vs-bagged-concrete-truck.jpg',
+      image: 'https://concrete-calculator-uk.vercel.app/images/ready-mix-vs-bagged-concrete-truck.jpg',
       author: {
         '@type': 'Organization',
         name: 'ConcreteCalc UK',
-        url: 'https://concretecalc.co.uk',
+        url: 'https://concrete-calculator-uk.vercel.app',
       },
       publisher: {
         '@type': 'Organization',
         name: 'ConcreteCalc UK',
         logo: {
           '@type': 'ImageObject',
-          url: 'https://concretecalc.co.uk/images/logo.png',
+          url: 'https://concrete-calculator-uk.vercel.app/images/logo.png',
         },
       },
       datePublished: '2026-10-14',
@@ -97,7 +97,7 @@ const readyMixJsonLd = {
     },
     {
       '@type': 'FAQPage',
-      '@id': 'https://concretecalc.co.uk/ready-mix-vs-bagged-concrete#faq',
+      '@id': 'https://concrete-calculator-uk.vercel.app/ready-mix-vs-bagged-concrete#faq',
       mainEntity: [
         {
           '@type': 'Question',

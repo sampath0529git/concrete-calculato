@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     title: 'Concrete Weight & Volume Converter UK – m³ to Tonnes, kg & Bags',
     description:
       'Instantly convert cubic metres (m³) to metric tonnes, kg, 25kg bags, bulk bags, and wheelbarrows for UK mix grades.',
-    url: 'https://concretecalc.co.uk/concrete-weight-converter',
+    url: 'https://concrete-calculator-uk.vercel.app/concrete-weight-converter',
     type: 'website',
     images: [
       {
@@ -48,27 +48,27 @@ const weightConverterJsonLd = {
   '@graph': [
     {
       '@type': 'BreadcrumbList',
-      '@id': 'https://concretecalc.co.uk/concrete-weight-converter#breadcrumb',
+      '@id': 'https://concrete-calculator-uk.vercel.app/concrete-weight-converter#breadcrumb',
       itemListElement: [
         {
           '@type': 'ListItem',
           position: 1,
           name: 'Home',
-          item: 'https://concretecalc.co.uk',
+          item: 'https://concrete-calculator-uk.vercel.app',
         },
         {
           '@type': 'ListItem',
           position: 2,
           name: 'Concrete Weight Converter',
-          item: 'https://concretecalc.co.uk/concrete-weight-converter',
+          item: 'https://concrete-calculator-uk.vercel.app/concrete-weight-converter',
         },
       ],
     },
     {
       '@type': 'WebApplication',
-      '@id': 'https://concretecalc.co.uk/concrete-weight-converter#webapp',
+      '@id': 'https://concrete-calculator-uk.vercel.app/concrete-weight-converter#webapp',
       name: 'Concrete Weight & Volume Converter UK',
-      url: 'https://concretecalc.co.uk/concrete-weight-converter',
+      url: 'https://concrete-calculator-uk.vercel.app/concrete-weight-converter',
       applicationCategory: 'UtilityApplication',
       operatingSystem: 'Any',
       description:
@@ -78,7 +78,7 @@ const weightConverterJsonLd = {
     },
     {
       '@type': 'HowTo',
-      '@id': 'https://concretecalc.co.uk/concrete-weight-converter#howto',
+      '@id': 'https://concrete-calculator-uk.vercel.app/concrete-weight-converter#howto',
       name: 'How to Convert Concrete Cubic Metres (m³) to Tonnes',
       description:
         'Quick practical formula to convert wet or cured concrete volume in cubic metres to weight in metric tonnes.',
@@ -107,7 +107,7 @@ const weightConverterJsonLd = {
     },
     {
       '@type': 'FAQPage',
-      '@id': 'https://concretecalc.co.uk/concrete-weight-converter#faq',
+      '@id': 'https://concrete-calculator-uk.vercel.app/concrete-weight-converter#faq',
       mainEntity: [
         {
           '@type': 'Question',

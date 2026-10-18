@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     title: 'Concrete Shed Base Calculator – 8x6, 6x4 & 10x8 Garden Slabs',
     description:
       'Calculate exact 100mm concrete slab volume, 25kg bags, MOT Type 1 hardcore, and timber formwork for 6x4, 8x6, and 10x8 garden shed bases in the UK.',
-    url: 'https://concretecalc.co.uk/concrete-shed-base-how-much-do-i-need',
+    url: 'https://concrete-calculator-uk.vercel.app/concrete-shed-base-how-much-do-i-need',
     type: 'article',
     images: [
       {
@@ -50,35 +50,35 @@ const shedJsonLd = {
   '@graph': [
     {
       '@type': 'BreadcrumbList',
-      '@id': 'https://concretecalc.co.uk/concrete-shed-base-how-much-do-i-need#breadcrumb',
+      '@id': 'https://concrete-calculator-uk.vercel.app/concrete-shed-base-how-much-do-i-need#breadcrumb',
       itemListElement: [
         {
           '@type': 'ListItem',
           position: 1,
           name: 'Home',
-          item: 'https://concretecalc.co.uk',
+          item: 'https://concrete-calculator-uk.vercel.app',
         },
         {
           '@type': 'ListItem',
           position: 2,
           name: 'Guides',
-          item: 'https://concretecalc.co.uk/guides',
+          item: 'https://concrete-calculator-uk.vercel.app/guides',
         },
         {
           '@type': 'ListItem',
           position: 3,
           name: 'Concrete Shed Base Guide',
-          item: 'https://concretecalc.co.uk/concrete-shed-base-how-much-do-i-need',
+          item: 'https://concrete-calculator-uk.vercel.app/concrete-shed-base-how-much-do-i-need',
         },
       ],
     },
     {
       '@type': 'HowTo',
-      '@id': 'https://concretecalc.co.uk/concrete-shed-base-how-much-do-i-need#howto',
+      '@id': 'https://concrete-calculator-uk.vercel.app/concrete-shed-base-how-much-do-i-need#howto',
       name: 'How to Calculate Concrete for a Garden Shed Base',
       description:
         'Step-by-step guide to calculating concrete volume, 25kg bags, and hardcore sub-base for standard UK garden shed bases.',
-      image: 'https://concretecalc.co.uk/images/shed-base-slab-pouring.jpg',
+      image: 'https://concrete-calculator-uk.vercel.app/images/shed-base-slab-pouring.jpg',
       totalTime: 'PT4H',
       estimatedCost: {
         '@type': 'MonetaryAmount',
@@ -114,7 +114,7 @@ const shedJsonLd = {
     },
     {
       '@type': 'FAQPage',
-      '@id': 'https://concretecalc.co.uk/concrete-shed-base-how-much-do-i-need#faq',
+      '@id': 'https://concrete-calculator-uk.vercel.app/concrete-shed-base-how-much-do-i-need#faq',
       mainEntity: [
         {
           '@type': 'Question',

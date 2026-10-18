@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     title: 'Postcrete Calculator UK – Bags of Postcrete Per Post & Hole Size',
     description:
       'Calculate exactly how many 20kg bags of rapid set Postcrete you need per fence post hole based on British fencing standards.',
-    url: 'https://concretecalc.co.uk/postcrete-calculator',
+    url: 'https://concrete-calculator-uk.vercel.app/postcrete-calculator',
     type: 'website',
     images: [
       {
@@ -60,25 +60,25 @@ const postcreteJsonLd = {
     },
     {
       '@type': 'BreadcrumbList',
-      '@id': 'https://concretecalc.co.uk/postcrete-calculator#breadcrumb',
+      '@id': 'https://concrete-calculator-uk.vercel.app/postcrete-calculator#breadcrumb',
       itemListElement: [
         {
           '@type': 'ListItem',
           position: 1,
           name: 'Home',
-          item: 'https://concretecalc.co.uk',
+          item: 'https://concrete-calculator-uk.vercel.app',
         },
         {
           '@type': 'ListItem',
           position: 2,
           name: 'Postcrete Calculator',
-          item: 'https://concretecalc.co.uk/postcrete-calculator',
+          item: 'https://concrete-calculator-uk.vercel.app/postcrete-calculator',
         },
       ],
     },
     {
       '@type': 'HowTo',
-      '@id': 'https://concretecalc.co.uk/postcrete-calculator#howto',
+      '@id': 'https://concrete-calculator-uk.vercel.app/postcrete-calculator#howto',
       name: 'How to Install a Fence Post with Rapid-Set Postcrete in the UK',
       description:
         'Official British fencing technique for digging holes and fixing wooden or concrete fence posts using dry rapid-set Postcrete and water.',
@@ -121,7 +121,7 @@ const postcreteJsonLd = {
     },
     {
       '@type': 'FAQPage',
-      '@id': 'https://concretecalc.co.uk/postcrete-calculator#faq',
+      '@id': 'https://concrete-calculator-uk.vercel.app/postcrete-calculator#faq',
       mainEntity: [
         {
           '@type': 'Question',
